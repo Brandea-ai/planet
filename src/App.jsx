@@ -1,37 +1,105 @@
-import React, { useRef, useMemo, useState, Suspense } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Stars, Html, useTexture, Environment } from '@react-three/drei';
+import { OrbitControls, Stars, Html, Environment, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
-import { EffectComposer, Bloom, Vignette, ChromaticAberration, DepthOfField, SSAO } from '@react-three/postprocessing';
+import { EffectComposer, Bloom, Vignette, ChromaticAberration, DepthOfField } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
 
-// --- OPTIMIERTE TEXTUREN VON SOLAR TEXTURES (kleinere, schnellere Versionen) ---
-const textureURLs = {
-  // Verwende kleinere Texturen von einem zuverlässigen CDN
-  sun: "https://www.solarsystemscope.com/textures/download/2k_sun.jpg",
-  mercury: "https://www.solarsystemscope.com/textures/download/2k_mercury.jpg",
-  venus: "https://www.solarsystemscope.com/textures/download/2k_venus_surface.jpg",
-  earth: "https://www.solarsystemscope.com/textures/download/2k_earth_daymap.jpg",
-  mars: "https://www.solarsystemscope.com/textures/download/2k_mars.jpg",
-  jupiter: "https://www.solarsystemscope.com/textures/download/2k_jupiter.jpg",
-  saturn: "https://www.solarsystemscope.com/textures/download/2k_saturn.jpg",
-  uranus: "https://www.solarsystemscope.com/textures/download/2k_uranus.jpg",
-  neptune: "https://www.solarsystemscope.com/textures/download/2k_neptune.jpg",
-};
-
-// --- PLANETEN-DATEN ---
+// --- PLANETEN-DATEN mit erweiterten Material-Properties ---
 const planets = [
-  { name: "Merkur", distance: 10, radius: 0.6, speed: 0.04, texture: textureURLs.mercury, color: "#8C7853", desc: "Der sonnennächste Planet." },
-  { name: "Venus", distance: 15, radius: 1.1, speed: 0.03, texture: textureURLs.venus, color: "#FFC649", desc: "Höllisch heiß, dichte Wolken." },
-  { name: "Erde", distance: 22, radius: 1.2, speed: 0.02, texture: textureURLs.earth, color: "#4169E1", hasAtmosphere: true, desc: "Unser Heimatplanet." },
-  { name: "Mars", distance: 30, radius: 0.8, speed: 0.018, texture: textureURLs.mars, color: "#CD5C5C", desc: "Der rote Wüstenplanet." },
-  { name: "Jupiter", distance: 45, radius: 3.5, speed: 0.008, texture: textureURLs.jupiter, color: "#DAA520", desc: "Gasriese, der König." },
-  { name: "Saturn", distance: 60, radius: 3, speed: 0.006, texture: textureURLs.saturn, color: "#F4A460", hasRings: true, desc: "Herr der Ringe." },
-  { name: "Uranus", distance: 78, radius: 2, speed: 0.004, texture: textureURLs.uranus, color: "#4FD0E0", desc: "Der eisige Riese." },
-  { name: "Neptun", distance: 95, radius: 1.9, speed: 0.003, texture: textureURLs.neptune, color: "#4169E1", desc: "Stürmischer Blauer Planet." },
+  {
+    name: "Merkur",
+    distance: 10,
+    radius: 0.6,
+    speed: 0.04,
+    color: "#8C7853",
+    emissive: "#3d3020",
+    roughness: 0.9,
+    metalness: 0.1,
+    desc: "Der sonnennächste Planet - leblos und verkratert."
+  },
+  {
+    name: "Venus",
+    distance: 15,
+    radius: 1.1,
+    speed: 0.03,
+    color: "#FFC649",
+    emissive: "#8B6914",
+    roughness: 0.3,
+    metalness: 0.0,
+    desc: "Höllisch heiß mit dichter Wolkendecke."
+  },
+  {
+    name: "Erde",
+    distance: 22,
+    radius: 1.2,
+    speed: 0.02,
+    color: "#2B65EC",
+    emissive: "#0a1a3d",
+    roughness: 0.6,
+    metalness: 0.2,
+    hasAtmosphere: true,
+    desc: "Unser blauer Heimatplanet - voller Leben."
+  },
+  {
+    name: "Mars",
+    distance: 30,
+    radius: 0.8,
+    speed: 0.018,
+    color: "#CD5C5C",
+    emissive: "#4d2020",
+    roughness: 0.9,
+    metalness: 0.1,
+    desc: "Der rote Wüstenplanet - trocken und kalt."
+  },
+  {
+    name: "Jupiter",
+    distance: 45,
+    radius: 3.5,
+    speed: 0.008,
+    color: "#DAA520",
+    emissive: "#5d4510",
+    roughness: 0.4,
+    metalness: 0.0,
+    desc: "Gasriese mit dem großen roten Fleck."
+  },
+  {
+    name: "Saturn",
+    distance: 60,
+    radius: 3,
+    speed: 0.006,
+    color: "#F4A460",
+    emissive: "#6d4820",
+    roughness: 0.5,
+    metalness: 0.0,
+    hasRings: true,
+    desc: "Der beringte Gasriese - majestätisch."
+  },
+  {
+    name: "Uranus",
+    distance: 78,
+    radius: 2,
+    speed: 0.004,
+    color: "#4FD0E0",
+    emissive: "#1d4d55",
+    roughness: 0.3,
+    metalness: 0.1,
+    desc: "Der eisige Riese - auf der Seite liegend."
+  },
+  {
+    name: "Neptun",
+    distance: 95,
+    radius: 1.9,
+    speed: 0.003,
+    color: "#4169E1",
+    emissive: "#1a2d5d",
+    roughness: 0.4,
+    metalness: 0.1,
+    desc: "Stürmischer blauer Planet am Rand."
+  },
 ];
 
-// --- ATMOSPHÄREN-SHADER (Verbessert) ---
+// --- ATMOSPHÄREN-SHADER ---
 const AtmosphereShader = {
   vertexShader: `
     varying vec3 vNormal;
@@ -47,83 +115,85 @@ const AtmosphereShader = {
     varying vec3 vNormal;
     varying vec3 vPosition;
     void main() {
-      float intensity = pow(0.7 - dot(vNormal, vec3(0, 0, 1.0)), 3.0);
+      float intensity = pow(0.65 - dot(vNormal, vec3(0, 0, 1.0)), 3.5);
       vec3 glow = glowColor * intensity;
       gl_FragColor = vec4(glow, 1.0) * intensity;
     }
   `
 };
 
-// --- SONNE MIT TEXTUREN ---
+// --- SONNE ---
 const Sun = () => {
-  const texture = useTexture(textureURLs.sun);
   const sunRef = useRef();
+  const glowRef = useRef();
 
   useFrame(({ clock }) => {
     if (sunRef.current) {
-      sunRef.current.rotation.y += 0.001;
+      sunRef.current.rotation.y += 0.002;
+    }
+    if (glowRef.current) {
+      const pulse = Math.sin(clock.getElapsedTime() * 0.5) * 0.1 + 2.4;
+      glowRef.current.material.emissiveIntensity = pulse;
     }
   });
 
   return (
-    <mesh ref={sunRef} castShadow>
-      <sphereGeometry args={[5, 64, 64]} />
-      <meshStandardMaterial
-        map={texture}
-        emissive="#FFA500"
-        emissiveMap={texture}
-        emissiveIntensity={2.5}
-        toneMapped={false}
-      />
-      <pointLight intensity={3} distance={400} decay={2} color="#FFEAA7" castShadow />
-    </mesh>
+    <group>
+      {/* Sonne */}
+      <mesh ref={sunRef} castShadow>
+        <sphereGeometry args={[5, 64, 64]} />
+        <meshStandardMaterial
+          color="#FDB813"
+          emissive="#FF8C00"
+          emissiveIntensity={2.5}
+          roughness={1}
+          metalness={0}
+          toneMapped={false}
+        />
+      </mesh>
+
+      {/* Glow Layer */}
+      <mesh ref={glowRef} scale={[1.02, 1.02, 1.02]}>
+        <sphereGeometry args={[5, 32, 32]} />
+        <meshStandardMaterial
+          color="#FFA500"
+          emissive="#FF4500"
+          emissiveIntensity={2}
+          transparent
+          opacity={0.3}
+          toneMapped={false}
+        />
+      </mesh>
+
+      <pointLight intensity={3.5} distance={400} decay={2} color="#FFE4B5" castShadow shadow-mapSize={[2048, 2048]} />
+    </group>
   );
 };
 
-// --- SATURN RINGE (Verbessert) ---
+// --- SATURN RINGE ---
 const SaturnRings = ({ radius }) => {
   return (
     <mesh rotation-x={-Math.PI / 2} receiveShadow castShadow>
-      <ringGeometry args={[radius * 1.3, radius * 2.2, 128]} />
+      <ringGeometry args={[radius * 1.3, radius * 2.3, 128]} />
       <meshStandardMaterial
-        color="#C9B181"
+        color="#E6D5AC"
         side={THREE.DoubleSide}
         transparent
-        opacity={0.9}
-        roughness={0.8}
-        metalness={0.2}
+        opacity={0.85}
+        roughness={0.7}
+        metalness={0.3}
+        emissive="#5d4a30"
+        emissiveIntensity={0.2}
       />
     </mesh>
   );
 };
 
-// --- PLANET MIT TEXTUREN ---
+// --- PLANET ---
 const Planet = ({ data, activePlanet, setActivePlanet }) => {
   const ref = useRef();
   const meshRef = useRef();
   const randomOffset = useMemo(() => Math.random() * Math.PI * 2, []);
-
-  // Texture loading with fallback
-  const [texture, setTexture] = useState(null);
-  const [useTexture, setUseTexture] = useState(true);
-
-  // Try to load texture, fallback to color if it fails
-  React.useEffect(() => {
-    if (useTexture && data.texture) {
-      const loader = new THREE.TextureLoader();
-      loader.load(
-        data.texture,
-        (loadedTexture) => {
-          setTexture(loadedTexture);
-        },
-        undefined,
-        () => {
-          // On error, use color instead
-          setUseTexture(false);
-        }
-      );
-    }
-  }, [data.texture, useTexture]);
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
@@ -133,12 +203,13 @@ const Planet = ({ data, activePlanet, setActivePlanet }) => {
     ref.current.position.set(x, 0, z);
 
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.005;
+      meshRef.current.rotation.y += 0.003;
     }
   });
 
   return (
     <group ref={ref}>
+      {/* Planet */}
       <mesh
         ref={meshRef}
         onClick={(e) => { e.stopPropagation(); setActivePlanet(data); }}
@@ -149,14 +220,16 @@ const Planet = ({ data, activePlanet, setActivePlanet }) => {
       >
         <sphereGeometry args={[data.radius, 64, 64]} />
         <meshStandardMaterial
-          map={texture}
-          color={!texture ? data.color : "#FFFFFF"}
-          roughness={0.8}
-          metalness={0.1}
-          envMapIntensity={0.5}
+          color={data.color}
+          emissive={data.emissive}
+          emissiveIntensity={0.3}
+          roughness={data.roughness}
+          metalness={data.metalness}
+          envMapIntensity={0.8}
         />
       </mesh>
 
+      {/* Atmosphäre */}
       {data.hasAtmosphere && (
         <mesh scale={[1.12, 1.12, 1.12]}>
           <sphereGeometry args={[data.radius, 64, 64]} />
@@ -173,10 +246,12 @@ const Planet = ({ data, activePlanet, setActivePlanet }) => {
         </mesh>
       )}
 
+      {/* Ringe */}
       {data.hasRings && <SaturnRings radius={data.radius} />}
 
+      {/* Label */}
       <Html distanceFactor={20} position={[0, data.radius + 1.5, 0]}>
-        <div className="text-white text-xs font-mono tracking-widest bg-black/60 px-2 py-1 rounded backdrop-blur-md pointer-events-none border border-white/20">
+        <div className="text-white text-xs font-mono tracking-widest bg-black/70 px-3 py-1.5 rounded-lg backdrop-blur-md pointer-events-none border border-orange-500/30 shadow-lg">
           {data.name}
         </div>
       </Html>
@@ -186,16 +261,20 @@ const Planet = ({ data, activePlanet, setActivePlanet }) => {
 
 // --- ORBIT LINIEN ---
 const OrbitLine = ({ radius }) => {
-  const points = [];
-  for (let i = 0; i <= 64; i++) {
-    const angle = (i / 64) * Math.PI * 2;
-    points.push(new THREE.Vector3(Math.sin(angle) * radius, 0, Math.cos(angle) * radius));
-  }
-  const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+  const points = useMemo(() => {
+    const pts = [];
+    for (let i = 0; i <= 128; i++) {
+      const angle = (i / 128) * Math.PI * 2;
+      pts.push(new THREE.Vector3(Math.sin(angle) * radius, 0, Math.cos(angle) * radius));
+    }
+    return pts;
+  }, [radius]);
+
+  const lineGeometry = useMemo(() => new THREE.BufferGeometry().setFromPoints(points), [points]);
 
   return (
     <line geometry={lineGeometry}>
-      <lineBasicMaterial color="#ffffff" opacity={0.1} transparent />
+      <lineBasicMaterial color="#ffffff" opacity={0.15} transparent linewidth={1} />
     </line>
   );
 };
@@ -206,35 +285,46 @@ const HUD = ({ activePlanet, setActivePlanet }) => {
     <>
       <div className="absolute top-0 left-0 w-full p-8 flex justify-between items-start pointer-events-none z-10">
         <div>
-          <h1 className="text-6xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-red-600 font-black tracking-tighter drop-shadow-2xl" style={{fontFamily: 'Impact, sans-serif'}}>
+          <h1
+            className="text-7xl text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-red-600 font-black tracking-tighter drop-shadow-2xl animate-pulse"
+            style={{fontFamily: 'Impact, sans-serif', animationDuration: '3s'}}
+          >
             SOLAR<span className="text-white">ENGINE</span>
           </h1>
-          <p className="text-white/70 font-mono text-xs mt-2 tracking-widest">REALTIME ORBITAL SIMULATION // V.5.0 ULTRA</p>
+          <p className="text-orange-400/80 font-mono text-sm mt-2 tracking-widest">
+            ULTRA EDITION // V.6.0 // PROCEDURAL GRAPHICS
+          </p>
         </div>
       </div>
 
       {activePlanet && (
-        <div className="absolute bottom-10 left-10 w-96 bg-gradient-to-br from-black/80 to-black/60 backdrop-blur-2xl border-t-2 border-orange-500 p-6 text-white transform transition-all duration-500 z-20 pointer-events-auto rounded-lg shadow-2xl">
+        <div className="absolute bottom-10 left-10 w-[420px] bg-gradient-to-br from-black/90 via-black/80 to-orange-900/20 backdrop-blur-2xl border-t-4 border-orange-500 p-8 text-white transform transition-all duration-500 z-20 pointer-events-auto rounded-2xl shadow-2xl">
           <button
             onClick={() => setActivePlanet(null)}
-            className="absolute -top-4 right-0 bg-gradient-to-r from-orange-600 to-red-600 text-white font-bold px-4 py-1 text-xs hover:from-white hover:to-gray-200 hover:text-black transition-all duration-300 cursor-pointer rounded shadow-lg"
-          >✕ CLOSE</button>
+            className="absolute -top-5 -right-3 bg-gradient-to-r from-orange-600 to-red-600 text-white font-bold px-5 py-2 text-sm hover:from-white hover:to-gray-200 hover:text-black transition-all duration-300 cursor-pointer rounded-full shadow-xl border-2 border-white/20"
+          >
+            ✕ CLOSE
+          </button>
 
-          <h2 className="text-5xl font-bold mb-2 uppercase bg-clip-text text-transparent bg-gradient-to-r from-white to-orange-300">{activePlanet.name}</h2>
-          <p className="text-orange-400 text-xs font-mono mb-4 tracking-wide">ORBITAL DISTANCE: {activePlanet.distance} AU</p>
+          <h2 className="text-6xl font-black mb-3 uppercase bg-clip-text text-transparent bg-gradient-to-r from-white via-orange-200 to-orange-400 tracking-tight">
+            {activePlanet.name}
+          </h2>
+          <p className="text-orange-400 text-sm font-mono mb-5 tracking-wide border-l-4 border-orange-500 pl-3">
+            ORBITAL DISTANCE: {activePlanet.distance} AU
+          </p>
 
-          <p className="text-sm leading-relaxed text-gray-300 mb-4">
+          <p className="text-base leading-relaxed text-gray-200 mb-6">
             {activePlanet.desc}
           </p>
 
-          <div className="grid grid-cols-2 gap-3 text-xs font-mono">
-            <div className="bg-white/5 p-2 rounded">
-              <div className="text-gray-500 text-[10px]">RADIUS</div>
-              <div className="text-white font-bold">{activePlanet.radius * 6000} KM</div>
+          <div className="grid grid-cols-2 gap-4 text-sm font-mono">
+            <div className="bg-gradient-to-br from-white/10 to-white/5 p-3 rounded-lg border border-white/10">
+              <div className="text-orange-400 text-xs mb-1 font-bold">RADIUS</div>
+              <div className="text-white text-lg font-bold">{(activePlanet.radius * 6000).toFixed(0)} KM</div>
             </div>
-            <div className="bg-white/5 p-2 rounded">
-              <div className="text-gray-500 text-[10px]">SPEED</div>
-              <div className="text-white font-bold">{(activePlanet.speed * 100).toFixed(1)} AU/s</div>
+            <div className="bg-gradient-to-br from-white/10 to-white/5 p-3 rounded-lg border border-white/10">
+              <div className="text-orange-400 text-xs mb-1 font-bold">VELOCITY</div>
+              <div className="text-white text-lg font-bold">{(activePlanet.speed * 100).toFixed(2)} AU/s</div>
             </div>
           </div>
         </div>
@@ -243,65 +333,46 @@ const HUD = ({ activePlanet, setActivePlanet }) => {
   );
 };
 
-// --- POST PROCESSING (ULTRA HIGH-END) ---
+// --- POST PROCESSING ---
 const SceneEffects = () => {
   return (
     <EffectComposer multisampling={8}>
-      {/* SSAO für realistische Schatten */}
-      <SSAO
-        blendFunction={BlendFunction.MULTIPLY}
-        samples={16}
-        radius={0.5}
-        intensity={30}
-      />
-
-      {/* Bloom für Leuchteffekte */}
+      {/* Bloom für Leuchten */}
       <Bloom
-        luminanceThreshold={0.2}
+        luminanceThreshold={0.15}
         luminanceSmoothing={0.9}
-        intensity={1.8}
+        intensity={2.2}
         mipmapBlur
       />
 
-      {/* Depth of Field für Tiefenschärfe */}
+      {/* Depth of Field */}
       <DepthOfField
-        focusDistance={0.01}
+        focusDistance={0.02}
         focalLength={0.05}
-        bokehScale={3}
+        bokehScale={2.5}
       />
 
-      {/* Chromatische Aberration für Realismus */}
+      {/* Chromatische Aberration */}
       <ChromaticAberration
         blendFunction={BlendFunction.NORMAL}
-        offset={[0.0005, 0.0005]}
+        offset={[0.001, 0.001]}
       />
 
-      {/* Vignette für Kino-Look */}
-      <Vignette eskil={false} offset={0.15} darkness={1.2} />
+      {/* Vignette */}
+      <Vignette eskil={false} offset={0.18} darkness={1.3} />
     </EffectComposer>
   );
 };
 
-// --- KAMERA RIG (Verbessert) ---
+// --- KAMERA RIG ---
 const CameraRig = () => {
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    state.camera.position.x += (state.mouse.x * 3 - state.camera.position.x) * 0.02;
-    state.camera.position.y += (state.mouse.y * 3 + 30 - state.camera.position.y) * 0.02;
+    state.camera.position.x += (state.mouse.x * 4 - state.camera.position.x) * 0.02;
+    state.camera.position.y += (state.mouse.y * 4 + 30 - state.camera.position.y) * 0.02;
     state.camera.lookAt(0, 0, 0);
   });
   return null;
 };
-
-// --- LOADING FALLBACK ---
-const LoadingScreen = () => (
-  <Html center>
-    <div className="flex flex-col items-center gap-4">
-      <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
-      <div className="text-white font-mono text-sm tracking-widest">LOADING UNIVERSE...</div>
-    </div>
-  </Html>
-);
 
 // --- MAIN APP ---
 export default function App() {
@@ -313,70 +384,68 @@ export default function App() {
 
       <Canvas
         shadows
-        camera={{ position: [0, 30, 60], fov: 40 }}
+        camera={{ position: [0, 35, 70], fov: 45 }}
         dpr={[1, 2]}
         gl={{
           antialias: true,
           toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.3,
+          toneMappingExposure: 1.4,
           outputColorSpace: THREE.SRGBColorSpace
         }}
       >
-        <Suspense fallback={<LoadingScreen />}>
-          {/* Beleuchtung */}
-          <ambientLight intensity={0.05} />
-          <hemisphereLight intensity={0.3} color="#ffffff" groundColor="#080820" />
+        {/* Beleuchtung */}
+        <ambientLight intensity={0.08} />
+        <hemisphereLight intensity={0.4} color="#ffffff" groundColor="#0a0a20" />
 
-          {/* Sterne */}
-          <Stars
-            radius={300}
-            depth={60}
-            count={8000}
-            factor={5}
-            saturation={0}
-            fade
-            speed={0.3}
+        {/* Sterne */}
+        <Stars
+          radius={350}
+          depth={80}
+          count={12000}
+          factor={6}
+          saturation={0}
+          fade
+          speed={0.4}
+        />
+
+        {/* Environment für Reflexionen */}
+        <Environment preset="night" />
+
+        {/* Sonne */}
+        <Sun />
+
+        {/* Orbit Linien */}
+        {planets.map((planet, i) => (
+          <OrbitLine key={`orbit-${i}`} radius={planet.distance} />
+        ))}
+
+        {/* Planeten */}
+        {planets.map((data, i) => (
+          <Planet
+            key={i}
+            data={data}
+            activePlanet={activePlanet}
+            setActivePlanet={setActivePlanet}
           />
+        ))}
 
-          {/* Environment Map für Reflexionen */}
-          <Environment preset="night" />
+        {/* Effects */}
+        <SceneEffects />
+        <CameraRig />
 
-          {/* Sonne */}
-          <Sun />
-
-          {/* Orbit Linien */}
-          {planets.map((planet, i) => (
-            <OrbitLine key={`orbit-${i}`} radius={planet.distance} />
-          ))}
-
-          {/* Planeten */}
-          {planets.map((data, i) => (
-            <Planet
-              key={i}
-              data={data}
-              activePlanet={activePlanet}
-              setActivePlanet={setActivePlanet}
-            />
-          ))}
-
-          {/* Effects */}
-          <SceneEffects />
-          <CameraRig />
-
-          {/* Controls */}
-          <OrbitControls
-            enablePan={true}
-            enableZoom={true}
-            enableDamping
-            dampingFactor={0.05}
-            minDistance={20}
-            maxDistance={250}
-            autoRotate={!activePlanet}
-            autoRotateSpeed={0.4}
-            maxPolarAngle={Math.PI / 1.5}
-            minPolarAngle={Math.PI / 4}
-          />
-        </Suspense>
+        {/* Controls */}
+        <OrbitControls
+          enablePan={true}
+          enableZoom={true}
+          enableDamping
+          dampingFactor={0.08}
+          minDistance={25}
+          maxDistance={280}
+          autoRotate={!activePlanet}
+          autoRotateSpeed={0.5}
+          maxPolarAngle={Math.PI / 1.6}
+          minPolarAngle={Math.PI / 6}
+        />
       </Canvas>
     </div>
   );

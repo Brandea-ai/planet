@@ -1,29 +1,53 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Wrench, Sparkles, Shield, Clock, ChevronRight } from "lucide-react";
+import { Wrench, Car, ShoppingCart, BadgeDollarSign, Shield, Sofa, Headphones, ChevronRight } from "lucide-react";
+import Link from "next/link";
+
+const highlights = [
+  {
+    icon: BadgeDollarSign,
+    title: "Preis-Leistungs-Verhältnis",
+    description: "Bei uns finden Sie Fahrzeuge, die ein hervorragendes Preis-Leistungs-Verhältnis bieten. Wir stellen sicher, dass Sie für Ihr Geld die bestmögliche Qualität erhalten. Unsere Angebote sind fair kalkuliert, sodass Sie sicher sein können, einen guten Deal zu machen.",
+  },
+  {
+    icon: Shield,
+    title: "Zuverlässigkeit und Sicherheit",
+    description: "Ihre Sicherheit und die Zuverlässigkeit unserer Fahrzeuge stehen bei uns an erster Stelle. Jedes Auto in unserem Sortiment ist gründlich geprüft und erfüllt die höchsten Sicherheitsstandards.",
+  },
+  {
+    icon: Sofa,
+    title: "Ausstattung und Komfort",
+    description: "Unsere Fahrzeuge bieten Ihnen hochwertige Innenausstattung und moderne Infotainment-Systeme für maximalen Komfort und Fahrgenuss.",
+  },
+  {
+    icon: Headphones,
+    title: "Kundendienst und Garantie",
+    description: "Seit über 4 Jahren bieten wir unseren Kunden durch langjährige Erfahrung und zahlreiche Zertifizierungen zuverlässige und hochwertige Dienstleistungen.",
+  },
+];
 
 const services = [
   {
     icon: Wrench,
-    title: "Reifenwechsel",
-    description: "Professioneller Reifenwechsel mit modernster Ausrüstung. Schnell, sicher und zuverlässig.",
-    features: ["Sommer & Winterreifen", "Auswuchten inklusive", "Reifeneinlagerung"],
-    price: "ab 49€",
+    title: "Service",
+    description: "Reifenpflege und professionelle Aufbereitung",
+    href: "/service",
+    cta: "Termin buchen",
   },
   {
-    icon: Sparkles,
-    title: "Fahrzeugaufbereitung",
-    description: "Bringen Sie Ihr Auto wieder zum Glänzen. Innen- und Außenaufbereitung auf höchstem Niveau.",
-    features: ["Innenreinigung", "Außenpolitur", "Keramikversiegelung"],
-    price: "ab 99€",
+    icon: Car,
+    title: "Verkauf",
+    description: "Top-Angebote auf Mobile.de",
+    href: "/fahrzeuge",
+    cta: "Fahrzeuge ansehen",
   },
   {
-    icon: Shield,
-    title: "Fahrzeugcheck",
-    description: "Umfassende Inspektion Ihres Fahrzeugs. Sicherheit und Zuverlässigkeit garantiert.",
-    features: ["Bremsencheck", "Ölwechsel", "Diagnose"],
-    price: "ab 39€",
+    icon: ShoppingCart,
+    title: "Ankauf",
+    description: "Verkaufen Sie Ihr Fahrzeug schnell und fair",
+    href: "/ankauf",
+    cta: "Jetzt verkaufen",
   },
 ];
 
@@ -32,7 +56,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 };
@@ -51,7 +75,7 @@ export default function Services() {
       </div>
 
       <div className="max-w-7xl mx-auto relative">
-        {/* Header */}
+        {/* Highlights Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -59,89 +83,83 @@ export default function Services() {
           className="text-center mb-16"
         >
           <span className="text-green-500 font-semibold tracking-wider uppercase text-sm">
-            Unsere Services
+            Warum wir?
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-            Premium <span className="gradient-text">Autoservice</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
+            Unsere <span className="gradient-text">Leistungen</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Von Reifenwechsel bis Fahrzeugaufbereitung – wir bieten Ihnen erstklassigen Service für Ihr Fahrzeug.
-          </p>
         </motion.div>
 
-        {/* Services Grid */}
+        {/* Highlights Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 gap-8 mb-20"
         >
-          {services.map((service, index) => (
+          {highlights.map((highlight) => (
+            <motion.div
+              key={highlight.title}
+              variants={itemVariants}
+              className="glass rounded-2xl p-8"
+            >
+              <div className="flex items-start gap-5">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center flex-shrink-0">
+                  <highlight.icon className="w-7 h-7 text-green-500" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-3">{highlight.title}</h3>
+                  <p className="text-gray-400 leading-relaxed">{highlight.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Services Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Unsere <span className="gradient-text">Services</span>
+          </h2>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-8"
+        >
+          {services.map((service) => (
             <motion.div
               key={service.title}
               variants={itemVariants}
               whileHover={{ y: -10 }}
               className="group"
             >
-              <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-green-500/30">
-                {/* Icon */}
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-8 h-8 text-green-500" />
+              <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-green-500/30 text-center">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <service.icon className="w-10 h-10 text-white" />
                 </div>
 
-                {/* Title & Price */}
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-2xl font-bold text-white">{service.title}</h3>
-                  <span className="text-green-500 font-bold text-lg">{service.price}</span>
-                </div>
+                <h3 className="text-2xl font-bold text-white mb-3">{service.title}</h3>
+                <p className="text-gray-400 mb-6">{service.description}</p>
 
-                {/* Description */}
-                <p className="text-gray-400 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <ul className="space-y-3 mb-8">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-gray-300">
-                      <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                {/* CTA */}
-                <motion.a
-                  href="#kontakt"
-                  whileHover={{ x: 5 }}
-                  className="inline-flex items-center gap-2 text-green-500 font-semibold group/link"
-                >
-                  Termin buchen
-                  <ChevronRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                </motion.a>
+                <Link href={service.href}>
+                  <span className="inline-flex items-center gap-2 text-green-500 font-semibold group-hover:text-green-400 transition-colors cursor-pointer">
+                    {service.cta}
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex items-center gap-4 glass rounded-full px-8 py-4">
-            <Clock className="w-5 h-5 text-green-500" />
-            <span className="text-gray-300">Termine auch kurzfristig verfügbar</span>
-            <a
-              href="tel:+491728650128"
-              className="text-green-500 font-semibold hover:text-green-400 transition-colors"
-            >
-              Jetzt anrufen
-            </a>
-          </div>
         </motion.div>
       </div>
     </section>

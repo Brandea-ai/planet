@@ -50,7 +50,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Bayern&apos;s Nr. 1 Auto Service. Ihr zuverlässiger Partner für Fahrzeugankauf, Verkauf und Service in Landshut.
+              Wir sind Ihr Autohaus in Landshut. Ihr zuverlässiger Partner für Fahrzeugankauf, Verkauf und Service.
             </p>
             <div className="flex gap-3">
               <a
@@ -176,7 +176,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm">
-              © {currentYear} CarCenter Landshut. Alle Rechte vorbehalten.
+              Copyright 2025 - CarCenter | Erstellt von <a href="https://brandea.de" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-400">Brandea</a> ®
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/impressum" className="text-gray-500 hover:text-green-500 transition-colors">

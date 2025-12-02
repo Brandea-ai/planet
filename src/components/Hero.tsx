@@ -5,35 +5,36 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Car, Wrench, BadgeCheck } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 const slides = [
   {
     id: 1,
-    title: "Auto Ankauf",
-    subtitle: "Schnell & Fair",
-    description: "Verkaufen Sie Ihr Fahrzeug zum Bestpreis. Sofortige Bewertung und schnelle Abwicklung.",
+    title: "Ankauf",
+    subtitle: "Auto Ankauf",
+    description: "Unsere Vorzüge sind zügige und gerechte Leistungen",
     cta: "Jetzt Verkaufen",
-    href: "#ankauf",
+    href: "/ankauf",
     icon: Car,
     gradient: "from-green-600/20 to-emerald-900/40",
   },
   {
     id: 2,
-    title: "Premium Service",
-    subtitle: "Reifenwechsel & Aufbereitung",
-    description: "Professioneller Reifenservice und Fahrzeugaufbereitung für Ihr Auto.",
-    cta: "Termin Buchen",
-    href: "#service",
+    title: "Service",
+    subtitle: "Reifenwechsel und Aufbereitung",
+    description: "Reifenwechsel und Aufbereitung",
+    cta: "Termin buchen",
+    href: "/service",
     icon: Wrench,
     gradient: "from-blue-600/20 to-indigo-900/40",
   },
   {
     id: 3,
-    title: "Geprüfte Qualität",
-    subtitle: "Bayern's Nr. 1 Auto Service",
-    description: "Vertrauen Sie dem führenden Autohaus in Landshut. Qualität seit Jahren.",
-    cta: "Fahrzeuge Ansehen",
-    href: "#fahrzeuge",
+    title: "CarCenter",
+    subtitle: "Landshut",
+    description: "Bayern's Nr 1 Auto Service",
+    cta: "Unsere Produkte",
+    href: "/fahrzeuge",
     icon: BadgeCheck,
     gradient: "from-amber-600/20 to-orange-900/40",
   },
@@ -116,22 +117,23 @@ export default function Hero() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.5 }}
-                          className="text-xl text-gray-300 max-w-2xl mx-auto mb-10"
+                          className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-10"
                         >
                           {slide.description}
                         </motion.p>
 
                         {/* CTA */}
-                        <motion.a
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.6 }}
-                          href={slide.href}
-                          className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105"
-                        >
-                          {slide.cta}
-                          <ChevronRight className="w-5 h-5" />
-                        </motion.a>
+                        <Link href={slide.href}>
+                          <motion.span
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 }}
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105 cursor-pointer"
+                          >
+                            {slide.cta}
+                            <ChevronRight className="w-5 h-5" />
+                          </motion.span>
+                        </Link>
                       </motion.div>
                     )}
                   </AnimatePresence>

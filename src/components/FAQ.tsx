@@ -6,28 +6,20 @@ import { Plus, Minus, HelpCircle } from "lucide-react";
 
 const faqs = [
   {
-    question: "Wie funktioniert der Autoankauf?",
-    answer: "Der Ankauf ist einfach: Kontaktieren Sie uns mit Ihren Fahrzeugdaten, wir erstellen eine kostenlose Bewertung und machen Ihnen ein faires Angebot. Bei Einigung holen wir das Fahrzeug ab und Sie erhalten sofort Ihr Geld.",
+    question: "Wie gestaltet sich der Ablauf des Ankaufs?",
+    answer: "Zunächst besprechen wir Ihre Anforderungen und Wünsche, anschließend führen wir eine Bewertung durch, und letztendlich schließen wir den Kaufvertrag ab. Unser Team steht Ihnen dabei jederzeit unterstützend zur Seite.",
   },
   {
-    question: "Welche Fahrzeuge kaufen Sie an?",
-    answer: "Wir kaufen alle Marken und Modelle an – egal ob PKW, SUV, Transporter oder Unfallwagen. Auch ältere Fahrzeuge oder Autos mit hoher Laufleistung sind für uns interessant.",
+    question: "Kaufen Sie auch beschädigte Fahrzeuge an?",
+    answer: "Für den Ankauf benötigen wir genauere Informationen zu Ihrem Schaden. Zusätzlich bietet unser Serviceteam Reifenwechsel und professionelle Aufbereitung an.",
   },
   {
-    question: "Wie schnell erfolgt die Auszahlung?",
-    answer: "Die Auszahlung erfolgt sofort bei Übergabe des Fahrzeugs. Sie können zwischen Barzahlung oder Überweisung wählen. Bei Überweisung ist das Geld in der Regel am gleichen oder nächsten Werktag auf Ihrem Konto.",
+    question: "Was hebt unser Unternehmen von der Konkurrenz ab?",
+    answer: "Drei entscheidende Punkte: 1. Exzellente Fachkompetenz - Unsere hochqualifizierten Techniker und Berater verfügen über umfangreiche Erfahrung. 2. Modernste Technik - Wir setzen auf neueste Technologie und innovative Verfahren. 3. Kundenzufriedenheit - Maßgeschneiderte Dienstleistungen, transparente und faire Preise.",
   },
   {
-    question: "Muss ich einen Termin für den Reifenwechsel vereinbaren?",
-    answer: "Ja, wir empfehlen eine Terminvereinbarung, um Wartezeiten zu vermeiden. Rufen Sie uns an oder nutzen Sie unser Online-Formular. Bei Verfügbarkeit nehmen wir auch kurzfristige Termine an.",
-  },
-  {
-    question: "Bieten Sie auch Finanzierungsmöglichkeiten an?",
-    answer: "Ja, wir arbeiten mit verschiedenen Finanzierungspartnern zusammen und können Ihnen attraktive Finanzierungsangebote für unsere Fahrzeuge unterbreiten. Sprechen Sie uns einfach an.",
-  },
-  {
-    question: "Kann ich mein Fahrzeug auch in Zahlung geben?",
-    answer: "Selbstverständlich! Wir nehmen Ihr altes Fahrzeug gerne in Zahlung. Der Wert wird fair berechnet und vom Kaufpreis des neuen Fahrzeugs abgezogen.",
+    question: "Bieten Sie ebenfalls die Organisation und Durchführung des Fahrzeugtransports an?",
+    answer: "Im Rahmen unseres Ankaufservices sind wir in der Lage, auch weite Strecken für die Abholung Ihres Fahrzeugs zu überbrücken. Selbstverständlich werden Ihnen hierfür keine zusätzlichen Kosten in Rechnung gestellt.",
   },
 ];
 
@@ -127,7 +119,7 @@ export default function FAQ() {
             Haben Sie weitere Fragen?
           </p>
           <a
-            href="#kontakt"
+            href="tel:+491728650128"
             className="inline-flex items-center gap-2 text-green-500 font-semibold hover:text-green-400 transition-colors"
           >
             Kontaktieren Sie uns direkt

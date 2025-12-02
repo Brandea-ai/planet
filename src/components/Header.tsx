@@ -2,16 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Car, Wrench, ShoppingBag } from "lucide-react";
+import { Menu, X, Phone, Car } from "lucide-react";
 import Link from "next/link";
 
 const navItems = [
-  { name: "Start", href: "#hero" },
-  { name: "Ankauf", href: "#ankauf" },
-  { name: "Service", href: "#service" },
-  { name: "Fahrzeuge", href: "#fahrzeuge" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Kontakt", href: "#kontakt" },
+  { name: "Start", href: "/" },
+  { name: "Ankauf", href: "/ankauf" },
+  { name: "Service", href: "/service" },
+  { name: "Fahrzeuge", href: "/fahrzeuge" },
+  { name: "Kontakt", href: "/#kontakt" },
 ];
 
 export default function Header() {
@@ -32,13 +31,13 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-3" : "bg-transparent py-5"
+        isScrolled ? "glass py-3" : "bg-black/50 backdrop-blur-sm py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="#hero" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="flex items-center gap-2"
@@ -78,14 +77,15 @@ export default function Header() {
               <Phone className="w-4 h-4" />
               <span className="text-sm">+49 172 8650128</span>
             </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#ankauf"
-              className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300"
-            >
-              Jetzt Verkaufen
-            </motion.a>
+            <Link href="/ankauf">
+              <motion.span
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+              >
+                Jetzt Verkaufen
+              </motion.span>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -118,13 +118,13 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
-              <a
-                href="#ankauf"
+              <Link
+                href="/ankauf"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="mt-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full text-center font-semibold"
               >
                 Jetzt Verkaufen
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}

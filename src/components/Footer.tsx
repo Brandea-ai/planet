@@ -9,19 +9,18 @@ import {
 import Link from "next/link";
 
 const quickLinks = [
-  { name: "Start", href: "#hero" },
-  { name: "Auto Ankauf", href: "#ankauf" },
-  { name: "Service", href: "#service" },
-  { name: "Fahrzeuge", href: "#fahrzeuge" },
-  { name: "FAQ", href: "#faq" },
+  { name: "Start", href: "/" },
+  { name: "Auto Ankauf", href: "/ankauf" },
+  { name: "Service", href: "/service" },
+  { name: "Fahrzeuge", href: "/fahrzeuge" },
 ];
 
 const services = [
-  "Auto Ankauf",
-  "Reifenwechsel",
-  "Fahrzeugaufbereitung",
-  "Fahrzeugverkauf",
-  "Finanzierung",
+  { name: "Auto Ankauf", href: "/ankauf" },
+  { name: "Reifenwechsel", href: "/service" },
+  { name: "Fahrzeugaufbereitung", href: "/service" },
+  { name: "Fahrzeugverkauf", href: "/fahrzeuge" },
+  { name: "Termin buchen", href: "/service" },
 ];
 
 export default function Footer() {
@@ -41,7 +40,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Link href="#hero" className="flex items-center gap-2 mb-6">
+            <Link href="/" className="flex items-center gap-2 mb-6">
               <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
                 <Car className="w-6 h-6 text-white" />
               </div>
@@ -90,13 +89,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-gray-400 hover:text-green-500 transition-colors flex items-center gap-2 group"
                   >
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -112,11 +111,14 @@ export default function Footer() {
             <h3 className="text-white font-bold text-lg mb-6">Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
-                <li key={service}>
-                  <span className="text-gray-400 flex items-center gap-2">
+                <li key={service.name}>
+                  <Link
+                    href={service.href}
+                    className="text-gray-400 hover:text-green-500 transition-colors flex items-center gap-2"
+                  >
                     <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                    {service}
-                  </span>
+                    {service.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -177,15 +179,12 @@ export default function Footer() {
               © {currentYear} CarCenter Landshut. Alle Rechte vorbehalten.
             </p>
             <div className="flex gap-6 text-sm">
-              <a href="#" className="text-gray-500 hover:text-green-500 transition-colors">
+              <Link href="/impressum" className="text-gray-500 hover:text-green-500 transition-colors">
                 Impressum
-              </a>
-              <a href="#" className="text-gray-500 hover:text-green-500 transition-colors">
+              </Link>
+              <Link href="/datenschutz" className="text-gray-500 hover:text-green-500 transition-colors">
                 Datenschutz
-              </a>
-              <a href="#" className="text-gray-500 hover:text-green-500 transition-colors">
-                AGB
-              </a>
+              </Link>
             </div>
           </div>
         </div>

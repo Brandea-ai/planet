@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { FileText, Phone, Mail, MapPin } from "lucide-react";
+import { FileText, Phone, Mail, MapPin, User, Building } from "lucide-react";
 
 export default function ImpressumPage() {
   return (
@@ -45,20 +45,34 @@ export default function ImpressumPage() {
             {/* Anbieter */}
             <div>
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                <MapPin className="w-6 h-6 text-green-500" />
+                <Building className="w-6 h-6 text-green-500" />
                 Anbieter
               </h2>
               <div className="text-gray-300 space-y-2">
-                <p className="font-semibold text-white text-lg">CarCenter Landshut</p>
+                <p className="font-semibold text-white text-lg">CarCenter Landshut GbR</p>
+                <p>Mehmet Emin Akin & Sofian Lakaksa</p>
                 <p>Niedermayerstr. 44</p>
                 <p>84028 Landshut</p>
-                <p>Deutschland</p>
               </div>
+            </div>
+
+            {/* Vertretungsberechtigte */}
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <User className="w-6 h-6 text-green-500" />
+                Vertreten durch
+              </h2>
+              <p className="text-gray-300">
+                Mehmet Emin Akin & Sofian Lakaksa
+              </p>
             </div>
 
             {/* Kontakt */}
             <div>
-              <h2 className="text-2xl font-bold text-white mb-4">Kontakt</h2>
+              <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+                <Phone className="w-6 h-6 text-green-500" />
+                Kontakt
+              </h2>
               <div className="space-y-3">
                 <a
                   href="tel:+491728650128"
@@ -77,43 +91,26 @@ export default function ImpressumPage() {
               </div>
             </div>
 
-            {/* Vertretungsberechtigte */}
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-4">Vertretungsberechtigte Person</h2>
-              <p className="text-gray-300">
-                Geschäftsführer: [Name des Geschäftsführers]
-              </p>
-            </div>
-
-            {/* Registereintrag */}
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-4">Registereintrag</h2>
-              <div className="text-gray-300 space-y-1">
-                <p>Eintragung im Handelsregister</p>
-                <p>Registergericht: Amtsgericht Landshut</p>
-                <p>Registernummer: [HRB XXXXX]</p>
-              </div>
-            </div>
-
             {/* Umsatzsteuer-ID */}
             <div>
               <h2 className="text-2xl font-bold text-white mb-4">Umsatzsteuer-ID</h2>
               <p className="text-gray-300">
                 Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-                DE [XXX XXX XXX]
+                <span className="text-white font-semibold">DE366014618</span>
               </p>
             </div>
 
-            {/* Berufsbezeichnung */}
+            {/* Verantwortlich für den Inhalt */}
             <div>
-              <h2 className="text-2xl font-bold text-white mb-4">Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
               <div className="text-gray-300 space-y-2">
-                <p>Berufsbezeichnung: Kraftfahrzeughändler</p>
-                <p>Zuständige Aufsichtsbehörde: Landratsamt Landshut</p>
+                <p className="font-semibold text-white">Mehmet Emin Akin & Sofian Lakaksa</p>
+                <p>Niedermayerstr. 44</p>
+                <p>84028 Landshut</p>
               </div>
             </div>
 
-            {/* Streitschlichtung */}
+            {/* EU-Streitschlichtung */}
             <div>
               <h2 className="text-2xl font-bold text-white mb-4">EU-Streitschlichtung</h2>
               <div className="text-gray-300 space-y-3">

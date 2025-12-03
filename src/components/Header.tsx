@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Car } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
 import ContactFormModal from "./ContactFormModal";
 
@@ -57,19 +57,16 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2"
+              className="flex items-center"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                <Car className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <span className="text-xl font-bold text-white">Car</span>
-                <span className="text-xl font-bold text-emerald-500">Center</span>
-                <p className="text-[10px] text-gray-400 -mt-1">LANDSHUT</p>
-              </div>
+              <img
+                src="https://brandea.b-cdn.net/CarcenterLandshut/logo-transparent.webp"
+                alt="CarCenter Landshut"
+                className="h-12 w-auto"
+              />
             </motion.div>
           </Link>
 

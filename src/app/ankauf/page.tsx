@@ -85,8 +85,15 @@ export default function AnkaufPage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-black to-black" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://brandea.b-cdn.net/CarcenterLandshut/startseite-ankauf-hero.webp"
+            alt="Auto Ankauf"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 relative">
           <motion.div
@@ -115,8 +122,8 @@ export default function AnkaufPage() {
                 transition={{ delay: index * 0.1 }}
                 className="glass rounded-2xl p-6 text-center"
               >
-                <div className="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-7 h-7 text-emerald-500" />
+                <div className="w-14 h-14 rounded-xl bg-emerald-600/20 flex items-center justify-center mx-auto mb-4">
+                  <benefit.icon className="w-7 h-7 text-emerald-600" />
                 </div>
                 <h3 className="text-white font-semibold mb-2">{benefit.title}</h3>
                 <p className="text-gray-400 text-sm">{benefit.description}</p>
@@ -274,10 +281,10 @@ export default function AnkaufPage() {
               <div className="space-y-6">
                 <a
                   href="tel:+491728650128"
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-500/30 transition-colors group"
+                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-600/30 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
-                    <Phone className="w-6 h-6 text-emerald-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center group-hover:bg-emerald-600/30 transition-colors">
+                    <Phone className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Telefon</p>
@@ -287,10 +294,10 @@ export default function AnkaufPage() {
 
                 <a
                   href="mailto:carcenterlandshut@gmail.com"
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-500/30 transition-colors group"
+                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-600/30 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
-                    <Mail className="w-6 h-6 text-emerald-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center group-hover:bg-emerald-600/30 transition-colors">
+                    <Mail className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">E-Mail</p>
@@ -302,10 +309,10 @@ export default function AnkaufPage() {
                   href="https://maps.google.com/?q=Niedermayerstr.+44,+84028+Landshut"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-500/30 transition-colors group"
+                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-600/30 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
-                    <MapPin className="w-6 h-6 text-emerald-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center group-hover:bg-emerald-600/30 transition-colors">
+                    <MapPin className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Adresse</p>
@@ -314,8 +321,8 @@ export default function AnkaufPage() {
                 </a>
 
                 <div className="flex items-center gap-4 p-4 glass rounded-xl">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-emerald-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-600/20 flex items-center justify-center">
+                    <Clock className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Öffnungszeiten</p>

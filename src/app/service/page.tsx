@@ -111,8 +111,15 @@ export default function ServicePage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-black to-black" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://brandea.b-cdn.net/CarcenterLandshut/startseite-service-hero.webp"
+            alt="Service"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 relative">
           <motion.div
@@ -147,9 +154,9 @@ export default function ServicePage() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-emerald-500/30">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-8 h-8 text-emerald-500" />
+                <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-emerald-600/30">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600/20 to-emerald-700/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-8 h-8 text-emerald-600" />
                   </div>
 
                   <div className="flex items-start justify-between mb-4">
@@ -164,7 +171,7 @@ export default function ServicePage() {
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3 text-gray-300">
-                        <CheckCircle className="w-4 h-4 text-emerald-500" />
+                        <CheckCircle className="w-4 h-4 text-emerald-600" />
                         {feature}
                       </li>
                     ))}
@@ -172,7 +179,7 @@ export default function ServicePage() {
 
                   <button
                     onClick={() => handleServiceClick(service.title)}
-                    className="w-full py-3 rounded-xl border border-emerald-500/30 text-emerald-500 font-semibold hover:bg-emerald-500 hover:text-white transition-all"
+                    className="w-full py-3 rounded-xl border border-emerald-600/30 text-emerald-600 font-semibold hover:bg-emerald-600 hover:text-white transition-all"
                   >
                     Termin buchen
                   </button>

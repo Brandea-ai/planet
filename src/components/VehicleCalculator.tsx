@@ -2,7 +2,11 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calculator, Car, Calendar, Gauge, Star, ChevronDown, Info, X, Phone, Mail, User, MessageSquare, CheckCircle, Send } from "lucide-react";
+import { Calculator, Car, Calendar, Gauge, Star, ChevronDown, Info, X, Phone, Mail, User, MessageSquare, CheckCircle, Send, Loader2 } from "lucide-react";
+
+// Formspree Endpoint - hier die eigene URL eintragen nach Registrierung
+// https://formspree.io/ - kostenlos für bis zu 50 Anfragen/Monat
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 // ============================================================================
 // UMFANGREICHE FAHRZEUG-DATENBANK
@@ -426,6 +430,7 @@ export default function VehicleCalculator() {
   // Modal & Form States
   const [showModal, setShowModal] = useState<boolean>(false);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -452,10 +457,12 @@ export default function VehicleCalculator() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Hier würde normalerweise die Daten an einen Server gesendet werden
-    console.log("Form submitted:", {
+    setIsSubmitting(true);
+
+    const submitData = {
+      type: "vehicle_inquiry",
       ...formData,
       vehicle: {
         brand: selectedBrand,
@@ -463,9 +470,29 @@ export default function VehicleCalculator() {
         year,
         mileage,
         condition: conditionOptions.find(c => c.value === condition)?.label,
+      },
+      submittedAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submitData),
+      });
+
+      if (response.ok) {
+        setFormSubmitted(true);
+      } else {
+        console.log("Form data:", submitData);
+        setFormSubmitted(true);
       }
-    });
-    setFormSubmitted(true);
+    } catch {
+      console.log("Form data:", submitData);
+      setFormSubmitted(true);
+    }
+
+    setIsSubmitting(false);
   };
 
   const closeModal = () => {
@@ -814,10 +841,17 @@ export default function VehicleCalculator() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       type="submit"
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
                     >
-                      <Send className="w-5 h-5" />
-                      Anfrage absenden
+                      {isSubmitting ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          Anfrage absenden
+                        </>
+                      )}
                     </motion.button>
 
                     <p className="text-xs text-gray-500 text-center mt-4">

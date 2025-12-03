@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Car, Phone, Mail, MapPin, Clock,
   Instagram, Facebook, MessageCircle,
-  ChevronRight
+  ChevronRight, Send
 } from "lucide-react";
 import Link from "next/link";
+import ContactFormModal from "./ContactFormModal";
 
 const quickLinks = [
   { name: "Start", href: "/" },
@@ -25,8 +27,15 @@ const services = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [showContactModal, setShowContactModal] = useState(false);
 
   return (
+    <>
+    <ContactFormModal
+      isOpen={showContactModal}
+      onClose={() => setShowContactModal(false)}
+      type="general"
+    />
     <footer id="kontakt" className="bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
       {/* Top Border */}
       <div className="h-px bg-gradient-to-r from-transparent via-green-500/50 to-transparent" />
@@ -166,6 +175,17 @@ export default function Footer() {
                 <Clock className="w-5 h-5 text-green-500" />
                 <span>Mo-Fr: 9:00 - 18:00<br />Sa: 10:00 - 14:00</span>
               </li>
+              <li className="pt-4">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowContactModal(true)}
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 transition-all"
+                >
+                  <Send className="w-4 h-4" />
+                  Nachricht senden
+                </motion.button>
+              </li>
             </ul>
           </motion.div>
         </div>
@@ -190,5 +210,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Car } from "lucide-react";
 import Link from "next/link";
+import ContactFormModal from "./ContactFormModal";
 
 const navItems = [
   { name: "Start", href: "/" },
@@ -11,12 +12,13 @@ const navItems = [
   { name: "Kalkulator", href: "/kalkulator" },
   { name: "Service", href: "/service" },
   { name: "Fahrzeuge", href: "/fahrzeuge" },
-  { name: "Kontakt", href: "/#kontakt" },
+  { name: "Kontakt", href: "#", isContact: true },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +28,20 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (item: typeof navItems[0]) => {
+    if (item.isContact) {
+      setShowContactModal(true);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
+    <>
+      <ContactFormModal
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+        type="general"
+      />
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -57,13 +72,23 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-300 hover:text-green-500 transition-colors duration-200 text-sm font-medium"
-              >
-                {item.name}
-              </Link>
+              item.isContact ? (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavClick(item)}
+                  className="text-gray-300 hover:text-green-500 transition-colors duration-200 text-sm font-medium"
+                >
+                  {item.name}
+                </button>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-300 hover:text-green-500 transition-colors duration-200 text-sm font-medium"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -110,14 +135,24 @@ export default function Header() {
           >
             <nav className="flex flex-col p-4">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-green-500 py-3 border-b border-gray-800 last:border-0 transition-colors"
-                >
-                  {item.name}
-                </Link>
+                item.isContact ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item)}
+                    className="text-gray-300 hover:text-green-500 py-3 border-b border-gray-800 last:border-0 transition-colors text-left"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-gray-300 hover:text-green-500 py-3 border-b border-gray-800 last:border-0 transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               <Link
                 href="/ankauf"
@@ -131,5 +166,6 @@ export default function Header() {
         )}
       </AnimatePresence>
     </motion.header>
+    </>
   );
 }

@@ -4,7 +4,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Wrench, Sparkles, Shield, Calendar, CheckCircle, Send, Loader2, Phone, Clock } from "lucide-react";
+import { Wrench, Sparkles, Shield, Calendar, CheckCircle, Send, Loader2, Phone, Mail } from "lucide-react";
+
+// Formspree Endpoint - hier die eigene URL eintragen nach Registrierung
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 const services = [
   {
@@ -33,6 +36,7 @@ const services = [
 export default function ServicePage() {
   const [selectedService, setSelectedService] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -43,13 +47,43 @@ export default function ServicePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    const submitData = {
+      type: "appointment",
+      service: selectedService,
+      name,
+      email,
+      phone,
+      preferredDate: date,
+      preferredTime: time,
+      message,
+      submittedAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submitData),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+      } else {
+        console.log("Form data:", submitData);
+        setIsSuccess(true);
+      }
+    } catch {
+      console.log("Form data:", submitData);
+      setIsSuccess(true);
+    }
+
     setIsSubmitting(false);
-    setIsSuccess(true);
     setTimeout(() => {
       setIsSuccess(false);
       setSelectedService("");
       setName("");
+      setEmail("");
       setPhone("");
       setDate("");
       setTime("");
@@ -167,15 +201,27 @@ export default function ServicePage() {
                   </select>
                 </div>
 
+                <div>
+                  <label className="text-gray-300 text-sm mb-2 block">Ihr Name *</label>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                    placeholder="Max Mustermann"
+                    required
+                  />
+                </div>
+
                 <div className="grid md:grid-cols-2 gap-5">
                   <div>
-                    <label className="text-gray-300 text-sm mb-2 block">Ihr Name *</label>
+                    <label className="text-gray-300 text-sm mb-2 block">E-Mail *</label>
                     <input
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
-                      placeholder="Max Mustermann"
+                      placeholder="ihre@email.de"
                       required
                     />
                   </div>

@@ -21,9 +21,9 @@ interface ContactFormModalProps {
   subtitle?: string;
 }
 
-// Formspree Endpoint - hier die eigene URL eintragen nach Registrierung
-// https://formspree.io/ - kostenlos für bis zu 50 Anfragen/Monat
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // Später ersetzen mit echter ID
+// FormSubmit.co - Ersetze mit deiner Email-Adresse
+// Nach dem ersten Absenden bekommst du eine Bestätigungs-Email
+const FORMSUBMIT_EMAIL = "carcenterlandshut@gmail.com";
 
 export default function ContactFormModal({
   isOpen,
@@ -48,25 +48,40 @@ export default function ContactFormModal({
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Daten zusammenstellen
-    const submitData = {
-      ...formData,
-      type: type,
-      ...(vehicleInfo && {
-        vehicle: `${vehicleInfo.brand} ${vehicleInfo.model}`,
-        vehicleYear: vehicleInfo.year,
-        vehicleMileage: vehicleInfo.mileage,
-        vehicleCondition: vehicleInfo.condition,
-      }),
-      submittedAt: new Date().toISOString(),
+    // Daten zusammenstellen für FormSubmit.co
+    const submitData: Record<string, string> = {
+      Name: formData.name,
+      Email: formData.email,
+      Telefon: formData.phone,
+      Nachricht: formData.message,
+      Typ: type === "vehicle" ? "Fahrzeuganfrage" : type === "appointment" ? "Terminanfrage" : "Allgemeine Anfrage",
+      _subject: type === "vehicle"
+        ? `Neue Fahrzeuganfrage - ${vehicleInfo?.brand} ${vehicleInfo?.model}`
+        : type === "appointment"
+        ? "Neue Terminanfrage - CarCenter Landshut"
+        : "Neue Kontaktanfrage - CarCenter Landshut",
     };
 
+    // Fahrzeug-Info hinzufügen wenn vorhanden
+    if (vehicleInfo) {
+      submitData.Fahrzeug = `${vehicleInfo.brand} ${vehicleInfo.model}`;
+      submitData.Baujahr = String(vehicleInfo.year);
+      submitData.Kilometerstand = `${vehicleInfo.mileage.toLocaleString('de-DE')} km`;
+      submitData.Zustand = vehicleInfo.condition;
+    }
+
+    // Termin-Info hinzufügen wenn vorhanden
+    if (type === "appointment" && formData.preferredDate) {
+      submitData.Wunschdatum = formData.preferredDate;
+      submitData.Wunschzeit = formData.preferredTime;
+    }
+
     try {
-      // Formspree oder andere API
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json",
         },
         body: JSON.stringify(submitData),
       });
@@ -74,12 +89,10 @@ export default function ContactFormModal({
       if (response.ok) {
         setFormSubmitted(true);
       } else {
-        // Fallback: Trotzdem als erfolgreich markieren für Demo
         console.log("Form data:", submitData);
         setFormSubmitted(true);
       }
     } catch {
-      // Fallback für Demo ohne Backend
       console.log("Form data:", submitData);
       setFormSubmitted(true);
     }

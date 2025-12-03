@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Wrench, Sparkles, Shield, Calendar, CheckCircle, Send, Loader2, Phone, Mail } from "lucide-react";
+import { Wrench, Sparkles, Shield, Calendar, CheckCircle, Send, Loader2, Phone } from "lucide-react";
 
-// Formspree Endpoint - hier die eigene URL eintragen nach Registrierung
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+// FormSubmit.co - Ersetze mit deiner Email-Adresse
+const FORMSUBMIT_EMAIL = "carcenterlandshut@gmail.com";
 
 const services = [
   {
@@ -44,26 +44,40 @@ export default function ServicePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // Ref für Auto-Scroll zum Buchungsformular
+  const bookingFormRef = useRef<HTMLDivElement>(null);
+
+  // Service auswählen und zum Formular scrollen
+  const handleServiceClick = (serviceTitle: string) => {
+    setSelectedService(serviceTitle);
+    // Nach kurzer Verzögerung zum Formular scrollen
+    setTimeout(() => {
+      bookingFormRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const submitData = {
-      type: "appointment",
-      service: selectedService,
-      name,
-      email,
-      phone,
-      preferredDate: date,
-      preferredTime: time,
-      message,
-      submittedAt: new Date().toISOString(),
+      Name: name,
+      Email: email,
+      Telefon: phone,
+      Service: selectedService,
+      Wunschdatum: date,
+      Wunschzeit: time,
+      Nachricht: message,
+      _subject: `Neue Terminanfrage - ${selectedService} - CarCenter Landshut`,
     };
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
         body: JSON.stringify(submitData),
       });
 
@@ -157,7 +171,7 @@ export default function ServicePage() {
                   </ul>
 
                   <button
-                    onClick={() => setSelectedService(service.title)}
+                    onClick={() => handleServiceClick(service.title)}
                     className="w-full py-3 rounded-xl border border-green-500/30 text-green-500 font-semibold hover:bg-green-500 hover:text-white transition-all"
                   >
                     Termin buchen
@@ -169,10 +183,11 @@ export default function ServicePage() {
 
           {/* Booking Form */}
           <motion.div
+            ref={bookingFormRef}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
+            className="max-w-3xl mx-auto scroll-mt-32"
           >
             <div className="glass rounded-3xl p-8 md:p-10">
               <div className="flex items-center gap-3 mb-8">

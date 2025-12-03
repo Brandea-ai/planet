@@ -4,9 +4,9 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calculator, Car, Calendar, Gauge, Star, ChevronDown, Info, X, Phone, Mail, User, MessageSquare, CheckCircle, Send, Loader2 } from "lucide-react";
 
-// Formspree Endpoint - hier die eigene URL eintragen nach Registrierung
-// https://formspree.io/ - kostenlos für bis zu 50 Anfragen/Monat
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+// FormSubmit.co - Ersetze mit deiner Email-Adresse
+// Nach dem ersten Absenden bekommst du eine Bestätigungs-Email
+const FORMSUBMIT_EMAIL = "carcenterlandshut@gmail.com";
 
 // ============================================================================
 // UMFANGREICHE FAHRZEUG-DATENBANK
@@ -461,23 +461,27 @@ export default function VehicleCalculator() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const conditionLabel = conditionOptions.find(c => c.value === condition)?.label || condition;
+
     const submitData = {
-      type: "vehicle_inquiry",
-      ...formData,
-      vehicle: {
-        brand: selectedBrand,
-        model: selectedModel,
-        year,
-        mileage,
-        condition: conditionOptions.find(c => c.value === condition)?.label,
-      },
-      submittedAt: new Date().toISOString(),
+      Name: formData.name,
+      Email: formData.email,
+      Telefon: formData.phone,
+      Nachricht: formData.message,
+      Fahrzeug: `${selectedBrand} ${selectedModel}`,
+      Baujahr: String(year),
+      Kilometerstand: `${mileage.toLocaleString('de-DE')} km`,
+      Zustand: conditionLabel,
+      _subject: `Neue Fahrzeuganfrage - ${selectedBrand} ${selectedModel}`,
     };
 
     try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
+      const response = await fetch(`https://formsubmit.co/ajax/${FORMSUBMIT_EMAIL}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
         body: JSON.stringify(submitData),
       });
 

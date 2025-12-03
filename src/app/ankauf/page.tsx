@@ -98,7 +98,7 @@ export default function AnkaufPage() {
               Auto Ankauf
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
-              Wir kaufen <span className="gradient-text">Ihr Auto</span>
+              Wir kaufen <span className="text-green-500">Ihr Auto</span>
             </h1>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Schnell, fair und unkompliziert. Erhalten Sie noch heute ein unverbindliches Angebot für Ihr Fahrzeug.

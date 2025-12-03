@@ -86,7 +86,7 @@ export default function Services() {
             Warum wir?
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            Unsere <span className="gradient-text">Leistungen</span>
+            Unsere <span className="text-green-500">Leistungen</span>
           </h2>
         </motion.div>
 
@@ -125,7 +125,7 @@ export default function Services() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Unsere <span className="gradient-text">Services</span>
+            Unsere <span className="text-green-500">Services</span>
           </h2>
         </motion.div>
 

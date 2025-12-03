@@ -85,7 +85,7 @@ export default function Stats() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Unsere <span className="gradient-text">Kundenzufriedenheit</span> ist unser oberstes Gebot
+            Unsere <span className="text-green-500">Kundenzufriedenheit</span> ist unser oberstes Gebot
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Im Laufe unserer Karriere war es stets unser oberstes Ziel, unsere Leistungen, Fähigkeiten und Angebote kontinuierlich zu verbessern, um eine optimale Kundenzufriedenheit zu gewährleisten.

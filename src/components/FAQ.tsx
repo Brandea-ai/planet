@@ -46,7 +46,7 @@ export default function FAQ() {
             <HelpCircle className="w-8 h-8 text-green-500" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Häufige <span className="gradient-text">Fragen</span>
+            Häufige <span className="text-green-500">Fragen</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Hier finden Sie Antworten auf die häufigsten Fragen unserer Kunden.

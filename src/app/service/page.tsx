@@ -124,7 +124,7 @@ export default function ServicePage() {
               Unsere Services
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
-              Premium <span className="gradient-text">Autoservice</span>
+              Premium <span className="text-green-500">Autoservice</span>
             </h1>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Von Reifenwechsel bis Fahrzeugaufbereitung – wir bieten Ihnen erstklassigen Service für Ihr Fahrzeug.

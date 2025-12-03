@@ -75,7 +75,7 @@ export default function Ankauf() {
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
               Verkaufen Sie Ihr
-              <span className="gradient-text"> Fahrzeug</span>
+              <span className="text-green-500"> Fahrzeug</span>
             </h2>
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
               Unsere Vorzüge sind zügige und gerechte Leistungen. Wir kaufen Ihr Auto schnell und unkompliziert – zu fairen Preisen, ohne versteckte Kosten.

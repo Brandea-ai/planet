@@ -751,7 +751,7 @@ export default function FahrzeugePage() {
               Fahrzeugbestand
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
-              Unsere <span className="gradient-text">Fahrzeuge</span>
+              Unsere <span className="text-green-500">Fahrzeuge</span>
             </h1>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Entdecken Sie unsere handverlesene Auswahl an Qualitätsfahrzeugen. Jedes Fahrzeug wird geprüft und ist sofort startklar.

@@ -775,8 +775,11 @@ export default function FahrzeugePage() {
                 className="group"
               >
                 <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-green-500/30">
-                  {/* Image */}
-                  <div className="relative h-56 overflow-hidden">
+                  {/* Image - Clickable */}
+                  <div
+                    className="relative h-56 overflow-hidden cursor-pointer"
+                    onClick={() => setSelectedVehicle(vehicle)}
+                  >
                     <img
                       src={vehicle.images[0]}
                       alt={vehicle.name}
@@ -867,7 +870,7 @@ export default function FahrzeugePage() {
             ))}
           </div>
 
-          {/* View All on AutoScout24 */}
+          {/* View All - Both Platforms */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -875,17 +878,28 @@ export default function FahrzeugePage() {
             className="mt-16 text-center"
           >
             <p className="text-gray-400 mb-6">
-              Mehr Fahrzeuge finden Sie auf AutoScout24
+              Mehr Fahrzeuge finden Sie auf unseren Partnerplattformen
             </p>
-            <a
-              href="https://www.autoscout24.de/haendler/carcenter-landshut"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 glass px-8 py-4 rounded-full text-white font-semibold hover:bg-white/10 transition-colors"
-            >
-              Alle Fahrzeuge auf AutoScout24
-              <ExternalLink className="w-5 h-5 text-green-500" />
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://home.mobile.de/CARCENTERLANDSHUT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-orange-500/25 transition-all"
+              >
+                Alle Fahrzeuge auf Mobile.de
+                <ExternalLink className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.autoscout24.de/haendler/carcenter-landshut"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+              >
+                Alle Fahrzeuge auf AutoScout24
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

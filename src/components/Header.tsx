@@ -65,7 +65,7 @@ export default function Header() {
               <img
                 src="https://brandea.b-cdn.net/CarcenterLandshut/logo-transparent.webp"
                 alt="CarCenter Landshut"
-                className="h-12 w-auto"
+                className="h-24 w-auto"
               />
             </motion.div>
           </Link>

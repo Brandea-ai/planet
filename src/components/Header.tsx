@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Car } from "lucide-react";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +35,11 @@ export default function Header() {
       setShowContactModal(true);
       setIsMobileMenuOpen(false);
     }
+  };
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
   };
 
   return (
@@ -69,27 +76,39 @@ export default function Header() {
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              item.isContact ? (
-                <button
-                  key={item.name}
-                  onClick={() => handleNavClick(item)}
-                  className="text-gray-300 hover:text-green-500 transition-colors duration-200 text-sm font-medium"
-                >
-                  {item.name}
-                </button>
-              ) : (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-300 hover:text-green-500 transition-colors duration-200 text-sm font-medium"
-                >
-                  {item.name}
-                </Link>
-              )
-            ))}
+          {/* Desktop Navigation - Premium Tab Style */}
+          <nav className="hidden lg:flex items-center">
+            <div className="flex items-center bg-white/5 backdrop-blur-md rounded-full p-1.5 border border-white/10">
+              {navItems.map((item) => {
+                const active = !item.isContact && isActive(item.href);
+                return item.isContact ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item)}
+                    className="relative px-5 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 rounded-full"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="relative px-5 py-2 text-sm font-medium transition-all duration-200 rounded-full"
+                  >
+                    {active && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-green-500 rounded-full"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <span className={`relative z-10 ${active ? "text-white" : "text-gray-300 hover:text-white"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           </nav>
 
           {/* CTA Buttons */}
@@ -128,18 +147,20 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass mt-2 mx-4 rounded-2xl overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden mt-2 mx-4 rounded-2xl overflow-hidden bg-gray-900/95 backdrop-blur-xl border border-white/10 shadow-2xl"
           >
-            <nav className="flex flex-col p-4">
-              {navItems.map((item) => (
-                item.isContact ? (
+            <nav className="flex flex-col p-3 gap-1">
+              {navItems.map((item) => {
+                const active = !item.isContact && isActive(item.href);
+                return item.isContact ? (
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item)}
-                    className="text-gray-300 hover:text-green-500 py-3 border-b border-gray-800 last:border-0 transition-colors text-left"
+                    className="relative px-4 py-3 text-left text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200 font-medium"
                   >
                     {item.name}
                   </button>
@@ -148,16 +169,21 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-gray-300 hover:text-green-500 py-3 border-b border-gray-800 last:border-0 transition-colors"
+                    className={`relative px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
+                      active
+                        ? "bg-green-500 text-white"
+                        : "text-gray-300 hover:text-white hover:bg-white/5"
+                    }`}
                   >
                     {item.name}
                   </Link>
-                )
-              ))}
+                );
+              })}
+              <div className="h-px bg-white/10 my-2" />
               <Link
                 href="/ankauf"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full text-center font-semibold"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl text-center font-semibold shadow-lg shadow-green-500/20"
               >
                 Jetzt Verkaufen
               </Link>

@@ -4,28 +4,28 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Wrench, Sparkles, Shield, Calendar, CheckCircle, Send, Loader2, Phone } from "lucide-react";
+import { Calendar, CheckCircle, Send, Loader2, Phone } from "lucide-react";
 
 // FormSubmit.co - Ersetze mit deiner Email-Adresse
 const FORMSUBMIT_EMAIL = "carcenterlandshut@gmail.com";
 
 const services = [
   {
-    icon: Wrench,
+    image: "https://brandea.b-cdn.net/CarcenterLandshut/service-reifenwechsel.webp",
     title: "Reifenwechsel",
     description: "Professioneller Reifenwechsel mit modernster Ausrüstung. Schnell, sicher und zuverlässig.",
     features: ["Sommer & Winterreifen", "Auswuchten inklusive", "Reifeneinlagerung möglich", "RDKS-Service"],
     price: "ab 49€",
   },
   {
-    icon: Sparkles,
+    image: "https://brandea.b-cdn.net/CarcenterLandshut/service-autopflege.webp",
     title: "Fahrzeugaufbereitung",
     description: "Bringen Sie Ihr Auto wieder zum Glänzen. Professionelle Innen- und Außenaufbereitung.",
     features: ["Innenreinigung komplett", "Außenpolitur", "Keramikversiegelung", "Lederreinigung & -pflege"],
     price: "ab 99€",
   },
   {
-    icon: Shield,
+    image: "https://brandea.b-cdn.net/CarcenterLandshut/service-card.webp",
     title: "Fahrzeugcheck",
     description: "Umfassende Inspektion Ihres Fahrzeugs. Für Ihre Sicherheit auf der Straße.",
     features: ["Bremsencheck", "Ölwechsel", "Fehlerdiagnose", "Klimaanlagenservice"],
@@ -154,15 +154,22 @@ export default function ServicePage() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-[#5a9a2d]/30">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#5a9a2d]/20 to-[#4a8526]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-8 h-8 text-[#5a9a2d]" />
+                <div className="h-full glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-[#5a9a2d]/30">
+                  {/* Service Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <span className="absolute bottom-4 right-4 bg-[#6cb036] text-white font-bold px-4 py-2 rounded-full text-sm">
+                      {service.price}
+                    </span>
                   </div>
 
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-2xl font-bold text-white">{service.title}</h3>
-                    <span className="text-[#6cb036] font-bold text-lg">{service.price}</span>
-                  </div>
+                  <div className="p-8">
+                  <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
 
                   <p className="text-gray-400 mb-6 leading-relaxed">
                     {service.description}
@@ -183,6 +190,7 @@ export default function ServicePage() {
                   >
                     Termin buchen
                   </button>
+                  </div>
                 </div>
               </motion.div>
             ))}

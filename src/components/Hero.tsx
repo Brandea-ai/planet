@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Car, Wrench, BadgeCheck } from "lucide-react";
+import { ChevronLeft, ChevronRight, Car, Wrench, BadgeCheck, Calculator } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
@@ -20,6 +20,16 @@ const slides = [
   },
   {
     id: 2,
+    title: "Kalkulator",
+    subtitle: "Fahrzeugwert-Rechner",
+    description: "Ermitteln Sie den Wert Ihres Fahrzeugs - kostenlos und unverbindlich",
+    cta: "Wert berechnen",
+    href: "/kalkulator",
+    icon: Calculator,
+    gradient: "from-purple-600/20 to-violet-900/40",
+  },
+  {
+    id: 3,
     title: "Service",
     subtitle: "Reifenwechsel und Aufbereitung",
     description: "Reifenwechsel und Aufbereitung",
@@ -29,7 +39,7 @@ const slides = [
     gradient: "from-blue-600/20 to-indigo-900/40",
   },
   {
-    id: 3,
+    id: 4,
     title: "CarCenter",
     subtitle: "Landshut",
     description: "Bayern's Nr 1 Auto Service",

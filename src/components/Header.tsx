@@ -8,6 +8,7 @@ import Link from "next/link";
 const navItems = [
   { name: "Start", href: "/" },
   { name: "Ankauf", href: "/ankauf" },
+  { name: "Kalkulator", href: "/kalkulator" },
   { name: "Service", href: "/service" },
   { name: "Fahrzeuge", href: "/fahrzeuge" },
   { name: "Kontakt", href: "/#kontakt" },

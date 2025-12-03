@@ -157,8 +157,8 @@ export default function ServicePage() {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       loading="lazy"
                     />
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                    {/* Gradient Overlay - Stronger for better text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
 
                     {/* Price Badge */}
                     <span className="absolute top-4 right-4 bg-[#6cb036] text-white font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base shadow-lg">
@@ -167,17 +167,17 @@ export default function ServicePage() {
 
                     {/* Content Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                      <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                      <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 drop-shadow-lg">
                         {service.title}
                       </h2>
-                      <p className="text-gray-300 text-sm sm:text-base mb-4 line-clamp-2">
+                      <p className="text-gray-200 text-sm sm:text-base mb-4 line-clamp-2 drop-shadow-lg">
                         {service.description}
                       </p>
 
                       {/* Features */}
                       <ul className="space-y-1.5 sm:space-y-2 mb-4">
                         {service.features.slice(0, 3).map((feature) => (
-                          <li key={feature} className="flex items-center gap-2 text-gray-200 text-xs sm:text-sm">
+                          <li key={feature} className="flex items-center gap-2 text-white text-xs sm:text-sm drop-shadow-md">
                             <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#6cb036] flex-shrink-0" aria-hidden="true" />
                             {feature}
                           </li>

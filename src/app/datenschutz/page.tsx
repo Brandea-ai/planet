@@ -20,8 +20,8 @@ export default function DatenschutzPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/20 mb-6">
-              <Shield className="w-8 h-8 text-green-500" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 mb-6">
+              <Shield className="w-8 h-8 text-emerald-500" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Datenschutzerklärung
@@ -157,7 +157,7 @@ export default function DatenschutzPage() {
                 </p>
                 <a
                   href="mailto:carcenterlandshut@gmail.com"
-                  className="inline-flex items-center gap-2 text-green-500 hover:text-green-400 transition-colors"
+                  className="inline-flex items-center gap-2 text-emerald-500 hover:text-emerald-400 transition-colors"
                 >
                   <Mail className="w-5 h-5" />
                   carcenterlandshut@gmail.com

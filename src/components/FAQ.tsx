@@ -30,8 +30,8 @@ export default function FAQ() {
     <section id="faq" className="section-padding bg-gradient-to-b from-black via-gray-950 to-black relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-green-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-green-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-4xl mx-auto relative">
@@ -42,11 +42,11 @@ export default function FAQ() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/20 mb-6">
-            <HelpCircle className="w-8 h-8 text-green-500" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 mb-6">
+            <HelpCircle className="w-8 h-8 text-emerald-500" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Häufige <span className="gradient-text">Fragen</span>
+            Häufige <span className="text-emerald-500">Fragen</span>
           </h2>
           <p className="text-gray-400 text-lg">
             Hier finden Sie Antworten auf die häufigsten Fragen unserer Kunden.
@@ -65,7 +65,7 @@ export default function FAQ() {
             >
               <div
                 className={`glass rounded-2xl overflow-hidden transition-all duration-300 ${
-                  activeIndex === index ? "border-green-500/30" : ""
+                  activeIndex === index ? "border-emerald-500/30" : ""
                 }`}
               >
                 <button
@@ -76,7 +76,7 @@ export default function FAQ() {
                     {faq.question}
                   </span>
                   <div className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                    activeIndex === index ? "bg-green-500" : "bg-gray-800"
+                    activeIndex === index ? "bg-emerald-500" : "bg-gray-800"
                   }`}>
                     {activeIndex === index ? (
                       <Minus className="w-5 h-5 text-white" />
@@ -120,7 +120,7 @@ export default function FAQ() {
           </p>
           <a
             href="tel:+491728650128"
-            className="inline-flex items-center gap-2 text-green-500 font-semibold hover:text-green-400 transition-colors"
+            className="inline-flex items-center gap-2 text-emerald-500 font-semibold hover:text-emerald-400 transition-colors"
           >
             Kontaktieren Sie uns direkt
           </a>

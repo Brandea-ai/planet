@@ -16,7 +16,7 @@ const slides = [
     cta: "Jetzt Verkaufen",
     href: "/ankauf",
     icon: Car,
-    gradient: "from-green-600/20 to-emerald-900/40",
+    image: "https://brandea.b-cdn.net/CarcenterLandshut/startseite-ankauf-hero.webp",
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const slides = [
     cta: "Wert berechnen",
     href: "/kalkulator",
     icon: Calculator,
-    gradient: "from-purple-600/20 to-violet-900/40",
+    image: "https://brandea.b-cdn.net/CarcenterLandshut/bild-startseite-carcenter-landshut.webp",
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const slides = [
     cta: "Termin buchen",
     href: "/service",
     icon: Wrench,
-    gradient: "from-blue-600/20 to-indigo-900/40",
+    image: "https://brandea.b-cdn.net/CarcenterLandshut/startseite-service-hero.webp",
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const slides = [
     cta: "Unsere Produkte",
     href: "/fahrzeuge",
     icon: BadgeCheck,
-    gradient: "from-amber-600/20 to-orange-900/40",
+    image: "https://brandea.b-cdn.net/CarcenterLandshut/bild-startseite-carcenter-landshut.webp",
   },
 ];
 
@@ -77,8 +77,16 @@ export default function Hero() {
         <div className="flex h-full">
           {slides.map((slide, index) => (
             <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative">
-              {/* Gradient Overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`} />
+              {/* Background Image */}
+              <div className="absolute inset-0">
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                />
+                {/* Dark Gradient Overlay for text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+              </div>
 
               {/* Content */}
               <div className="relative h-full flex items-center justify-center px-4">
@@ -97,7 +105,7 @@ export default function Hero() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.2, type: "spring" }}
-                          className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 mb-8 glow-green"
+                          className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-700 mb-8"
                         >
                           <slide.icon className="w-10 h-10 text-white" />
                         </motion.div>
@@ -107,7 +115,7 @@ export default function Hero() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.3 }}
-                          className="text-green-500 font-semibold tracking-wider uppercase mb-4"
+                          className="text-emerald-500 font-semibold tracking-wider uppercase mb-4"
                         >
                           {slide.subtitle}
                         </motion.p>
@@ -138,7 +146,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 hover:scale-105 cursor-pointer"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105 cursor-pointer"
                           >
                             {slide.cta}
                             <ChevronRight className="w-5 h-5" />
@@ -176,7 +184,7 @@ export default function Hero() {
             onClick={() => emblaApi?.scrollTo(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               selectedIndex === index
-                ? "bg-green-500 w-8"
+                ? "bg-emerald-500 w-8"
                 : "bg-white/30 hover:bg-white/50"
             }`}
           />
@@ -196,7 +204,7 @@ export default function Hero() {
           className="text-gray-400 text-sm flex flex-col items-center gap-2"
         >
           <span className="rotate-90 origin-center">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-green-500 to-transparent" />
+          <div className="w-px h-12 bg-gradient-to-b from-emerald-500 to-transparent" />
         </motion.div>
       </motion.div>
     </section>

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Car } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
+import ContactFormModal from "./ContactFormModal";
 
 const navItems = [
   { name: "Start", href: "/" },
@@ -11,12 +13,14 @@ const navItems = [
   { name: "Kalkulator", href: "/kalkulator" },
   { name: "Service", href: "/service" },
   { name: "Fahrzeuge", href: "/fahrzeuge" },
-  { name: "Kontakt", href: "/#kontakt" },
+  { name: "Kontakt", href: "#", isContact: true },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,11 +30,26 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (item: typeof navItems[0]) => {
+    if (item.isContact) {
+      setShowContactModal(true);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
   return (
+    <>
+      <ContactFormModal
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+        type="general"
+      />
     <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "glass py-3" : "bg-black/50 backdrop-blur-sm py-5"
       }`}
@@ -38,33 +57,52 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center gap-2"
+              className="flex items-center"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center">
-                <Car className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <span className="text-xl font-bold text-white">Car</span>
-                <span className="text-xl font-bold text-green-500">Center</span>
-                <p className="text-[10px] text-gray-400 -mt-1">LANDSHUT</p>
-              </div>
+              <img
+                src="https://brandea.b-cdn.net/CarcenterLandshut/logo-transparent.webp"
+                alt="CarCenter Landshut"
+                className="h-12 w-auto"
+              />
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-300 hover:text-green-500 transition-colors duration-200 text-sm font-medium"
-              >
-                {item.name}
-              </Link>
-            ))}
+          {/* Desktop Navigation - Premium Tab Style */}
+          <nav className="hidden lg:flex items-center">
+            <div className="flex items-center bg-white/5 backdrop-blur-md rounded-full p-1.5 border border-white/10">
+              {navItems.map((item) => {
+                const active = !item.isContact && isActive(item.href);
+                return item.isContact ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item)}
+                    className="relative px-5 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 rounded-full"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="relative px-5 py-2 text-sm font-medium transition-all duration-200 rounded-full"
+                  >
+                    {active && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-emerald-500 rounded-full"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <span className={`relative z-10 ${active ? "text-white" : "text-gray-300 hover:text-white"}`}>
+                      {item.name}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
           </nav>
 
           {/* CTA Buttons */}
@@ -82,7 +120,7 @@ export default function Header() {
               <motion.span
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-block bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+                className="inline-block bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300"
               >
                 Jetzt Verkaufen
               </motion.span>
@@ -103,26 +141,43 @@ export default function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass mt-2 mx-4 rounded-2xl overflow-hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="lg:hidden mt-2 mx-4 rounded-2xl overflow-hidden bg-gray-900/95 backdrop-blur-xl border border-white/10 shadow-2xl"
           >
-            <nav className="flex flex-col p-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-gray-300 hover:text-green-500 py-3 border-b border-gray-800 last:border-0 transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <nav className="flex flex-col p-3 gap-1">
+              {navItems.map((item) => {
+                const active = !item.isContact && isActive(item.href);
+                return item.isContact ? (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item)}
+                    className="relative px-4 py-3 text-left text-gray-300 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-200 font-medium"
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`relative px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
+                      active
+                        ? "bg-emerald-500 text-white"
+                        : "text-gray-300 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
+              <div className="h-px bg-white/10 my-2" />
               <Link
                 href="/ankauf"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-full text-center font-semibold"
+                className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3 rounded-xl text-center font-semibold shadow-lg shadow-emerald-500/20"
               >
                 Jetzt Verkaufen
               </Link>
@@ -131,5 +186,6 @@ export default function Header() {
         )}
       </AnimatePresence>
     </motion.header>
+    </>
   );
 }

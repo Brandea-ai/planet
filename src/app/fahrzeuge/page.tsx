@@ -1,62 +1,737 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Users, Gauge, DoorOpen, Car, Fuel, Calendar, ExternalLink, Phone } from "lucide-react";
+import { Users, Gauge, DoorOpen, Car, Fuel, Calendar, ExternalLink, Phone, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const vehicles = [
   {
     id: 1,
-    name: "VW Golf VII",
-    price: "8.290",
-    year: "2018",
-    km: "89.000 km",
-    fuel: "Diesel",
-    power: "2L",
-    transmission: "Schaltgetriebe",
-    seats: 5,
-    doors: 4,
-    type: "Kombi",
-    color: "Grau Metallic",
-    image: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&h=600&fit=crop",
-    features: ["Klimaautomatik", "Navigationssystem", "Einparkhilfe", "Sitzheizung"],
+    name: "Mercedes-Benz AMG GT GTS",
+    fullName: "Mercedes-Benz AMG GTS NIGHT-PAKET,BURMESTER,PANO,KEYLESS",
+    price: "69.990",
+    year: "2016",
+    km: "93.000 km",
+    fuel: "Benzin",
+    power: "510 PS",
+    powerKW: "375 kW",
+    transmission: "Automatik",
+    seats: 2,
+    doors: 2,
+    type: "Sportwagen",
+    color: "Iridium Silber",
+    hu: "05/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594421",
+    autoScoutLink: "https://www.autoscout24.de/angebote/mercedes-benz-amg-gt-amg-gts-night-paket-burmester-pano-keyless-benzin-schwarz-cfee2258-bff7-432f-bf95-7f2cd2b4643d",
+    images: [
+      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1618843479619-f3d0d81e4d10?w=800&h=600&fit=crop",
+    ],
+    features: ["Night-Paket", "Burmester", "Panoramadach", "Keyless"],
   },
   {
     id: 2,
-    name: "Mitsubishi Space Star",
-    price: "3.490",
-    year: "2016",
-    km: "67.000 km",
+    name: "BMW 440i",
+    fullName: "BMW 440i DEUTSCH,NO OPF,MEMORY,CAR-PLAY,SPURH,LEDER",
+    price: "39.990",
+    year: "2017",
+    km: "28.000 km",
     fuel: "Benzin",
-    power: "2L",
-    transmission: "Schaltgetriebe",
-    seats: 5,
+    power: "326 PS",
+    powerKW: "240 kW",
+    transmission: "Automatik",
+    seats: 4,
     doors: 4,
-    type: "Kleinwagen",
-    color: "Weiß",
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&h=600&fit=crop",
-    features: ["Klimaanlage", "Bluetooth", "Isofix", "Start-Stop"],
+    type: "Limousine",
+    color: "Mineralgrau",
+    hu: "04/2027",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594585",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-440-440i-deutsch-no-opf-memory-car-play-spurh-leder-benzin-blau-1c0d2cfc-90ed-4f5d-83ab-7ff209e3573c",
+    images: [
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
+    ],
+    features: ["Memory", "CarPlay", "Spurhalte", "Leder"],
   },
   {
     id: 3,
-    name: "Mini J.C. Works Clubman",
-    price: "6.790",
-    year: "2017",
-    km: "92.000 km",
-    fuel: "Benzin",
-    power: "1L",
+    name: "BMW 530d M-Paket",
+    fullName: "BMW 530d M-PAKET SCHIEBEDACH,AMBIENTE,NAVI,LEDER,LED",
+    price: "29.990",
+    year: "2019",
+    km: "148.000 km",
+    fuel: "Diesel",
+    power: "265 PS",
+    powerKW: "195 kW",
     transmission: "Automatik",
     seats: 5,
     doors: 4,
-    type: "Kompaktwagen",
-    color: "British Racing Green",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
-    features: ["Sportfahrwerk", "Lederausstattung", "LED Scheinwerfer", "JCW Paket"],
+    type: "Limousine",
+    color: "Schwarz",
+    hu: "07/2027",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594546",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-530-d-m-paket-schiebedach-ambiente-navi-leder-led-diesel-schwarz-f7425f39-5207-4bef-a7eb-188d7ac029bd",
+    images: [
+      "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
+    ],
+    features: ["Schiebedach", "Ambiente", "Navi", "Leder"],
+  },
+  {
+    id: 4,
+    name: "Mercedes-Benz A 35 AMG 4MATIC",
+    fullName: "Mercedes-Benz A 35 AMG 4MATIC 360°,LED,STDHZG,NIGHT,SPUR,ALCAN",
+    price: "29.990",
+    year: "2019",
+    km: "77.000 km",
+    fuel: "Benzin",
+    power: "306 PS",
+    powerKW: "225 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "Limousine",
+    color: "Kosmos Schwarz",
+    hu: "05/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594486",
+    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    images: [
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
+    ],
+    features: ["360° Kamera", "LED", "Standheizung", "Night-Paket"],
+  },
+  {
+    id: 5,
+    name: "Audi Q5 2.0 TDI Quattro S-Line",
+    fullName: "Audi Q5 2.0 TDI QUATTRO 3xS-LINE VIRTUAL/KAMERA/MwSt.",
+    price: "27.990",
+    year: "2017",
+    km: "132.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "SUV",
+    color: "Daytonagrau",
+    hu: "05/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442702667",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-q5-2-0-tdi-quattro-3xs-line-virtual-kamera-mwst-diesel-schwarz-15030855-cb45-4d6a-872e-51fa5405ee34",
+    images: [
+      "https://images.unsplash.com/photo-1606664913919-86d67eaa5a69?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
+    ],
+    features: ["3xS-Line", "Virtual Cockpit", "Kamera", "MwSt. ausw."],
+  },
+  {
+    id: 6,
+    name: "Audi A6 3.0 TDI Quattro S-Line",
+    fullName: "Audi A6 3.0 TDI 3xS-LINE QUATTRO/ACC/R-KAM/AHK/LED",
+    price: "23.990",
+    year: "2017",
+    km: "125.000 km",
+    fuel: "Diesel",
+    power: "272 PS",
+    powerKW: "200 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 4,
+    type: "Kombi",
+    color: "Daytonagrau",
+    hu: "07/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442101130",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a6-3-0-tdi-3xs-line-quattro-acc-r-kam-ahk-led-diesel-schwarz-e912e466-4e85-4f7d-a2d9-08cce11654c1",
+    images: [
+      "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+    ],
+    features: ["3xS-Line", "ACC", "Rückfahrkamera", "AHK"],
+  },
+  {
+    id: 7,
+    name: "Audi A3 2.0 TDI S-Line",
+    fullName: "Audi A3 2.0 TDI Lim. 3xS-LINE MATRIX,VIRTUAL,B&O,ACC",
+    price: "21.990",
+    year: "2016",
+    km: "126.000 km",
+    fuel: "Diesel",
+    power: "150 PS",
+    powerKW: "110 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 4,
+    type: "Limousine",
+    color: "Navarrablau",
+    hu: "01/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441904100",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a3-2-0-tdi-lim-3xs-line-matrix-virtual-b-o-acc-diesel-grau-27327404-77bb-47da-add0-3d5cba664f75",
+    images: [
+      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664913919-86d67eaa5a69?w=800&h=600&fit=crop",
+    ],
+    features: ["3xS-Line", "Matrix", "Virtual Cockpit", "Bang & Olufsen"],
+  },
+  {
+    id: 8,
+    name: "BMW 420d Coupé M-Paket",
+    fullName: "BMW 420d COUPE,M-PAKET,KAMERA,LED,ALCANTARA,NAVI",
+    price: "21.990",
+    year: "2018",
+    km: "141.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Automatik",
+    seats: 4,
+    doors: 2,
+    type: "Coupé",
+    color: "Saphirschwarz",
+    hu: "Neu",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594616",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-420-d-coupe-m-paket-kamera-led-alcantara-navi-diesel-schwarz-99b7f4cf-d15e-41d6-8b9c-6260fd7018a5",
+    images: [
+      "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop",
+    ],
+    features: ["M-Paket", "Kamera", "LED", "Alcantara"],
+  },
+  {
+    id: 9,
+    name: "BMW 320d Luxury",
+    fullName: "BMW 320d Lim. LUXURY/KAMERA/HEAD-UP/LED/LEDER/NAVI",
+    price: "21.990",
+    year: "2016",
+    km: "64.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 4,
+    type: "Limousine",
+    color: "Imperialblau",
+    hu: "02/2027",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442667087",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-320-d-lim-luxury-kamera-head-up-led-leder-navi-diesel-grau-0d6856a4-07ba-4b92-a942-413f361ebd23",
+    images: [
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=800&h=600&fit=crop",
+    ],
+    features: ["Luxury Line", "Kamera", "Head-Up", "Leder"],
+  },
+  {
+    id: 10,
+    name: "Audi Q2 1.4 TFSI S-Line",
+    fullName: "Audi Q2 1.4 TFSI 3xS-Line NAVI,CARPLAY,SHZG,LED,R-KAM",
+    price: "20.990",
+    year: "2017",
+    km: "90.000 km",
+    fuel: "Benzin",
+    power: "150 PS",
+    powerKW: "110 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "SUV",
+    color: "Navarrablau",
+    hu: "Neu",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594707",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-q2-1-4-tfsi-3xs-line-navi-carplay-shzg-led-r-kam-benzin-c8b910dd-0105-4281-8eb2-12372ae3971d",
+    images: [
+      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664913919-86d67eaa5a69?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
+    ],
+    features: ["3xS-Line", "Navi", "CarPlay", "LED"],
+  },
+  {
+    id: 11,
+    name: "VW Tiguan 2.0 TDI Highline 4Motion",
+    fullName: "Volkswagen Tiguan 2.0 TDI Highline 4Motion VIRTUAL,KAMERA",
+    price: "20.990",
+    year: "2016",
+    km: "125.000 km",
+    fuel: "Diesel",
+    power: "150 PS",
+    powerKW: "110 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "SUV",
+    color: "Deep Black",
+    hu: "Neu",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441587870",
+    autoScoutLink: "https://www.autoscout24.de/angebote/volkswagen-tiguan-2-0-tdi-highline-4motion-virtual-kamera-diesel-weiss-4d362bec-ba69-44e6-9cac-a59e3dec5b77",
+    images: [
+      "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+    ],
+    features: ["Virtual Cockpit", "Kamera", "4Motion", "Highline"],
+  },
+  {
+    id: 12,
+    name: "BMW X1 20d xDrive M-Paket",
+    fullName: "BMW X1 20d xDrive M-PAKET SHADOW,KAMERA,ALCANTARA",
+    price: "20.990",
+    year: "2017",
+    km: "135.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "SUV",
+    color: "Mineralgrau",
+    hu: "01/2027",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594508",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-x1-20d-xdrive-m-paket-shadow-kamera-alcantara-diesel-schwarz-05841944-83c1-4133-87f1-61aca4b406b7",
+    images: [
+      "https://images.unsplash.com/photo-1615063029854-6e4c3fc0d5b0?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
+    ],
+    features: ["M-Paket Shadow", "Kamera", "Alcantara", "xDrive"],
+  },
+  {
+    id: 13,
+    name: "Audi A4 2.0 TDI S-Line",
+    fullName: "Audi A4 2.0 TDI S-LINE MATRIX,VIRTUAL,AHK,TMPMT,KLIMA",
+    price: "19.990",
+    year: "2016",
+    km: "128.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 4,
+    type: "Kombi",
+    color: "Mythosschwarz",
+    hu: "Neu",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594727",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a4-2-0-tdi-s-line-matrix-virtual-ahk-tmpmt-klima-diesel-schwarz-04424afa-e4ab-4fed-8366-3f0170aa47ce",
+    images: [
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop",
+    ],
+    features: ["S-Line", "Matrix", "Virtual Cockpit", "AHK"],
+  },
+  {
+    id: 14,
+    name: "BMW 320d M-Paket Panorama",
+    fullName: "BMW 320d M-PAKET,HEAD-UP,PANO,LEDER,LED,TEMPOMAT",
+    price: "19.990",
+    year: "2016",
+    km: "129.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 4,
+    type: "Kombi",
+    color: "Glaciersilber",
+    hu: "06/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_440204130",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-320-d-m-paket-head-up-pano-leder-led-tempomat-diesel-schwarz-0f3b4d17-fbbd-4337-ba2d-c7e81b81d665",
+    images: [
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
+    ],
+    features: ["M-Paket", "Head-Up", "Pano", "Leder"],
+  },
+  {
+    id: 15,
+    name: "BMW 120i M-Paket Shadow",
+    fullName: "BMW 120i M-PAKET SHADOW DIGITAL-TACHO,NAVI,TEMPO,LED",
+    price: "18.990",
+    year: "2019",
+    km: "120.000 km",
+    fuel: "Benzin",
+    power: "184 PS",
+    powerKW: "135 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "Limousine",
+    color: "Alpinweiß",
+    hu: "Neu",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594658",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-120-i-m-paket-shadow-digital-tacho-navi-tempo-led-benzin-grau-170c8c93-b7bd-440e-bee8-fbdb92c2bd74",
+    images: [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=800&h=600&fit=crop",
+    ],
+    features: ["M-Paket Shadow", "Digital-Tacho", "Navi", "LED"],
+  },
+  {
+    id: 16,
+    name: "VW Tiguan 2.0 TSI Highline 4Motion",
+    fullName: "Volkswagen Tiguan 2.0 TSI HIGHLINE 4MOTION,ACC,CAR-PLAY,LED",
+    price: "18.890",
+    year: "2017",
+    km: "130.000 km",
+    fuel: "Benzin",
+    power: "179 PS",
+    powerKW: "132 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "SUV",
+    color: "Tungsten Silver",
+    hu: "08/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441587779",
+    autoScoutLink: "https://www.autoscout24.de/angebote/volkswagen-tiguan-2-0-tsi-highline-4motion-acc-car-play-led-benzin-grau-6e846e3f-54fd-4e42-81c1-8bc835ddcd52",
+    images: [
+      "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+    ],
+    features: ["Highline", "ACC", "CarPlay", "LED"],
+  },
+  {
+    id: 17,
+    name: "BMW 318d Sport",
+    fullName: "BMW 318d SPORT AUTOMATIK,HEAD-UP,LED,NAVI,AHK,PDC",
+    price: "17.990",
+    year: "2016",
+    km: "132.000 km",
+    fuel: "Diesel",
+    power: "150 PS",
+    powerKW: "110 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 4,
+    type: "Limousine",
+    color: "Mediterranblau",
+    hu: "Neu",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441586248",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-318-d-sport-automatik-head-up-led-navi-ahk-pdc-diesel-schwarz-3a822c89-c895-4560-8db8-8f6fe410bebc",
+    images: [
+      "https://images.unsplash.com/photo-1549925545-510eb9a28ad6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
+    ],
+    features: ["Sport Line", "Head-Up", "LED", "AHK"],
+  },
+  {
+    id: 18,
+    name: "Audi A5 Sportback 2.0 TDI S-Line",
+    fullName: "Audi A5 SPORTBACK 2.0 TDI S-LINE NAVI/XENON/LED/19ZOL",
+    price: "16.990",
+    year: "2017",
+    km: "112.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Schaltgetriebe",
+    seats: 5,
+    doors: 5,
+    type: "Limousine",
+    color: "Manhattangrau",
+    hu: "03/2027",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442348778",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a5-sportback-2-0-tdi-s-line-navi-xenon-led-19zol-diesel-schwarz-71a8ff36-5cc9-445f-af1a-6e7baccc41d6",
+    images: [
+      "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1606664913919-86d67eaa5a69?w=800&h=600&fit=crop",
+    ],
+    features: ["S-Line", "Navi", "Xenon", "19 Zoll"],
+  },
+  {
+    id: 19,
+    name: "VW Tiguan 2.0 TDI 4Motion",
+    fullName: "Volkswagen Tiguan 2.0 TDI 4Motion XENON,KAMERA,NAVI,KLIMA",
+    price: "14.990",
+    year: "2013",
+    km: "112.000 km",
+    fuel: "Diesel",
+    power: "140 PS",
+    powerKW: "103 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "SUV",
+    color: "Night Blue",
+    hu: "11/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441665435",
+    autoScoutLink: "https://www.autoscout24.de/angebote/volkswagen-tiguan-2-0-tdi-4motion-xenon-kamera-navi-klima-diesel-blau-5d52657e-4967-48d7-880a-c212cf3008ca",
+    images: [
+      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
+    ],
+    features: ["Xenon", "Kamera", "Navi", "Klima"],
+  },
+  {
+    id: 20,
+    name: "BMW 220d Active Tourer",
+    fullName: "BMW 220d Active Tourer AUTOMATIK,LEDER,NAVI,KEY-LESS",
+    price: "13.990",
+    year: "2017",
+    km: "136.000 km",
+    fuel: "Diesel",
+    power: "190 PS",
+    powerKW: "140 kW",
+    transmission: "Automatik",
+    seats: 5,
+    doors: 5,
+    type: "Van",
+    color: "Sparkling Brown",
+    hu: "04/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442036627",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-220-d-active-tourer-automatik-leder-navi-key-less-diesel-weiss-2d91d9f1-90ee-4fef-b4a7-9d87fbd3b795",
+    images: [
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
+    ],
+    features: ["Automatik", "Leder", "Navi", "Keyless"],
+  },
+  {
+    id: 21,
+    name: "MINI Cooper Automatik",
+    fullName: "MINI COOPER AUTOMATIK LEDER/S-HZG/STEUERKETTE NEU!",
+    price: "6.990",
+    year: "2009",
+    km: "174.000 km",
+    fuel: "Benzin",
+    power: "120 PS",
+    powerKW: "88 kW",
+    transmission: "Automatik",
+    seats: 4,
+    doors: 3,
+    type: "Cabrio",
+    color: "Pepper White",
+    hu: "07/2026",
+    mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442147596",
+    autoScoutLink: "https://www.autoscout24.de/angebote/mini-cooper-automatik-leder-s-hzg-steuerkette-neu-benzin-beige-2141270c-fa96-4a03-94f4-4ac073f6b9c5",
+    images: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
+    ],
+    features: ["Leder", "Sitzheizung", "Steuerkette Neu", "Automatik"],
   },
 ];
 
+interface Vehicle {
+  id: number;
+  name: string;
+  fullName: string;
+  price: string;
+  year: string;
+  km: string;
+  fuel: string;
+  power: string;
+  powerKW: string;
+  transmission: string;
+  seats: number;
+  doors: number;
+  type: string;
+  color: string;
+  hu: string;
+  mobileLink: string;
+  autoScoutLink: string;
+  images: string[];
+  features: string[];
+}
+
+function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: () => void }) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % vehicle.images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + vehicle.images.length) % vehicle.images.length);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9, x: 50 }}
+        animate={{ opacity: 1, scale: 1, x: 0 }}
+        exit={{ opacity: 0, scale: 0.9, x: 50 }}
+        onClick={(e) => e.stopPropagation()}
+        className="bg-gray-900 rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row"
+      >
+        {/* Left Side - Image Gallery */}
+        <div className="lg:w-2/3 relative bg-black flex items-center justify-center">
+          <div className="relative w-full h-72 lg:h-full lg:min-h-[550px] flex items-center justify-center">
+            <img
+              src={vehicle.images[currentImageIndex]}
+              alt={vehicle.name}
+              className="max-w-full max-h-full object-contain"
+            />
+
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 lg:hidden bg-black/50 p-2 rounded-full text-white hover:bg-black/70 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Image Navigation */}
+            <div className="absolute inset-x-0 bottom-0 top-0 flex items-center justify-between px-4">
+              <button
+                onClick={prevImage}
+                className="bg-black/50 hover:bg-black/70 p-2 rounded-full text-white transition-colors"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="bg-black/50 hover:bg-black/70 p-2 rounded-full text-white transition-colors"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Image Dots */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {vehicle.images.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentImageIndex(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    index === currentImageIndex ? "bg-emerald-500" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side - Details */}
+        <div className="lg:w-1/3 p-6 lg:p-8 flex flex-col overflow-y-auto">
+          {/* Close Button Desktop */}
+          <button
+            onClick={onClose}
+            className="hidden lg:block absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 p-2 rounded-full text-white transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+          {/* Header */}
+          <div className="mb-6">
+            <div className="text-emerald-500 text-sm font-semibold mb-2">{vehicle.type}</div>
+            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">{vehicle.fullName}</h2>
+            <div className="text-3xl lg:text-4xl font-bold text-emerald-500">{vehicle.price} €</div>
+          </div>
+
+          {/* Quick Info Grid */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">Erstzulassung</div>
+              <div className="text-white font-semibold">{vehicle.year}</div>
+            </div>
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">Kilometerstand</div>
+              <div className="text-white font-semibold">{vehicle.km}</div>
+            </div>
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">Leistung</div>
+              <div className="text-white font-semibold">{vehicle.powerKW} ({vehicle.power})</div>
+            </div>
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">Kraftstoff</div>
+              <div className="text-white font-semibold">{vehicle.fuel}</div>
+            </div>
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">Getriebe</div>
+              <div className="text-white font-semibold">{vehicle.transmission}</div>
+            </div>
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">HU</div>
+              <div className="text-white font-semibold">{vehicle.hu}</div>
+            </div>
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">Farbe</div>
+              <div className="text-white font-semibold">{vehicle.color}</div>
+            </div>
+            <div className="bg-gray-800/50 rounded-xl p-3">
+              <div className="text-gray-400 text-xs mb-1">Türen / Sitze</div>
+              <div className="text-white font-semibold">{vehicle.doors} / {vehicle.seats}</div>
+            </div>
+          </div>
+
+          {/* Features */}
+          <div className="mb-6">
+            <div className="text-gray-400 text-sm mb-2">Ausstattung</div>
+            <div className="flex flex-wrap gap-2">
+              {vehicle.features.map((feature) => (
+                <span key={feature} className="text-sm bg-gray-800 text-gray-300 px-3 py-1 rounded-lg">
+                  {feature}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="mt-auto space-y-3">
+            <a
+              href={vehicle.mobileLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-500/25 transition-all"
+            >
+              <ExternalLink className="w-5 h-5" />
+              Auf Mobile.de ansehen
+            </a>
+            <a
+              href={vehicle.autoScoutLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+            >
+              <ExternalLink className="w-5 h-5" />
+              Auf AutoScout24 ansehen
+            </a>
+            <a
+              href="tel:+491728650128"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
+            >
+              <Phone className="w-5 h-5" />
+              Jetzt anrufen: +49 172 8650128
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function FahrzeugePage() {
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+
   return (
     <main className="min-h-screen bg-black">
       <Header />
@@ -72,11 +747,11 @@ export default function FahrzeugePage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <span className="text-green-500 font-semibold tracking-wider uppercase text-sm">
+            <span className="text-emerald-500 font-semibold tracking-wider uppercase text-sm">
               Fahrzeugbestand
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
-              Unsere <span className="gradient-text">Fahrzeuge</span>
+              Unsere <span className="text-emerald-500">Fahrzeuge</span>
             </h1>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Entdecken Sie unsere handverlesene Auswahl an Qualitätsfahrzeugen. Jedes Fahrzeug wird geprüft und ist sofort startklar.
@@ -95,21 +770,24 @@ export default function FahrzeugePage() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05 }}
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-green-500/30">
-                  {/* Image */}
-                  <div className="relative h-56 overflow-hidden">
+                <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-emerald-500/30">
+                  {/* Image - Clickable */}
+                  <div
+                    className="relative h-56 overflow-hidden cursor-pointer"
+                    onClick={() => setSelectedVehicle(vehicle)}
+                  >
                     <img
-                      src={vehicle.image}
+                      src={vehicle.images[0]}
                       alt={vehicle.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                    <div className="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg">
+                    <div className="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-full font-bold text-lg">
                       {vehicle.price}€
                     </div>
 
@@ -139,20 +817,20 @@ export default function FahrzeugePage() {
                     {/* Features */}
                     <div className="grid grid-cols-4 gap-2 mb-4">
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Users className="w-4 h-4 text-green-500 mb-1" />
+                        <Users className="w-4 h-4 text-emerald-500 mb-1" />
                         <span className="text-xs text-gray-400">{vehicle.seats}</span>
                       </div>
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Gauge className="w-4 h-4 text-green-500 mb-1" />
+                        <Gauge className="w-4 h-4 text-emerald-500 mb-1" />
                         <span className="text-xs text-gray-400">{vehicle.power}</span>
                       </div>
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <DoorOpen className="w-4 h-4 text-green-500 mb-1" />
+                        <DoorOpen className="w-4 h-4 text-emerald-500 mb-1" />
                         <span className="text-xs text-gray-400">{vehicle.doors}</span>
                       </div>
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Car className="w-4 h-4 text-green-500 mb-1" />
-                        <span className="text-xs text-gray-400 truncate">{vehicle.transmission.split(' ')[0]}</span>
+                        <Car className="w-4 h-4 text-emerald-500 mb-1" />
+                        <span className="text-xs text-gray-400 truncate">{vehicle.transmission.split(" ")[0]}</span>
                       </div>
                     </div>
 
@@ -164,7 +842,7 @@ export default function FahrzeugePage() {
                         </span>
                       ))}
                       {vehicle.features.length > 3 && (
-                        <span className="text-xs bg-green-500/20 text-green-500 px-2 py-1 rounded-lg">
+                        <span className="text-xs bg-emerald-500/20 text-emerald-500 px-2 py-1 rounded-lg">
                           +{vehicle.features.length - 3} mehr
                         </span>
                       )}
@@ -174,12 +852,15 @@ export default function FahrzeugePage() {
                     <div className="flex gap-3">
                       <a
                         href="tel:+491728650128"
-                        className="flex-1 py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 transition-all"
+                        className="flex-1 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
                       >
                         <Phone className="w-4 h-4" />
                         Anrufen
                       </a>
-                      <button className="py-3 px-4 rounded-xl border border-gray-700 text-gray-300 hover:border-green-500 hover:text-green-500 transition-all">
+                      <button
+                        onClick={() => setSelectedVehicle(vehicle)}
+                        className="py-3 px-4 rounded-xl border border-gray-700 text-gray-300 hover:border-emerald-500 hover:text-emerald-500 transition-all"
+                      >
                         Details
                       </button>
                     </div>
@@ -189,7 +870,7 @@ export default function FahrzeugePage() {
             ))}
           </div>
 
-          {/* View All on Mobile.de */}
+          {/* View All - Both Platforms */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -197,20 +878,41 @@ export default function FahrzeugePage() {
             className="mt-16 text-center"
           >
             <p className="text-gray-400 mb-6">
-              Mehr Fahrzeuge finden Sie auf mobile.de
+              Mehr Fahrzeuge finden Sie auf unseren Partnerplattformen
             </p>
-            <a
-              href="https://www.mobile.de"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 glass px-8 py-4 rounded-full text-white font-semibold hover:bg-white/10 transition-colors"
-            >
-              Alle Fahrzeuge auf mobile.de
-              <ExternalLink className="w-5 h-5 text-green-500" />
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://home.mobile.de/CARCENTERLANDSHUT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-orange-500/25 transition-all"
+              >
+                Alle Fahrzeuge auf Mobile.de
+                <ExternalLink className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.autoscout24.de/haendler/carcenter-landshut"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+              >
+                Alle Fahrzeuge auf AutoScout24
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Detail Modal */}
+      <AnimatePresence>
+        {selectedVehicle && (
+          <VehicleDetailModal
+            vehicle={selectedVehicle}
+            onClose={() => setSelectedVehicle(null)}
+          />
+        )}
+      </AnimatePresence>
 
       <Footer />
     </main>

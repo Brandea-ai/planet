@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Calendar, CheckCircle, Send, Loader2, Phone } from "lucide-react";
 
-// FormSubmit.co - Ersetze mit deiner Email-Adresse
 const FORMSUBMIT_EMAIL = "carcenterlandshut@gmail.com";
 
 const services = [
@@ -44,13 +43,10 @@ export default function ServicePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Ref für Auto-Scroll zum Buchungsformular
   const bookingFormRef = useRef<HTMLDivElement>(null);
 
-  // Service auswählen und zum Formular scrollen
   const handleServiceClick = (serviceTitle: string) => {
     setSelectedService(serviceTitle);
-    // Nach kurzer Verzögerung zum Formular scrollen
     setTimeout(() => {
       bookingFormRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
@@ -84,11 +80,9 @@ export default function ServicePage() {
       if (response.ok) {
         setIsSuccess(true);
       } else {
-        console.log("Form data:", submitData);
         setIsSuccess(true);
       }
     } catch {
-      console.log("Form data:", submitData);
       setIsSuccess(true);
     }
 
@@ -106,251 +100,304 @@ export default function ServicePage() {
   };
 
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black pb-safe">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background Image */}
+      {/* Hero Section - Mobile First */}
+      <section className="relative pt-20 pb-12 sm:pt-24 sm:pb-16 lg:pt-32 lg:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <img
             src="https://brandea.b-cdn.net/CarcenterLandshut/startseite-service-hero.webp"
-            alt="Service"
+            alt=""
             className="w-full h-full object-cover"
+            aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="text-center"
           >
-            <span className="text-[#6cb036] font-semibold tracking-wider uppercase text-sm">
+            <span className="text-[#6cb036] font-semibold tracking-wider uppercase text-xs sm:text-sm">
               Unsere Services
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mt-3 sm:mt-4 mb-4 sm:mb-6">
               Premium <span className="text-[#6cb036]">Autoservice</span>
             </h1>
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto">
-              Von Reifenwechsel bis Fahrzeugaufbereitung – wir bieten Ihnen erstklassigen Service für Ihr Fahrzeug.
+            <p className="text-gray-400 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto">
+              Von Reifenwechsel bis Fahrzeugaufbereitung – wir bieten Ihnen erstklassigen Service.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
+      {/* Services Grid - Mobile First with 9:16 Images */}
+      <section className="py-8 sm:py-12 lg:py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Mobile: Horizontal Scroll / Desktop: Grid */}
+          <div className="flex lg:grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x snap-mandatory lg:snap-none -mx-4 px-4 lg:mx-0 lg:px-0">
             {services.map((service, index) => (
-              <motion.div
+              <motion.article
                 key={service.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="group"
+                className="flex-shrink-0 w-[85vw] sm:w-[70vw] lg:w-auto snap-center lg:snap-align-none"
               >
-                <div className="h-full glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-[#5a9a2d]/30">
-                  {/* Service Image */}
-                  <div className="relative h-48 overflow-hidden">
+                <div className="h-full glass rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 hover:border-[#5a9a2d]/30 group">
+                  {/* 9:16 Image Container */}
+                  <div className="relative aspect-[9/12] sm:aspect-[9/14] lg:aspect-[9/12] overflow-hidden">
                     <img
                       src={service.image}
                       alt={service.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <span className="absolute bottom-4 right-4 bg-[#6cb036] text-white font-bold px-4 py-2 rounded-full text-sm">
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+                    {/* Price Badge */}
+                    <span className="absolute top-4 right-4 bg-[#6cb036] text-white font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm sm:text-base shadow-lg">
                       {service.price}
                     </span>
-                  </div>
 
-                  <div className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                    {/* Content Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                      <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                        {service.title}
+                      </h2>
+                      <p className="text-gray-300 text-sm sm:text-base mb-4 line-clamp-2">
+                        {service.description}
+                      </p>
 
-                  <p className="text-gray-400 mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
+                      {/* Features */}
+                      <ul className="space-y-1.5 sm:space-y-2 mb-4">
+                        {service.features.slice(0, 3).map((feature) => (
+                          <li key={feature} className="flex items-center gap-2 text-gray-200 text-xs sm:text-sm">
+                            <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#6cb036] flex-shrink-0" aria-hidden="true" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
 
-                  <ul className="space-y-3 mb-8">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-3 text-gray-300">
-                        <CheckCircle className="w-4 h-4 text-[#5a9a2d]" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button
-                    onClick={() => handleServiceClick(service.title)}
-                    className="w-full py-3 rounded-xl border border-[#5a9a2d]/30 text-[#5a9a2d] font-semibold hover:bg-[#5a9a2d] hover:text-white transition-all"
-                  >
-                    Termin buchen
-                  </button>
+                      {/* CTA Button */}
+                      <button
+                        onClick={() => handleServiceClick(service.title)}
+                        className="w-full py-3 sm:py-3.5 rounded-xl bg-[#6cb036] text-white font-semibold text-sm sm:text-base active:scale-[0.98] transition-transform touch-target"
+                        aria-label={`${service.title} buchen`}
+                      >
+                        Termin buchen
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
 
-          {/* Booking Form */}
-          <motion.div
-            ref={bookingFormRef}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto scroll-mt-32"
-          >
-            <div className="glass rounded-3xl p-8 md:p-10">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] flex items-center justify-center">
-                  <Calendar className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold text-white">Termin buchen</h2>
-                  <p className="text-gray-400">Wir bestätigen Ihren Termin schnellstmöglich</p>
-                </div>
-              </div>
-
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Service auswählen *</label>
-                  <select
-                    value={selectedService}
-                    onChange={(e) => setSelectedService(e.target.value)}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
-                    required
-                  >
-                    <option value="">Service wählen...</option>
-                    {services.map((service) => (
-                      <option key={service.title} value={service.title}>{service.title}</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Ihr Name *</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
-                    placeholder="Max Mustermann"
-                    required
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-gray-300 text-sm mb-2 block">E-Mail *</label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
-                      placeholder="ihre@email.de"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="text-gray-300 text-sm mb-2 block">Telefon *</label>
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
-                      placeholder="+49 172 1234567"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-5">
-                  <div>
-                    <label className="text-gray-300 text-sm mb-2 block">Wunschdatum *</label>
-                    <input
-                      type="date"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70 [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="text-gray-300 text-sm mb-2 block">Wunschzeit</label>
-                    <select
-                      value={time}
-                      onChange={(e) => setTime(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
-                    >
-                      <option value="">Zeit wählen...</option>
-                      <option value="09:00">09:00 Uhr</option>
-                      <option value="10:00">10:00 Uhr</option>
-                      <option value="11:00">11:00 Uhr</option>
-                      <option value="12:00">12:00 Uhr</option>
-                      <option value="14:00">14:00 Uhr</option>
-                      <option value="15:00">15:00 Uhr</option>
-                      <option value="16:00">16:00 Uhr</option>
-                      <option value="17:00">17:00 Uhr</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="text-gray-300 text-sm mb-2 block">Nachricht</label>
-                  <textarea
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    rows={3}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors resize-none"
-                    placeholder="Zusätzliche Informationen..."
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  disabled={isSubmitting || isSuccess}
-                  className="w-full bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#6cb036]/25 transition-all duration-300 disabled:opacity-70"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      Wird gesendet...
-                    </>
-                  ) : isSuccess ? (
-                    <>
-                      <CheckCircle className="w-5 h-5" />
-                      Terminanfrage gesendet!
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      Termin anfragen
-                    </>
-                  )}
-                </motion.button>
-              </form>
-
-              {/* Quick Contact */}
-              <div className="mt-8 pt-8 border-t border-gray-800">
-                <p className="text-gray-400 text-center mb-4">Oder rufen Sie uns direkt an:</p>
-                <a
-                  href="tel:+491728650128"
-                  className="flex items-center justify-center gap-3 text-[#6cb036] font-semibold text-lg hover:text-[#7ec843] transition-colors"
-                >
-                  <Phone className="w-5 h-5" />
-                  +49 172 8650128
-                </a>
-              </div>
-            </div>
-          </motion.div>
+          {/* Scroll Indicator for Mobile */}
+          <div className="flex justify-center gap-2 mt-4 lg:hidden" aria-hidden="true">
+            {services.map((_, index) => (
+              <div key={index} className="w-2 h-2 rounded-full bg-white/20" />
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Booking Form */}
+      <motion.section
+        ref={bookingFormRef}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="py-8 sm:py-12 lg:py-20 scroll-mt-24 lg:scroll-mt-32"
+        aria-labelledby="booking-title"
+      >
+        <div className="max-w-xl lg:max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="glass rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 lg:p-10">
+            {/* Header */}
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] flex items-center justify-center flex-shrink-0">
+                <Calendar className="w-6 h-6 sm:w-7 sm:h-7 text-white" aria-hidden="true" />
+              </div>
+              <div>
+                <h2 id="booking-title" className="text-xl sm:text-2xl font-bold text-white">
+                  Termin buchen
+                </h2>
+                <p className="text-gray-400 text-sm sm:text-base">
+                  Wir bestätigen Ihren Termin schnellstmöglich
+                </p>
+              </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+              {/* Service Select */}
+              <div>
+                <label htmlFor="service" className="text-gray-300 text-sm mb-2 block">
+                  Service auswählen *
+                </label>
+                <select
+                  id="service"
+                  value={selectedService}
+                  onChange={(e) => setSelectedService(e.target.value)}
+                  className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 sm:py-3.5 text-white focus:border-[#6cb036] focus:outline-none focus:ring-2 focus:ring-[#6cb036]/20 transition-all text-base"
+                  required
+                >
+                  <option value="">Service wählen...</option>
+                  {services.map((service) => (
+                    <option key={service.title} value={service.title}>{service.title}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Name */}
+              <div>
+                <label htmlFor="name" className="text-gray-300 text-sm mb-2 block">
+                  Ihr Name *
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 sm:py-3.5 text-white focus:border-[#6cb036] focus:outline-none focus:ring-2 focus:ring-[#6cb036]/20 transition-all text-base"
+                  placeholder="Max Mustermann"
+                  required
+                />
+              </div>
+
+              {/* Email & Phone - Stack on Mobile */}
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+                <div>
+                  <label htmlFor="email" className="text-gray-300 text-sm mb-2 block">
+                    E-Mail *
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 sm:py-3.5 text-white focus:border-[#6cb036] focus:outline-none focus:ring-2 focus:ring-[#6cb036]/20 transition-all text-base"
+                    placeholder="ihre@email.de"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="text-gray-300 text-sm mb-2 block">
+                    Telefon *
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 sm:py-3.5 text-white focus:border-[#6cb036] focus:outline-none focus:ring-2 focus:ring-[#6cb036]/20 transition-all text-base"
+                    placeholder="+49 172 1234567"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Date & Time */}
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+                <div>
+                  <label htmlFor="date" className="text-gray-300 text-sm mb-2 block">
+                    Wunschdatum *
+                  </label>
+                  <input
+                    id="date"
+                    type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 sm:py-3.5 text-white focus:border-[#6cb036] focus:outline-none focus:ring-2 focus:ring-[#6cb036]/20 transition-all text-base [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="time" className="text-gray-300 text-sm mb-2 block">
+                    Wunschzeit
+                  </label>
+                  <select
+                    id="time"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 sm:py-3.5 text-white focus:border-[#6cb036] focus:outline-none focus:ring-2 focus:ring-[#6cb036]/20 transition-all text-base"
+                  >
+                    <option value="">Zeit wählen...</option>
+                    <option value="09:00">09:00 Uhr</option>
+                    <option value="10:00">10:00 Uhr</option>
+                    <option value="11:00">11:00 Uhr</option>
+                    <option value="12:00">12:00 Uhr</option>
+                    <option value="14:00">14:00 Uhr</option>
+                    <option value="15:00">15:00 Uhr</option>
+                    <option value="16:00">16:00 Uhr</option>
+                    <option value="17:00">17:00 Uhr</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Message */}
+              <div>
+                <label htmlFor="message" className="text-gray-300 text-sm mb-2 block">
+                  Nachricht (optional)
+                </label>
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={3}
+                  className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 sm:py-3.5 text-white focus:border-[#6cb036] focus:outline-none focus:ring-2 focus:ring-[#6cb036]/20 transition-all resize-none text-base"
+                  placeholder="Zusätzliche Informationen..."
+                />
+              </div>
+
+              {/* Submit Button */}
+              <motion.button
+                type="submit"
+                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting || isSuccess}
+                className="w-full bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#6cb036]/25 transition-all duration-300 disabled:opacity-70 touch-target text-base sm:text-lg"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
+                    Wird gesendet...
+                  </>
+                ) : isSuccess ? (
+                  <>
+                    <CheckCircle className="w-5 h-5" aria-hidden="true" />
+                    Terminanfrage gesendet!
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" aria-hidden="true" />
+                    Termin anfragen
+                  </>
+                )}
+              </motion.button>
+            </form>
+
+            {/* Quick Contact */}
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-800">
+              <p className="text-gray-400 text-center text-sm sm:text-base mb-3 sm:mb-4">
+                Oder rufen Sie uns direkt an:
+              </p>
+              <a
+                href="tel:+491728650128"
+                className="flex items-center justify-center gap-3 text-[#6cb036] font-semibold text-lg sm:text-xl hover:text-[#7ec843] transition-colors touch-target"
+                aria-label="Anrufen: +49 172 8650128"
+              >
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+                +49 172 8650128
+              </a>
+            </div>
+          </div>
+        </div>
+      </motion.section>
 
       <Footer />
     </main>

@@ -67,13 +67,16 @@ export default function Hero() {
   }, [emblaApi]);
 
   return (
-    <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden">
+    <section
+      id="hero"
+      className="relative h-[100svh] min-h-[500px] lg:min-h-[700px] overflow-hidden"
+      aria-label="Hauptbanner"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-black to-black" />
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
 
       {/* Carousel */}
-      <div className="relative h-full" ref={emblaRef}>
+      <div className="relative h-full touch-pan-y" ref={emblaRef}>
         <div className="flex h-full">
           {slides.map((slide, index) => (
             <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative">
@@ -81,35 +84,37 @@ export default function Hero() {
               <div className="absolute inset-0">
                 <img
                   src={slide.image}
-                  alt={slide.title}
+                  alt=""
                   className="w-full h-full object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  aria-hidden="true"
                 />
-                {/* Premium Dark Gradient Overlay for perfect text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)]" />
+                {/* Premium Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
               </div>
 
-              {/* Content */}
-              <div className="relative h-full flex items-center justify-center px-4">
+              {/* Content - Mobile First */}
+              <div className="relative h-full flex items-center justify-center px-4 sm:px-6 pt-16 pb-24 lg:pt-20 lg:pb-16">
                 <div className="max-w-5xl mx-auto text-center">
                   <AnimatePresence mode="wait">
                     {selectedIndex === index && (
                       <motion.div
                         key={slide.id}
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -30 }}
-                        transition={{ duration: 0.6 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.5 }}
                       >
-                        {/* Icon */}
+                        {/* Icon - Smaller on Mobile */}
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.2, type: "spring" }}
-                          className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] mb-8 shadow-lg shadow-[#6cb036]/30"
+                          className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] mb-4 sm:mb-6 lg:mb-8 shadow-lg shadow-[#6cb036]/30"
+                          aria-hidden="true"
                         >
-                          <slide.icon className="w-10 h-10 text-white" />
+                          <slide.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" />
                         </motion.div>
 
                         {/* Subtitle */}
@@ -117,41 +122,41 @@ export default function Hero() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.3 }}
-                          className="text-[#6cb036] font-semibold tracking-wider uppercase mb-4 drop-shadow-lg"
+                          className="text-[#6cb036] font-semibold tracking-wider uppercase text-xs sm:text-sm mb-2 sm:mb-3 lg:mb-4"
                         >
                           {slide.subtitle}
                         </motion.p>
 
-                        {/* Title */}
+                        {/* Title - Responsive */}
                         <motion.h1
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4 }}
-                          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
+                          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-3 sm:mb-4 lg:mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
                         >
                           {slide.title}
                         </motion.h1>
 
-                        {/* Description */}
+                        {/* Description - Responsive */}
                         <motion.p
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.5 }}
-                          className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                          className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto mb-6 sm:mb-8 lg:mb-10 leading-relaxed"
                         >
                           {slide.description}
                         </motion.p>
 
-                        {/* CTA */}
+                        {/* CTA Button - Touch Friendly */}
                         <Link href={slide.href}>
                           <motion.span
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-[#6cb036]/40 transition-all duration-300 hover:scale-105 cursor-pointer"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold shadow-lg shadow-[#6cb036]/30 active:scale-95 transition-transform cursor-pointer touch-target"
                           >
                             {slide.cta}
-                            <ChevronRight className="w-5 h-5" />
+                            <ChevronRight className="w-5 h-5" aria-hidden="true" />
                           </motion.span>
                         </Link>
                       </motion.div>
@@ -164,41 +169,51 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - Hidden on Mobile, Touch Swipe instead */}
       <button
         onClick={scrollPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-white/10 transition-colors z-10"
+        className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 w-12 h-12 lg:w-14 lg:h-14 rounded-full glass items-center justify-center text-white hover:bg-white/10 transition-colors z-10 touch-target"
+        aria-label="Vorheriges Slide"
       >
-        <ChevronLeft className="w-6 h-6" />
+        <ChevronLeft className="w-6 h-6" aria-hidden="true" />
       </button>
       <button
         onClick={scrollNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full glass flex items-center justify-center text-white hover:bg-white/10 transition-colors z-10"
+        className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 w-12 h-12 lg:w-14 lg:h-14 rounded-full glass items-center justify-center text-white hover:bg-white/10 transition-colors z-10 touch-target"
+        aria-label="Nächstes Slide"
       >
-        <ChevronRight className="w-6 h-6" />
+        <ChevronRight className="w-6 h-6" aria-hidden="true" />
       </button>
 
-      {/* Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-        {slides.map((_, index) => (
+      {/* Dots - Positioned above bottom nav on mobile */}
+      <div
+        className="absolute bottom-20 lg:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10"
+        role="tablist"
+        aria-label="Slide Navigation"
+      >
+        {slides.map((slide, index) => (
           <button
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`h-2 sm:h-3 rounded-full transition-all duration-300 touch-target ${
               selectedIndex === index
-                ? "bg-[#6cb036] w-8"
-                : "bg-white/30 hover:bg-white/50"
+                ? "bg-[#6cb036] w-6 sm:w-8"
+                : "bg-white/30 w-2 sm:w-3 hover:bg-white/50"
             }`}
+            role="tab"
+            aria-selected={selectedIndex === index}
+            aria-label={`Slide ${index + 1}: ${slide.title}`}
           />
         ))}
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Desktop Only */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-8 right-8 hidden md:block z-10"
+        className="absolute bottom-8 right-8 hidden lg:block z-10"
+        aria-hidden="true"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

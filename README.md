@@ -1,93 +1,36 @@
-# 🌌 SOLAR ENGINE - 3D Sonnensystem Visualisierung
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Eine interaktive 3D-Simulation unseres Sonnensystems mit realistischen Texturen, Post-Processing-Effekten und detaillierter Planetendarstellung.
+## Getting Started
 
-## ✨ Features
-
-- **Realistische Planeten-Texturen** von NASA / Public Domain
-- **Post-Processing Effekte**:
-  - Bloom für leuchtende Sonne
-  - Vignette für cineastischen Look
-  - Film Grain für Realismus
-- **Atmosphären-Shader** für Erde (Fresnel-Effekt)
-- **Saturn-Ringe** mit prozeduraler Geometrie
-- **Interaktive Steuerung**: Zoom, Pan, Auto-Rotation
-- **Klickbare Planeten** mit Detailinformationen
-- **Responsive Design** mit TailwindCSS
-
-## 🚀 Installation
+First, run the development server:
 
 ```bash
-# Dependencies installieren
-npm install
-
-# Development Server starten
 npm run dev
-
-# Für Production bauen
-npm run build
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## 📦 Abhängigkeiten
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- React
-- Three.js
-- @react-three/fiber
-- @react-three/drei
-- @react-three/postprocessing
-- three-stdlib
-- TailwindCSS
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 🎮 Steuerung
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- **Linke Maustaste + Ziehen**: Kamera rotieren
-- **Mausrad**: Zoom
-- **Rechte Maustaste + Ziehen**: Kamera verschieben
-- **Planeten anklicken**: Detailinformationen anzeigen
+## Learn More
 
-## 🌍 Planeten
+To learn more about Next.js, take a look at the following resources:
 
-- Merkur
-- Venus
-- Erde (mit Atmosphäre)
-- Mars
-- Jupiter
-- Saturn (mit Ringen)
-- Uranus
-- Neptun
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 🎨 Next-Gen Features
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Bloom & Post-Processing
-Die Sonne nutzt emissive Materials mit Bloom-Effekt für realistisches Leuchten.
+## Deploy on Vercel
 
-### Atmosphären-Shader
-Planeten mit Atmosphäre (z.B. Erde) haben einen shader-basierten Fresnel-Effekt.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### Tone Mapping
-Reinhard Tone Mapping für HDR-ähnliche Farbdarstellung.
-
-## 🚀 Deployment auf Vercel
-
-1. GitHub Repository erstellen und Code pushen
-2. Auf [Vercel](https://vercel.com) gehen
-3. "New Project" klicken
-4. GitHub Repository auswählen
-5. Vite-Preset wird automatisch erkannt
-6. "Deploy" klicken
-
-Fertig! Die App wird automatisch deployt.
-
-## 📝 Credits
-
-- Texturen: NASA / Wikimedia Commons (Public Domain)
-- Framework: React + Three.js
-- Post-Processing: @react-three/postprocessing
-
-## 📄 Lizenz
-
-MIT
-
----
-
-**Made with 🚀 by SolarEngine Team**
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -1,0 +1,282 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Wrench, Sparkles, Shield, Calendar, CheckCircle, Send, Loader2, Phone, Clock } from "lucide-react";
+
+const services = [
+  {
+    icon: Wrench,
+    title: "Reifenwechsel",
+    description: "Professioneller Reifenwechsel mit modernster Ausrüstung. Schnell, sicher und zuverlässig.",
+    features: ["Sommer & Winterreifen", "Auswuchten inklusive", "Reifeneinlagerung möglich", "RDKS-Service"],
+    price: "ab 49€",
+  },
+  {
+    icon: Sparkles,
+    title: "Fahrzeugaufbereitung",
+    description: "Bringen Sie Ihr Auto wieder zum Glänzen. Professionelle Innen- und Außenaufbereitung.",
+    features: ["Innenreinigung komplett", "Außenpolitur", "Keramikversiegelung", "Lederreinigung & -pflege"],
+    price: "ab 99€",
+  },
+  {
+    icon: Shield,
+    title: "Fahrzeugcheck",
+    description: "Umfassende Inspektion Ihres Fahrzeugs. Für Ihre Sicherheit auf der Straße.",
+    features: ["Bremsencheck", "Ölwechsel", "Fehlerdiagnose", "Klimaanlagenservice"],
+    price: "ab 39€",
+  },
+];
+
+export default function ServicePage() {
+  const [selectedService, setSelectedService] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    setTimeout(() => {
+      setIsSuccess(false);
+      setSelectedService("");
+      setName("");
+      setPhone("");
+      setDate("");
+      setTime("");
+      setMessage("");
+    }, 3000);
+  };
+
+  return (
+    <main className="min-h-screen bg-black">
+      <Header />
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-black to-black" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
+
+        <div className="max-w-7xl mx-auto px-4 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <span className="text-green-500 font-semibold tracking-wider uppercase text-sm">
+              Unsere Services
+            </span>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
+              Premium <span className="gradient-text">Autoservice</span>
+            </h1>
+            <p className="text-gray-400 text-xl max-w-2xl mx-auto">
+              Von Reifenwechsel bis Fahrzeugaufbereitung – wir bieten Ihnen erstklassigen Service für Ihr Fahrzeug.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group"
+              >
+                <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-green-500/30">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-8 h-8 text-green-500" />
+                  </div>
+
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="text-2xl font-bold text-white">{service.title}</h3>
+                    <span className="text-green-500 font-bold text-lg">{service.price}</span>
+                  </div>
+
+                  <p className="text-gray-400 mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-3 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    onClick={() => setSelectedService(service.title)}
+                    className="w-full py-3 rounded-xl border border-green-500/30 text-green-500 font-semibold hover:bg-green-500 hover:text-white transition-all"
+                  >
+                    Termin buchen
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Booking Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <div className="glass rounded-3xl p-8 md:p-10">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                  <Calendar className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-white">Termin buchen</h2>
+                  <p className="text-gray-400">Wir bestätigen Ihren Termin schnellstmöglich</p>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="text-gray-300 text-sm mb-2 block">Service auswählen *</label>
+                  <select
+                    value={selectedService}
+                    onChange={(e) => setSelectedService(e.target.value)}
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                    required
+                  >
+                    <option value="">Service wählen...</option>
+                    {services.map((service) => (
+                      <option key={service.title} value={service.title}>{service.title}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="text-gray-300 text-sm mb-2 block">Ihr Name *</label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                      placeholder="Max Mustermann"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-300 text-sm mb-2 block">Telefon *</label>
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                      placeholder="+49 172 1234567"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-5">
+                  <div>
+                    <label className="text-gray-300 text-sm mb-2 block">Wunschdatum *</label>
+                    <input
+                      type="date"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-gray-300 text-sm mb-2 block">Wunschzeit</label>
+                    <select
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                    >
+                      <option value="">Zeit wählen...</option>
+                      <option value="09:00">09:00 Uhr</option>
+                      <option value="10:00">10:00 Uhr</option>
+                      <option value="11:00">11:00 Uhr</option>
+                      <option value="12:00">12:00 Uhr</option>
+                      <option value="14:00">14:00 Uhr</option>
+                      <option value="15:00">15:00 Uhr</option>
+                      <option value="16:00">16:00 Uhr</option>
+                      <option value="17:00">17:00 Uhr</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-gray-300 text-sm mb-2 block">Nachricht</label>
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    rows={3}
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors resize-none"
+                    placeholder="Zusätzliche Informationen..."
+                  />
+                </div>
+
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting || isSuccess}
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 disabled:opacity-70"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Wird gesendet...
+                    </>
+                  ) : isSuccess ? (
+                    <>
+                      <CheckCircle className="w-5 h-5" />
+                      Terminanfrage gesendet!
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Termin anfragen
+                    </>
+                  )}
+                </motion.button>
+              </form>
+
+              {/* Quick Contact */}
+              <div className="mt-8 pt-8 border-t border-gray-800">
+                <p className="text-gray-400 text-center mb-4">Oder rufen Sie uns direkt an:</p>
+                <a
+                  href="tel:+491728650128"
+                  className="flex items-center justify-center gap-3 text-green-500 font-semibold text-lg hover:text-green-400 transition-colors"
+                >
+                  <Phone className="w-5 h-5" />
+                  +49 172 8650128
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+}

@@ -24,7 +24,7 @@ const vehicles = [
     color: "Iridium Silber",
     hu: "05/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594421",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/mercedes-benz-amg-gt-amg-gts-night-paket-burmester-pano-keyless-benzin-schwarz-cfee2258-bff7-432f-bf95-7f2cd2b4643d",
     images: [
       "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=800&h=600&fit=crop",
@@ -49,7 +49,7 @@ const vehicles = [
     color: "Mineralgrau",
     hu: "04/2027",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594585",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-440-440i-deutsch-no-opf-memory-car-play-spurh-leder-benzin-blau-1c0d2cfc-90ed-4f5d-83ab-7ff209e3573c",
     images: [
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=800&h=600&fit=crop",
@@ -74,7 +74,7 @@ const vehicles = [
     color: "Schwarz",
     hu: "07/2027",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594546",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-530-d-m-paket-schiebedach-ambiente-navi-leder-led-diesel-schwarz-f7425f39-5207-4bef-a7eb-188d7ac029bd",
     images: [
       "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
@@ -124,7 +124,7 @@ const vehicles = [
     color: "Daytonagrau",
     hu: "05/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442702667",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-q5-2-0-tdi-quattro-3xs-line-virtual-kamera-mwst-diesel-schwarz-15030855-cb45-4d6a-872e-51fa5405ee34",
     images: [
       "https://images.unsplash.com/photo-1606664913919-86d67eaa5a69?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
@@ -149,7 +149,7 @@ const vehicles = [
     color: "Daytonagrau",
     hu: "07/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442101130",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a6-3-0-tdi-3xs-line-quattro-acc-r-kam-ahk-led-diesel-schwarz-e912e466-4e85-4f7d-a2d9-08cce11654c1",
     images: [
       "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
@@ -174,7 +174,7 @@ const vehicles = [
     color: "Navarrablau",
     hu: "01/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441904100",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a3-2-0-tdi-lim-3xs-line-matrix-virtual-b-o-acc-diesel-grau-27327404-77bb-47da-add0-3d5cba664f75",
     images: [
       "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop",
@@ -199,7 +199,7 @@ const vehicles = [
     color: "Saphirschwarz",
     hu: "Neu",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594616",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-420-d-coupe-m-paket-kamera-led-alcantara-navi-diesel-schwarz-99b7f4cf-d15e-41d6-8b9c-6260fd7018a5",
     images: [
       "https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
@@ -224,7 +224,7 @@ const vehicles = [
     color: "Imperialblau",
     hu: "02/2027",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442667087",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-320-d-lim-luxury-kamera-head-up-led-leder-navi-diesel-grau-0d6856a4-07ba-4b92-a942-413f361ebd23",
     images: [
       "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?w=800&h=600&fit=crop",
@@ -249,7 +249,7 @@ const vehicles = [
     color: "Navarrablau",
     hu: "Neu",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594707",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-q2-1-4-tfsi-3xs-line-navi-carplay-shzg-led-r-kam-benzin-c8b910dd-0105-4281-8eb2-12372ae3971d",
     images: [
       "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1606664913919-86d67eaa5a69?w=800&h=600&fit=crop",
@@ -274,7 +274,7 @@ const vehicles = [
     color: "Deep Black",
     hu: "Neu",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441587870",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/volkswagen-tiguan-2-0-tdi-highline-4motion-virtual-kamera-diesel-weiss-4d362bec-ba69-44e6-9cac-a59e3dec5b77",
     images: [
       "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
@@ -299,7 +299,7 @@ const vehicles = [
     color: "Mineralgrau",
     hu: "01/2027",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594508",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-x1-20d-xdrive-m-paket-shadow-kamera-alcantara-diesel-schwarz-05841944-83c1-4133-87f1-61aca4b406b7",
     images: [
       "https://images.unsplash.com/photo-1615063029854-6e4c3fc0d5b0?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=800&h=600&fit=crop",
@@ -324,7 +324,7 @@ const vehicles = [
     color: "Mythosschwarz",
     hu: "Neu",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594727",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a4-2-0-tdi-s-line-matrix-virtual-ahk-tmpmt-klima-diesel-schwarz-04424afa-e4ab-4fed-8366-3f0170aa47ce",
     images: [
       "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
@@ -349,7 +349,7 @@ const vehicles = [
     color: "Glaciersilber",
     hu: "06/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_440204130",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-320-d-m-paket-head-up-pano-leder-led-tempomat-diesel-schwarz-0f3b4d17-fbbd-4337-ba2d-c7e81b81d665",
     images: [
       "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
@@ -374,7 +374,7 @@ const vehicles = [
     color: "Alpinweiß",
     hu: "Neu",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441594658",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-120-i-m-paket-shadow-digital-tacho-navi-tempo-led-benzin-grau-170c8c93-b7bd-440e-bee8-fbdb92c2bd74",
     images: [
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
@@ -399,7 +399,7 @@ const vehicles = [
     color: "Tungsten Silver",
     hu: "08/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441587779",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/volkswagen-tiguan-2-0-tsi-highline-4motion-acc-car-play-led-benzin-grau-6e846e3f-54fd-4e42-81c1-8bc835ddcd52",
     images: [
       "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
@@ -424,7 +424,7 @@ const vehicles = [
     color: "Mediterranblau",
     hu: "Neu",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441586248",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-318-d-sport-automatik-head-up-led-navi-ahk-pdc-diesel-schwarz-3a822c89-c895-4560-8db8-8f6fe410bebc",
     images: [
       "https://images.unsplash.com/photo-1549925545-510eb9a28ad6?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
@@ -449,7 +449,7 @@ const vehicles = [
     color: "Manhattangrau",
     hu: "03/2027",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442348778",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/audi-a5-sportback-2-0-tdi-s-line-navi-xenon-led-19zol-diesel-schwarz-71a8ff36-5cc9-445f-af1a-6e7baccc41d6",
     images: [
       "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&h=600&fit=crop",
@@ -474,7 +474,7 @@ const vehicles = [
     color: "Night Blue",
     hu: "11/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_441665435",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/volkswagen-tiguan-2-0-tdi-4motion-xenon-kamera-navi-klima-diesel-blau-5d52657e-4967-48d7-880a-c212cf3008ca",
     images: [
       "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=600&fit=crop",
@@ -499,7 +499,7 @@ const vehicles = [
     color: "Sparkling Brown",
     hu: "04/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442036627",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/bmw-220-d-active-tourer-automatik-leder-navi-key-less-diesel-weiss-2d91d9f1-90ee-4fef-b4a7-9d87fbd3b795",
     images: [
       "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=600&fit=crop",
@@ -524,7 +524,7 @@ const vehicles = [
     color: "Pepper White",
     hu: "07/2026",
     mobileLink: "https://home.mobile.de/CARCENTERLANDSHUT#des_442147596",
-    autoScoutLink: "https://www.autoscout24.de/haendler/carcenter-landshut",
+    autoScoutLink: "https://www.autoscout24.de/angebote/mini-cooper-automatik-leder-s-hzg-steuerkette-neu-benzin-beige-2141270c-fa96-4a03-94f4-4ac073f6b9c5",
     images: [
       "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop",
       "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
@@ -583,7 +583,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         className="bg-gray-900 rounded-3xl overflow-hidden max-w-5xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row"
       >
         {/* Left Side - Image Gallery */}
-        <div className="lg:w-1/2 relative bg-black">
+        <div className="lg:w-3/5 relative bg-black">
           <div className="relative h-72 lg:h-full lg:min-h-[500px]">
             <img
               src={vehicle.images[currentImageIndex]}
@@ -631,7 +631,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         </div>
 
         {/* Right Side - Details */}
-        <div className="lg:w-1/2 p-6 lg:p-8 flex flex-col">
+        <div className="lg:w-2/5 p-6 lg:p-8 flex flex-col">
           {/* Close Button Desktop */}
           <button
             onClick={onClose}

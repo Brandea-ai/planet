@@ -580,15 +580,15 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         animate={{ opacity: 1, scale: 1, x: 0 }}
         exit={{ opacity: 0, scale: 0.9, x: 50 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-gray-900 rounded-3xl overflow-hidden max-w-5xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row"
+        className="bg-gray-900 rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row"
       >
         {/* Left Side - Image Gallery */}
-        <div className="lg:w-3/5 relative bg-black">
-          <div className="relative h-72 lg:h-full lg:min-h-[500px]">
+        <div className="lg:w-2/3 relative bg-black flex items-center justify-center">
+          <div className="relative w-full h-72 lg:h-full lg:min-h-[550px] flex items-center justify-center">
             <img
               src={vehicle.images[currentImageIndex]}
               alt={vehicle.name}
-              className="w-full h-full object-cover"
+              className="max-w-full max-h-full object-contain"
             />
 
             {/* Close Button */}
@@ -631,7 +631,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         </div>
 
         {/* Right Side - Details */}
-        <div className="lg:w-2/5 p-6 lg:p-8 flex flex-col">
+        <div className="lg:w-1/3 p-6 lg:p-8 flex flex-col overflow-y-auto">
           {/* Close Button Desktop */}
           <button
             onClick={onClose}

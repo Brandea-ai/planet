@@ -17,17 +17,36 @@ const navItems = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+
+      setIsScrolled(currentScrollY > 50);
+
+      // Show nav when scrolling up, hide when scrolling down
+      if (currentScrollY < 100) {
+        // Always show near top
+        setIsNavVisible(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up
+        setIsNavVisible(true);
+      } else if (currentScrollY > lastScrollY + 10) {
+        // Scrolling down (with threshold to prevent jitter)
+        setIsNavVisible(false);
+      }
+
+      setLastScrollY(currentScrollY);
     };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -70,7 +89,7 @@ export default function Header() {
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 hidden lg:block ${
           isScrolled ? "glass py-2" : "bg-black/50 backdrop-blur-sm py-4"
-        }`}
+        } ${isNavVisible ? "translate-y-0" : "-translate-y-full"}`}
         role="banner"
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -154,7 +173,7 @@ export default function Header() {
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 lg:hidden transition-all duration-300 ${
           isScrolled ? "glass py-2" : "bg-black/80 backdrop-blur-md py-3"
-        }`}
+        } ${isNavVisible ? "translate-y-0" : "-translate-y-full"}`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
         role="banner"
       >
@@ -195,7 +214,9 @@ export default function Header() {
 
       {/* Mobile Bottom Navigation - App Style */}
       <nav
-        className="fixed bottom-0 left-0 right-0 z-50 lg:hidden glass border-t border-white/10"
+        className={`fixed bottom-0 left-0 right-0 z-50 lg:hidden glass border-t border-white/10 transition-transform duration-300 ${
+          isNavVisible ? "translate-y-0" : "translate-y-full"
+        }`}
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
         role="navigation"
         aria-label="Mobile Navigation"

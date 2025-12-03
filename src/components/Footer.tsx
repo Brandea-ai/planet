@@ -38,7 +38,7 @@ export default function Footer() {
     />
     <footer id="kontakt" className="bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
       {/* Top Border */}
-      <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-#6cb036/50 to-transparent" />
 
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -64,7 +64,7 @@ export default function Footer() {
                 href="https://www.instagram.com/carcenterlandshut/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all"
+                className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-#6cb036 hover:text-white transition-all"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -72,7 +72,7 @@ export default function Footer() {
                 href="https://www.facebook.com/profile.php?id=61576748729748"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all"
+                className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-#6cb036 hover:text-white transition-all"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -80,7 +80,7 @@ export default function Footer() {
                 href="https://wa.me/491728650128"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all"
+                className="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-#6cb036 hover:text-white transition-all"
               >
                 <MessageCircle className="w-5 h-5" />
               </a>
@@ -100,7 +100,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-emerald-500 transition-colors flex items-center gap-2 group"
+                    className="text-gray-400 hover:text-#6cb036 transition-colors flex items-center gap-2 group"
                   >
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     {link.name}
@@ -123,9 +123,9 @@ export default function Footer() {
                 <li key={service.name}>
                   <Link
                     href={service.href}
-                    className="text-gray-400 hover:text-emerald-600 transition-colors flex items-center gap-2"
+                    className="text-gray-400 hover:text-#5a9a2d transition-colors flex items-center gap-2"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-#5a9a2d" />
                     {service.name}
                   </Link>
                 </li>
@@ -147,32 +147,32 @@ export default function Footer() {
                   href="https://maps.google.com/?q=Niedermayerstr.+44,+84028+Landshut"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-3 text-gray-400 hover:text-emerald-600 transition-colors"
+                  className="flex items-start gap-3 text-gray-400 hover:text-#5a9a2d transition-colors"
                 >
-                  <MapPin className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <MapPin className="w-5 h-5 text-#5a9a2d flex-shrink-0 mt-0.5" />
                   <span>Niedermayerstr. 44<br />84028 Landshut</span>
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+491728650128"
-                  className="flex items-center gap-3 text-gray-400 hover:text-emerald-600 transition-colors"
+                  className="flex items-center gap-3 text-gray-400 hover:text-#5a9a2d transition-colors"
                 >
-                  <Phone className="w-5 h-5 text-emerald-600" />
+                  <Phone className="w-5 h-5 text-#5a9a2d" />
                   <span>+49 172 8650128</span>
                 </a>
               </li>
               <li>
                 <a
                   href="mailto:carcenterlandshut@gmail.com"
-                  className="flex items-center gap-3 text-gray-400 hover:text-emerald-600 transition-colors"
+                  className="flex items-center gap-3 text-gray-400 hover:text-#5a9a2d transition-colors"
                 >
-                  <Mail className="w-5 h-5 text-emerald-600" />
+                  <Mail className="w-5 h-5 text-#5a9a2d" />
                   <span>carcenterlandshut@gmail.com</span>
                 </a>
               </li>
               <li className="flex items-center gap-3 text-gray-400">
-                <Clock className="w-5 h-5 text-emerald-600" />
+                <Clock className="w-5 h-5 text-#5a9a2d" />
                 <span>Mo-Fr: 9:00 - 18:00<br />Sa: 10:00 - 14:00</span>
               </li>
               <li className="pt-4">
@@ -180,7 +180,7 @@ export default function Footer() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setShowContactModal(true)}
-                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
+                  className="w-full bg-gradient-to-r from-#6cb036 to-#5a9a2d text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-#6cb036/25 transition-all"
                 >
                   <Send className="w-4 h-4" />
                   Nachricht senden
@@ -196,13 +196,13 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm">
-              Copyright 2025 - CarCenter | Erstellt von <a href="https://brandea.de" target="_blank" rel="noopener noreferrer" className="text-emerald-500 hover:text-green-400">Brandea</a> ®
+              Copyright 2025 - CarCenter | Erstellt von <a href="https://brandea.de" target="_blank" rel="noopener noreferrer" className="text-#6cb036 hover:text-[#7ec843]">Brandea</a> ®
             </p>
             <div className="flex gap-6 text-sm">
-              <Link href="/impressum" className="text-gray-500 hover:text-emerald-500 transition-colors">
+              <Link href="/impressum" className="text-gray-500 hover:text-#6cb036 transition-colors">
                 Impressum
               </Link>
-              <Link href="/datenschutz" className="text-gray-500 hover:text-emerald-500 transition-colors">
+              <Link href="/datenschutz" className="text-gray-500 hover:text-#6cb036 transition-colors">
                 Datenschutz
               </Link>
             </div>

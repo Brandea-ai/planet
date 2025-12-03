@@ -54,7 +54,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://formsubmit.co" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className="antialiased bg-black text-white selection:bg-emerald-500/30 selection:text-white">
+      <body className="antialiased bg-black text-white selection:bg-[#6cb036]/30 selection:text-white">
         {children}
       </body>
     </html>

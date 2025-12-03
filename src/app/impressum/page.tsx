@@ -20,8 +20,8 @@ export default function ImpressumPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 mb-6">
-              <FileText className="w-8 h-8 text-emerald-500" />
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#6cb036]/20 to-[#5a9a2d]/20 mb-6">
+              <FileText className="w-8 h-8 text-[#6cb036]" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Impressum
@@ -45,7 +45,7 @@ export default function ImpressumPage() {
             {/* Anbieter */}
             <div>
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                <Building className="w-6 h-6 text-emerald-500" />
+                <Building className="w-6 h-6 text-[#6cb036]" />
                 Anbieter
               </h2>
               <div className="text-gray-300 space-y-2">
@@ -59,7 +59,7 @@ export default function ImpressumPage() {
             {/* Vertretungsberechtigte */}
             <div>
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                <User className="w-6 h-6 text-emerald-500" />
+                <User className="w-6 h-6 text-[#6cb036]" />
                 Vertreten durch
               </h2>
               <p className="text-gray-300">
@@ -70,22 +70,22 @@ export default function ImpressumPage() {
             {/* Kontakt */}
             <div>
               <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                <Phone className="w-6 h-6 text-emerald-500" />
+                <Phone className="w-6 h-6 text-[#6cb036]" />
                 Kontakt
               </h2>
               <div className="space-y-3">
                 <a
                   href="tel:+491728650128"
-                  className="flex items-center gap-3 text-gray-300 hover:text-emerald-500 transition-colors"
+                  className="flex items-center gap-3 text-gray-300 hover:text-[#6cb036] transition-colors"
                 >
-                  <Phone className="w-5 h-5 text-emerald-500" />
+                  <Phone className="w-5 h-5 text-[#6cb036]" />
                   +49 172 8650128
                 </a>
                 <a
                   href="mailto:carcenterlandshut@gmail.com"
-                  className="flex items-center gap-3 text-gray-300 hover:text-emerald-500 transition-colors"
+                  className="flex items-center gap-3 text-gray-300 hover:text-[#6cb036] transition-colors"
                 >
-                  <Mail className="w-5 h-5 text-emerald-500" />
+                  <Mail className="w-5 h-5 text-[#6cb036]" />
                   carcenterlandshut@gmail.com
                 </a>
               </div>
@@ -121,7 +121,7 @@ export default function ImpressumPage() {
                   href="https://ec.europa.eu/consumers/odr/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-500 hover:text-emerald-400 transition-colors block"
+                  className="text-[#6cb036] hover:text-[#7ec843] transition-colors block"
                 >
                   https://ec.europa.eu/consumers/odr/
                 </a>

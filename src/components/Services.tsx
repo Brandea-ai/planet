@@ -71,7 +71,7 @@ export default function Services() {
     <section id="service" className="section-padding bg-gradient-to-b from-black to-gray-950 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-#6cb036/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative">
@@ -82,11 +82,11 @@ export default function Services() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-emerald-500 font-semibold tracking-wider uppercase text-sm">
+          <span className="text-#6cb036 font-semibold tracking-wider uppercase text-sm">
             Warum wir?
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            Unsere <span className="text-emerald-500">Leistungen</span>
+            Unsere <span className="text-#6cb036">Leistungen</span>
           </h2>
         </motion.div>
 
@@ -105,8 +105,8 @@ export default function Services() {
               className="glass rounded-2xl p-8"
             >
               <div className="flex items-start gap-5">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 flex items-center justify-center flex-shrink-0">
-                  <highlight.icon className="w-7 h-7 text-emerald-500" />
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-#6cb036/20 to-#5a9a2d/20 flex items-center justify-center flex-shrink-0">
+                  <highlight.icon className="w-7 h-7 text-#6cb036" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white mb-3">{highlight.title}</h3>
@@ -125,7 +125,7 @@ export default function Services() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Unsere <span className="text-emerald-500">Services</span>
+            Unsere <span className="text-#6cb036">Services</span>
           </h2>
         </motion.div>
 
@@ -143,8 +143,8 @@ export default function Services() {
               whileHover={{ y: -10 }}
               className="group"
             >
-              <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-emerald-500/30 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-#6cb036/30 text-center">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-#6cb036 to-#5a9a2d flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                   <service.icon className="w-10 h-10 text-white" />
                 </div>
 
@@ -152,7 +152,7 @@ export default function Services() {
                 <p className="text-gray-400 mb-6">{service.description}</p>
 
                 <Link href={service.href}>
-                  <span className="inline-flex items-center gap-2 text-emerald-500 font-semibold group-hover:text-green-400 transition-colors cursor-pointer">
+                  <span className="inline-flex items-center gap-2 text-#6cb036 font-semibold group-hover:text-[#7ec843] transition-colors cursor-pointer">
                     {service.cta}
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>

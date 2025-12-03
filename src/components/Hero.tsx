@@ -84,8 +84,10 @@ export default function Hero() {
                   alt={slide.title}
                   className="w-full h-full object-cover"
                 />
-                {/* Dark Gradient Overlay for text contrast */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+                {/* Premium Dark Gradient Overlay for perfect text contrast */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.4)_100%)]" />
               </div>
 
               {/* Content */}
@@ -105,7 +107,7 @@ export default function Hero() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.2, type: "spring" }}
-                          className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-700 mb-8"
+                          className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] mb-8 shadow-lg shadow-[#6cb036]/30"
                         >
                           <slide.icon className="w-10 h-10 text-white" />
                         </motion.div>
@@ -115,7 +117,7 @@ export default function Hero() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.3 }}
-                          className="text-emerald-500 font-semibold tracking-wider uppercase mb-4"
+                          className="text-[#6cb036] font-semibold tracking-wider uppercase mb-4 drop-shadow-lg"
                         >
                           {slide.subtitle}
                         </motion.p>
@@ -125,7 +127,7 @@ export default function Hero() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4 }}
-                          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6"
+                          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
                         >
                           {slide.title}
                         </motion.h1>
@@ -135,7 +137,7 @@ export default function Hero() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.5 }}
-                          className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-10"
+                          className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                         >
                           {slide.description}
                         </motion.p>
@@ -146,7 +148,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105 cursor-pointer"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg hover:shadow-[#6cb036]/40 transition-all duration-300 hover:scale-105 cursor-pointer"
                           >
                             {slide.cta}
                             <ChevronRight className="w-5 h-5" />
@@ -184,7 +186,7 @@ export default function Hero() {
             onClick={() => emblaApi?.scrollTo(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               selectedIndex === index
-                ? "bg-emerald-500 w-8"
+                ? "bg-[#6cb036] w-8"
                 : "bg-white/30 hover:bg-white/50"
             }`}
           />
@@ -204,7 +206,7 @@ export default function Hero() {
           className="text-gray-400 text-sm flex flex-col items-center gap-2"
         >
           <span className="rotate-90 origin-center">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-emerald-500 to-transparent" />
+          <div className="w-px h-12 bg-gradient-to-b from-[#6cb036] to-transparent" />
         </motion.div>
       </motion.div>
     </section>

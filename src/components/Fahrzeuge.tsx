@@ -246,7 +246,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentImageIndex ? "bg-emerald-500" : "bg-white/50"
+                    index === currentImageIndex ? "bg-#6cb036" : "bg-white/50"
                   }`}
                 />
               ))}
@@ -266,9 +266,9 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
 
           {/* Header */}
           <div className="mb-6">
-            <div className="text-emerald-500 text-sm font-semibold mb-2">{vehicle.type}</div>
+            <div className="text-#6cb036 text-sm font-semibold mb-2">{vehicle.type}</div>
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">{vehicle.fullName}</h2>
-            <div className="text-3xl lg:text-4xl font-bold text-emerald-500">{vehicle.price} €</div>
+            <div className="text-3xl lg:text-4xl font-bold text-#6cb036">{vehicle.price} €</div>
           </div>
 
           {/* Quick Info Grid */}
@@ -341,7 +341,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
             </a>
             <a
               href="tel:+491728650128"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-#6cb036 to-#5a9a2d text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-#6cb036/25 transition-all"
             >
               <Phone className="w-5 h-5" />
               Jetzt anrufen: +49 172 8650128
@@ -374,7 +374,7 @@ export default function Fahrzeuge() {
   return (
     <section id="fahrzeuge" className="section-padding bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
       {/* Background */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-#6cb036/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative">
         {/* Header */}
@@ -384,11 +384,11 @@ export default function Fahrzeuge() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-emerald-500 font-semibold tracking-wider uppercase text-sm">
+          <span className="text-#6cb036 font-semibold tracking-wider uppercase text-sm">
             Fahrzeugbestand
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-            Unsere <span className="text-emerald-500">Fahrzeuge</span>
+            Unsere <span className="text-#6cb036">Fahrzeuge</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             Entdecken Sie unsere handverlesene Auswahl an Qualitätsfahrzeugen. Jedes Fahrzeug geprüft und startklar.
@@ -410,7 +410,7 @@ export default function Fahrzeuge() {
               whileHover={{ y: -10 }}
               className="group"
             >
-              <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-emerald-500/30">
+              <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-#6cb036/30">
                 {/* Image - Clickable */}
                 <div
                   className="relative h-56 overflow-hidden cursor-pointer"
@@ -424,7 +424,7 @@ export default function Fahrzeuge() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                   {/* Price Badge */}
-                  <div className="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-full font-bold text-lg">
+                  <div className="absolute top-4 right-4 bg-#6cb036 text-white px-4 py-2 rounded-full font-bold text-lg">
                     {vehicle.price}€
                   </div>
 
@@ -451,19 +451,19 @@ export default function Fahrzeuge() {
                   {/* Features */}
                   <div className="grid grid-cols-4 gap-2 mb-6">
                     <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <Users className="w-4 h-4 text-emerald-500 mb-1" />
+                      <Users className="w-4 h-4 text-#6cb036 mb-1" />
                       <span className="text-xs text-gray-400">{vehicle.seats}</span>
                     </div>
                     <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <Gauge className="w-4 h-4 text-emerald-500 mb-1" />
+                      <Gauge className="w-4 h-4 text-#6cb036 mb-1" />
                       <span className="text-xs text-gray-400">{vehicle.power}</span>
                     </div>
                     <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <DoorOpen className="w-4 h-4 text-emerald-500 mb-1" />
+                      <DoorOpen className="w-4 h-4 text-#6cb036 mb-1" />
                       <span className="text-xs text-gray-400">{vehicle.doors}</span>
                     </div>
                     <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <Car className="w-4 h-4 text-emerald-500 mb-1" />
+                      <Car className="w-4 h-4 text-#6cb036 mb-1" />
                       <span className="text-xs text-gray-400 truncate">{vehicle.type.split(' ')[0]}</span>
                     </div>
                   </div>
@@ -473,7 +473,7 @@ export default function Fahrzeuge() {
                     onClick={() => setSelectedVehicle(vehicle)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
+                    className="w-full bg-gradient-to-r from-#6cb036 to-#5a9a2d text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-#6cb036/25 transition-all"
                   >
                     Details ansehen
                     <ChevronRight className="w-4 h-4" />
@@ -495,7 +495,7 @@ export default function Fahrzeuge() {
             <motion.span
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all cursor-pointer"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-#6cb036 to-#5a9a2d px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-#6cb036/25 transition-all cursor-pointer"
             >
               Mehr Fahrzeuge anzeigen
               <ChevronRight className="w-5 h-5" />

@@ -85,7 +85,7 @@ export default function Stats() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Unsere <span className="text-emerald-500">Kundenzufriedenheit</span> ist unser oberstes Gebot
+            Unsere <span className="text-#6cb036">Kundenzufriedenheit</span> ist unser oberstes Gebot
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Im Laufe unserer Karriere war es stets unser oberstes Ziel, unsere Leistungen, Fähigkeiten und Angebote kontinuierlich zu verbessern, um eine optimale Kundenzufriedenheit zu gewährleisten.
@@ -104,8 +104,8 @@ export default function Stats() {
               className="text-center"
             >
               <div className="glass rounded-2xl p-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 mb-4">
-                  <stat.icon className="w-8 h-8 text-emerald-500" />
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-#6cb036/20 to-#5a9a2d/20 mb-4">
+                  <stat.icon className="w-8 h-8 text-#6cb036" />
                 </div>
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />

@@ -127,11 +127,11 @@ export default function ServicePage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <span className="text-emerald-500 font-semibold tracking-wider uppercase text-sm">
+            <span className="text-[#6cb036] font-semibold tracking-wider uppercase text-sm">
               Unsere Services
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
-              Premium <span className="text-emerald-500">Autoservice</span>
+              Premium <span className="text-[#6cb036]">Autoservice</span>
             </h1>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Von Reifenwechsel bis Fahrzeugaufbereitung – wir bieten Ihnen erstklassigen Service für Ihr Fahrzeug.
@@ -154,14 +154,14 @@ export default function ServicePage() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-emerald-600/30">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-600/20 to-emerald-700/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <service.icon className="w-8 h-8 text-emerald-600" />
+                <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-[#5a9a2d]/30">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#5a9a2d]/20 to-[#4a8526]/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-8 h-8 text-[#5a9a2d]" />
                   </div>
 
                   <div className="flex items-start justify-between mb-4">
                     <h3 className="text-2xl font-bold text-white">{service.title}</h3>
-                    <span className="text-emerald-500 font-bold text-lg">{service.price}</span>
+                    <span className="text-[#6cb036] font-bold text-lg">{service.price}</span>
                   </div>
 
                   <p className="text-gray-400 mb-6 leading-relaxed">
@@ -171,7 +171,7 @@ export default function ServicePage() {
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3 text-gray-300">
-                        <CheckCircle className="w-4 h-4 text-emerald-600" />
+                        <CheckCircle className="w-4 h-4 text-[#5a9a2d]" />
                         {feature}
                       </li>
                     ))}
@@ -179,7 +179,7 @@ export default function ServicePage() {
 
                   <button
                     onClick={() => handleServiceClick(service.title)}
-                    className="w-full py-3 rounded-xl border border-emerald-600/30 text-emerald-600 font-semibold hover:bg-emerald-600 hover:text-white transition-all"
+                    className="w-full py-3 rounded-xl border border-[#5a9a2d]/30 text-[#5a9a2d] font-semibold hover:bg-[#5a9a2d] hover:text-white transition-all"
                   >
                     Termin buchen
                   </button>
@@ -198,7 +198,7 @@ export default function ServicePage() {
           >
             <div className="glass rounded-3xl p-8 md:p-10">
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] flex items-center justify-center">
                   <Calendar className="w-7 h-7 text-white" />
                 </div>
                 <div>
@@ -213,7 +213,7 @@ export default function ServicePage() {
                   <select
                     value={selectedService}
                     onChange={(e) => setSelectedService(e.target.value)}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
                     required
                   >
                     <option value="">Service wählen...</option>
@@ -229,7 +229,7 @@ export default function ServicePage() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
                     placeholder="Max Mustermann"
                     required
                   />
@@ -242,7 +242,7 @@ export default function ServicePage() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
                       placeholder="ihre@email.de"
                       required
                     />
@@ -253,7 +253,7 @@ export default function ServicePage() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
                       placeholder="+49 172 1234567"
                       required
                     />
@@ -267,7 +267,7 @@ export default function ServicePage() {
                       type="date"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70 [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70 [&::-webkit-calendar-picker-indicator]:hover:opacity-100"
                       required
                     />
                   </div>
@@ -276,7 +276,7 @@ export default function ServicePage() {
                     <select
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors"
                     >
                       <option value="">Zeit wählen...</option>
                       <option value="09:00">09:00 Uhr</option>
@@ -297,7 +297,7 @@ export default function ServicePage() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={3}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors resize-none"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-[#6cb036] focus:outline-none transition-colors resize-none"
                     placeholder="Zusätzliche Informationen..."
                   />
                 </div>
@@ -307,7 +307,7 @@ export default function ServicePage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={isSubmitting || isSuccess}
-                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 disabled:opacity-70"
+                  className="w-full bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#6cb036]/25 transition-all duration-300 disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <>
@@ -333,7 +333,7 @@ export default function ServicePage() {
                 <p className="text-gray-400 text-center mb-4">Oder rufen Sie uns direkt an:</p>
                 <a
                   href="tel:+491728650128"
-                  className="flex items-center justify-center gap-3 text-emerald-500 font-semibold text-lg hover:text-emerald-400 transition-colors"
+                  className="flex items-center justify-center gap-3 text-[#6cb036] font-semibold text-lg hover:text-[#7ec843] transition-colors"
                 >
                   <Phone className="w-5 h-5" />
                   +49 172 8650128

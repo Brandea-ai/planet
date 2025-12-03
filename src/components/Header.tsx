@@ -92,7 +92,7 @@ export default function Header() {
                     {active && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute inset-0 bg-emerald-500 rounded-full"
+                        className="absolute inset-0 bg-[#6cb036] rounded-full"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
@@ -120,7 +120,7 @@ export default function Header() {
               <motion.span
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-block bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300"
+                className="inline-block bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-[#6cb036]/25 transition-all duration-300"
               >
                 Jetzt Verkaufen
               </motion.span>
@@ -165,7 +165,7 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`relative px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
                       active
-                        ? "bg-emerald-500 text-white"
+                        ? "bg-[#6cb036] text-white"
                         : "text-gray-300 hover:text-white hover:bg-white/5"
                     }`}
                   >
@@ -177,7 +177,7 @@ export default function Header() {
               <Link
                 href="/ankauf"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3 rounded-xl text-center font-semibold shadow-lg shadow-emerald-500/20"
+                className="bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white px-6 py-3 rounded-xl text-center font-semibold shadow-lg shadow-[#6cb036]/20"
               >
                 Jetzt Verkaufen
               </Link>

@@ -7,17 +7,17 @@ import { Car, ShoppingCart, Star, Award } from "lucide-react";
 const stats = [
   {
     icon: Car,
-    value: 150,
+    value: 750,
     suffix: "+",
     label: "Verkaufte Fahrzeuge",
-    description: "2023",
+    description: "bis 2025",
   },
   {
     icon: ShoppingCart,
-    value: 200,
+    value: 900,
     suffix: "+",
     label: "Angekaufte Fahrzeuge",
-    description: "2023",
+    description: "bis 2025",
   },
   {
     icon: Star,
@@ -28,7 +28,7 @@ const stats = [
   },
   {
     icon: Award,
-    value: 4,
+    value: 5,
     suffix: "+",
     label: "Jahre Erfahrung",
     description: "seit 2020",

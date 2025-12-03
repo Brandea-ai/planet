@@ -511,7 +511,7 @@ export default function VehicleCalculator() {
     <>
       <section id="kalkulator" className="py-24 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-green-900/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/10 via-transparent to-transparent" />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header */}
@@ -525,13 +525,13 @@ export default function VehicleCalculator() {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 mb-6"
+              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 mb-6"
             >
               <Calculator className="w-10 h-10 text-white" />
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Fahrzeugwert-<span className="text-green-500">Anfrage</span>
+              Fahrzeugwert-<span className="text-emerald-500">Anfrage</span>
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Geben Sie Ihre Fahrzeugdaten ein und erhalten Sie eine professionelle Bewertung von unseren Experten
@@ -560,7 +560,7 @@ export default function VehicleCalculator() {
                       setSelectedBrand(e.target.value);
                       setSelectedModel("");
                     }}
-                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                   >
                     <option value="">Marke wählen...</option>
                     {sortedBrands.map((brand) => (
@@ -584,7 +584,7 @@ export default function VehicleCalculator() {
                     value={selectedModel}
                     onChange={(e) => setSelectedModel(e.target.value)}
                     disabled={!selectedBrand}
-                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <option value="">Modell wählen...</option>
                     {availableModels.map((model) => (
@@ -607,7 +607,7 @@ export default function VehicleCalculator() {
                   <select
                     value={year}
                     onChange={(e) => setYear(Number(e.target.value))}
-                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                   >
                     {years.map((y) => (
                       <option key={y} value={y}>{y}</option>
@@ -631,7 +631,7 @@ export default function VehicleCalculator() {
                     min={0}
                     max={500000}
                     step={1000}
-                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                    className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                     placeholder="z.B. 50000"
                   />
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">km</span>
@@ -651,11 +651,11 @@ export default function VehicleCalculator() {
                       onClick={() => setCondition(opt.value)}
                       className={`p-4 rounded-xl border transition-all text-left ${
                         condition === opt.value
-                          ? "border-green-500 bg-green-500/10"
+                          ? "border-emerald-500 bg-emerald-500/10"
                           : "border-gray-700 bg-gray-800/30 hover:border-gray-600"
                       }`}
                     >
-                      <div className={`font-semibold mb-1 ${condition === opt.value ? "text-green-500" : "text-white"}`}>
+                      <div className={`font-semibold mb-1 ${condition === opt.value ? "text-emerald-500" : "text-white"}`}>
                         {opt.label}
                       </div>
                       <div className="text-xs text-gray-400">{opt.description}</div>
@@ -671,7 +671,7 @@ export default function VehicleCalculator() {
               whileTap={{ scale: 0.98 }}
               onClick={handleCalculate}
               disabled={!selectedBrand || !selectedModel}
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-green-500/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-emerald-500/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               <Send className="w-5 h-5" />
               Kostenlose Bewertung anfordern
@@ -687,21 +687,21 @@ export default function VehicleCalculator() {
             className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6"
           >
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-green-500 mb-2">{vehicleDatabase.length}+</div>
+              <div className="text-3xl md:text-4xl font-bold text-emerald-500 mb-2">{vehicleDatabase.length}+</div>
               <div className="text-gray-400 text-sm">Marken</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-green-500 mb-2">
+              <div className="text-3xl md:text-4xl font-bold text-emerald-500 mb-2">
                 {vehicleDatabase.reduce((acc, brand) => acc + brand.models.length, 0)}+
               </div>
               <div className="text-gray-400 text-sm">Modelle</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-green-500 mb-2">24h</div>
+              <div className="text-3xl md:text-4xl font-bold text-emerald-500 mb-2">24h</div>
               <div className="text-gray-400 text-sm">Antwortzeit</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-green-500 mb-2">100%</div>
+              <div className="text-3xl md:text-4xl font-bold text-emerald-500 mb-2">100%</div>
               <div className="text-gray-400 text-sm">Kostenlos</div>
             </div>
           </motion.div>
@@ -714,7 +714,7 @@ export default function VehicleCalculator() {
             transition={{ delay: 0.4 }}
             className="mt-12 flex items-start gap-4 p-6 bg-gray-800/30 rounded-2xl border border-gray-700/50"
           >
-            <Info className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
+            <Info className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
             <div className="text-sm text-gray-400">
               <strong className="text-white">Wie funktioniert es?</strong>
               <p className="mt-2">
@@ -765,8 +765,8 @@ export default function VehicleCalculator() {
                   </div>
 
                   {/* Fahrzeug-Zusammenfassung */}
-                  <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 mb-6">
-                    <div className="text-green-400 text-xs font-semibold mb-2">IHR FAHRZEUG</div>
+                  <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 mb-6">
+                    <div className="text-emerald-400 text-xs font-semibold mb-2">IHR FAHRZEUG</div>
                     <div className="text-white font-semibold text-lg">
                       {selectedBrand} {selectedModel}
                     </div>
@@ -788,7 +788,7 @@ export default function VehicleCalculator() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                         placeholder="Ihr vollständiger Name"
                       />
                     </div>
@@ -804,7 +804,7 @@ export default function VehicleCalculator() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                         placeholder="ihre@email.de"
                       />
                     </div>
@@ -820,7 +820,7 @@ export default function VehicleCalculator() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                         placeholder="+49 123 456789"
                       />
                     </div>
@@ -835,7 +835,7 @@ export default function VehicleCalculator() {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         rows={3}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all resize-none"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none"
                         placeholder="Zusätzliche Informationen zu Ihrem Fahrzeug..."
                       />
                     </div>
@@ -846,7 +846,7 @@ export default function VehicleCalculator() {
                       whileTap={{ scale: 0.98 }}
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                      className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
                     >
                       {isSubmitting ? (
                         <Loader2 className="w-5 h-5 animate-spin" />
@@ -859,7 +859,7 @@ export default function VehicleCalculator() {
                     </motion.button>
 
                     <p className="text-xs text-gray-500 text-center mt-4">
-                      Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="text-green-500 hover:underline">Datenschutzerklärung</a> zu.
+                      Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="text-emerald-500 hover:underline">Datenschutzerklärung</a> zu.
                     </p>
                   </form>
                 </>
@@ -874,9 +874,9 @@ export default function VehicleCalculator() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.2 }}
-                    className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/20 mb-6"
+                    className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/20 mb-6"
                   >
-                    <CheckCircle className="w-10 h-10 text-green-500" />
+                    <CheckCircle className="w-10 h-10 text-emerald-500" />
                   </motion.div>
 
                   <h3 className="text-2xl font-bold text-white mb-3">
@@ -890,7 +890,7 @@ export default function VehicleCalculator() {
                     <div className="text-sm text-gray-400">
                       Bei dringenden Fragen erreichen Sie uns auch direkt unter:
                     </div>
-                    <a href="tel:+491728650128" className="text-green-500 font-semibold text-lg hover:underline">
+                    <a href="tel:+491728650128" className="text-emerald-500 font-semibold text-lg hover:underline">
                       +49 172 8650128
                     </a>
                   </div>

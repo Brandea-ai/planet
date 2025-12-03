@@ -622,7 +622,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentImageIndex ? "bg-green-500" : "bg-white/50"
+                    index === currentImageIndex ? "bg-emerald-500" : "bg-white/50"
                   }`}
                 />
               ))}
@@ -642,9 +642,9 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
 
           {/* Header */}
           <div className="mb-6">
-            <div className="text-green-500 text-sm font-semibold mb-2">{vehicle.type}</div>
+            <div className="text-emerald-500 text-sm font-semibold mb-2">{vehicle.type}</div>
             <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">{vehicle.fullName}</h2>
-            <div className="text-3xl lg:text-4xl font-bold text-green-500">{vehicle.price} €</div>
+            <div className="text-3xl lg:text-4xl font-bold text-emerald-500">{vehicle.price} €</div>
           </div>
 
           {/* Quick Info Grid */}
@@ -717,7 +717,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
             </a>
             <a
               href="tel:+491728650128"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 transition-all"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
             >
               <Phone className="w-5 h-5" />
               Jetzt anrufen: +49 172 8650128
@@ -747,11 +747,11 @@ export default function FahrzeugePage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <span className="text-green-500 font-semibold tracking-wider uppercase text-sm">
+            <span className="text-emerald-500 font-semibold tracking-wider uppercase text-sm">
               Fahrzeugbestand
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
-              Unsere <span className="text-green-500">Fahrzeuge</span>
+              Unsere <span className="text-emerald-500">Fahrzeuge</span>
             </h1>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Entdecken Sie unsere handverlesene Auswahl an Qualitätsfahrzeugen. Jedes Fahrzeug wird geprüft und ist sofort startklar.
@@ -774,7 +774,7 @@ export default function FahrzeugePage() {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-green-500/30">
+                <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-emerald-500/30">
                   {/* Image - Clickable */}
                   <div
                     className="relative h-56 overflow-hidden cursor-pointer"
@@ -787,7 +787,7 @@ export default function FahrzeugePage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                    <div className="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-lg">
+                    <div className="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-full font-bold text-lg">
                       {vehicle.price}€
                     </div>
 
@@ -817,19 +817,19 @@ export default function FahrzeugePage() {
                     {/* Features */}
                     <div className="grid grid-cols-4 gap-2 mb-4">
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Users className="w-4 h-4 text-green-500 mb-1" />
+                        <Users className="w-4 h-4 text-emerald-500 mb-1" />
                         <span className="text-xs text-gray-400">{vehicle.seats}</span>
                       </div>
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Gauge className="w-4 h-4 text-green-500 mb-1" />
+                        <Gauge className="w-4 h-4 text-emerald-500 mb-1" />
                         <span className="text-xs text-gray-400">{vehicle.power}</span>
                       </div>
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <DoorOpen className="w-4 h-4 text-green-500 mb-1" />
+                        <DoorOpen className="w-4 h-4 text-emerald-500 mb-1" />
                         <span className="text-xs text-gray-400">{vehicle.doors}</span>
                       </div>
                       <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Car className="w-4 h-4 text-green-500 mb-1" />
+                        <Car className="w-4 h-4 text-emerald-500 mb-1" />
                         <span className="text-xs text-gray-400 truncate">{vehicle.transmission.split(" ")[0]}</span>
                       </div>
                     </div>
@@ -842,7 +842,7 @@ export default function FahrzeugePage() {
                         </span>
                       ))}
                       {vehicle.features.length > 3 && (
-                        <span className="text-xs bg-green-500/20 text-green-500 px-2 py-1 rounded-lg">
+                        <span className="text-xs bg-emerald-500/20 text-emerald-500 px-2 py-1 rounded-lg">
                           +{vehicle.features.length - 3} mehr
                         </span>
                       )}
@@ -852,14 +852,14 @@ export default function FahrzeugePage() {
                     <div className="flex gap-3">
                       <a
                         href="tel:+491728650128"
-                        className="flex-1 py-3 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 transition-all"
+                        className="flex-1 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
                       >
                         <Phone className="w-4 h-4" />
                         Anrufen
                       </a>
                       <button
                         onClick={() => setSelectedVehicle(vehicle)}
-                        className="py-3 px-4 rounded-xl border border-gray-700 text-gray-300 hover:border-green-500 hover:text-green-500 transition-all"
+                        className="py-3 px-4 rounded-xl border border-gray-700 text-gray-300 hover:border-emerald-500 hover:text-emerald-500 transition-all"
                       >
                         Details
                       </button>

@@ -85,7 +85,7 @@ export default function AnkaufPage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-green-900/20 via-black to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/20 via-black to-black" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
 
         <div className="max-w-7xl mx-auto px-4 relative">
@@ -94,11 +94,11 @@ export default function AnkaufPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <span className="text-green-500 font-semibold tracking-wider uppercase text-sm">
+            <span className="text-emerald-500 font-semibold tracking-wider uppercase text-sm">
               Auto Ankauf
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
-              Wir kaufen <span className="text-green-500">Ihr Auto</span>
+              Wir kaufen <span className="text-emerald-500">Ihr Auto</span>
             </h1>
             <p className="text-gray-400 text-xl max-w-2xl mx-auto">
               Schnell, fair und unkompliziert. Erhalten Sie noch heute ein unverbindliches Angebot für Ihr Fahrzeug.
@@ -115,8 +115,8 @@ export default function AnkaufPage() {
                 transition={{ delay: index * 0.1 }}
                 className="glass rounded-2xl p-6 text-center"
               >
-                <div className="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-7 h-7 text-green-500" />
+                <div className="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+                  <benefit.icon className="w-7 h-7 text-emerald-500" />
                 </div>
                 <h3 className="text-white font-semibold mb-2">{benefit.title}</h3>
                 <p className="text-gray-400 text-sm">{benefit.description}</p>
@@ -138,7 +138,7 @@ export default function AnkaufPage() {
               className="glass rounded-3xl p-8 md:p-10"
             >
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
                   <Car className="w-7 h-7 text-white" />
                 </div>
                 <div>
@@ -155,7 +155,7 @@ export default function AnkaufPage() {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
                       placeholder="Max Mustermann"
                       required
                     />
@@ -166,7 +166,7 @@ export default function AnkaufPage() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
                       placeholder="+49 172 1234567"
                       required
                     />
@@ -179,7 +179,7 @@ export default function AnkaufPage() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
                     placeholder="ihre@email.de"
                   />
                 </div>
@@ -193,7 +193,7 @@ export default function AnkaufPage() {
                         setSelectedBrand(e.target.value);
                         setSelectedModel("");
                       }}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors"
                       required
                     >
                       <option value="">Marke wählen...</option>
@@ -207,7 +207,7 @@ export default function AnkaufPage() {
                     <select
                       value={selectedModel}
                       onChange={(e) => setSelectedModel(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors disabled:opacity-50"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors disabled:opacity-50"
                       disabled={!selectedBrand}
                       required
                     >
@@ -225,7 +225,7 @@ export default function AnkaufPage() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={4}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors resize-none"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors resize-none"
                     placeholder="Zusätzliche Informationen (Baujahr, Kilometerstand, Zustand...)"
                   />
                 </div>
@@ -235,7 +235,7 @@ export default function AnkaufPage() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={isSubmitting || isSuccess}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 disabled:opacity-70"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <>
@@ -274,10 +274,10 @@ export default function AnkaufPage() {
               <div className="space-y-6">
                 <a
                   href="tel:+491728650128"
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-green-500/30 transition-colors group"
+                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-500/30 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                    <Phone className="w-6 h-6 text-green-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
+                    <Phone className="w-6 h-6 text-emerald-500" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Telefon</p>
@@ -287,10 +287,10 @@ export default function AnkaufPage() {
 
                 <a
                   href="mailto:carcenterlandshut@gmail.com"
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-green-500/30 transition-colors group"
+                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-500/30 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                    <Mail className="w-6 h-6 text-green-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
+                    <Mail className="w-6 h-6 text-emerald-500" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">E-Mail</p>
@@ -302,10 +302,10 @@ export default function AnkaufPage() {
                   href="https://maps.google.com/?q=Niedermayerstr.+44,+84028+Landshut"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-green-500/30 transition-colors group"
+                  className="flex items-center gap-4 p-4 glass rounded-xl hover:border-emerald-500/30 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                    <MapPin className="w-6 h-6 text-green-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
+                    <MapPin className="w-6 h-6 text-emerald-500" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Adresse</p>
@@ -314,8 +314,8 @@ export default function AnkaufPage() {
                 </a>
 
                 <div className="flex items-center gap-4 p-4 glass rounded-xl">
-                  <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-green-500" />
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                    <Clock className="w-6 h-6 text-emerald-500" />
                   </div>
                   <div>
                     <p className="text-gray-400 text-sm">Öffnungszeiten</p>

@@ -180,8 +180,8 @@ export default function ContactFormModal({
 
                 {/* Fahrzeug-Info für vehicle type */}
                 {type === "vehicle" && vehicleInfo && (
-                  <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 mb-6">
-                    <div className="text-green-400 text-xs font-semibold mb-2">IHR FAHRZEUG</div>
+                  <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 mb-6">
+                    <div className="text-emerald-400 text-xs font-semibold mb-2">IHR FAHRZEUG</div>
                     <div className="text-white font-semibold text-lg">
                       {vehicleInfo.brand} {vehicleInfo.model}
                     </div>
@@ -204,7 +204,7 @@ export default function ContactFormModal({
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                       placeholder="Ihr vollständiger Name"
                     />
                   </div>
@@ -220,7 +220,7 @@ export default function ContactFormModal({
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                       placeholder="ihre@email.de"
                     />
                   </div>
@@ -236,7 +236,7 @@ export default function ContactFormModal({
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                       placeholder="+49 123 456789"
                     />
                   </div>
@@ -256,7 +256,7 @@ export default function ContactFormModal({
                           value={formData.preferredDate}
                           onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
                           min={new Date().toISOString().split('T')[0]}
-                          className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                          className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                         />
                       </div>
 
@@ -274,7 +274,7 @@ export default function ContactFormModal({
                               onClick={() => setFormData({ ...formData, preferredTime: time })}
                               className={`p-2 rounded-lg border text-sm transition-all ${
                                 formData.preferredTime === time
-                                  ? "border-green-500 bg-green-500/10 text-green-500"
+                                  ? "border-emerald-500 bg-emerald-500/10 text-emerald-500"
                                   : "border-gray-700 bg-gray-800/30 text-gray-300 hover:border-gray-600"
                               }`}
                             >
@@ -297,7 +297,7 @@ export default function ContactFormModal({
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       required={type === "general"}
                       rows={3}
-                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all resize-none"
+                      className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none"
                       placeholder={
                         type === "appointment"
                           ? "Welchen Service benötigen Sie? (z.B. Reifenwechsel, Aufbereitung...)"
@@ -314,7 +314,7 @@ export default function ContactFormModal({
                     whileTap={{ scale: 0.98 }}
                     type="submit"
                     disabled={isSubmitting || (type === "appointment" && !formData.preferredTime)}
-                    className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -327,7 +327,7 @@ export default function ContactFormModal({
                   </motion.button>
 
                   <p className="text-xs text-gray-500 text-center mt-4">
-                    Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="text-green-500 hover:underline">Datenschutzerklärung</a> zu.
+                    Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="text-emerald-500 hover:underline">Datenschutzerklärung</a> zu.
                   </p>
                 </form>
               </>
@@ -342,9 +342,9 @@ export default function ContactFormModal({
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", delay: 0.2 }}
-                  className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/20 mb-6"
+                  className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/20 mb-6"
                 >
-                  <CheckCircle className="w-10 h-10 text-green-500" />
+                  <CheckCircle className="w-10 h-10 text-emerald-500" />
                 </motion.div>
 
                 <h3 className="text-2xl font-bold text-white mb-3">
@@ -361,7 +361,7 @@ export default function ContactFormModal({
                   <div className="text-sm text-gray-400">
                     Bei dringenden Fragen erreichen Sie uns auch direkt unter:
                   </div>
-                  <a href="tel:+491728650128" className="text-green-500 font-semibold text-lg hover:underline">
+                  <a href="tel:+491728650128" className="text-emerald-500 font-semibold text-lg hover:underline">
                     +49 172 8650128
                   </a>
                 </div>

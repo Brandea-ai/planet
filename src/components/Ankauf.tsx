@@ -106,8 +106,8 @@ export default function Ankauf() {
   return (
     <section id="ankauf" className="section-padding bg-gradient-to-b from-black via-gray-950 to-black relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-green-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -118,12 +118,12 @@ export default function Ankauf() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-green-500 font-semibold tracking-wider uppercase text-sm">
+            <span className="text-emerald-500 font-semibold tracking-wider uppercase text-sm">
               Auto Ankauf
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
               Verkaufen Sie Ihr
-              <span className="text-green-500"> Fahrzeug</span>
+              <span className="text-emerald-500"> Fahrzeug</span>
             </h2>
             <p className="text-gray-400 text-lg mb-8 leading-relaxed">
               Unsere Vorzüge sind zügige und gerechte Leistungen. Wir kaufen Ihr Auto schnell und unkompliziert – zu fairen Preisen, ohne versteckte Kosten.
@@ -140,8 +140,8 @@ export default function Ankauf() {
                   transition={{ delay: index * 0.1 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
+                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <CheckCircle className="w-4 h-4 text-emerald-500" />
                   </div>
                   <span className="text-gray-300">{benefit}</span>
                 </motion.div>
@@ -174,7 +174,7 @@ export default function Ankauf() {
           >
             <div className="glass rounded-3xl p-8 md:p-10">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
                   <Car className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -194,7 +194,7 @@ export default function Ankauf() {
                         setSelectedBrand(e.target.value);
                         setSelectedModel("");
                       }}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-green-500 focus:outline-none transition-colors"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-emerald-500 focus:outline-none transition-colors"
                       required
                     >
                       <option value="">Marke wählen...</option>
@@ -213,7 +213,7 @@ export default function Ankauf() {
                     <select
                       value={selectedModel}
                       onChange={(e) => setSelectedModel(e.target.value)}
-                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-green-500 focus:outline-none transition-colors disabled:opacity-50"
+                      className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-emerald-500 focus:outline-none transition-colors disabled:opacity-50"
                       disabled={!selectedBrand}
                       required
                     >
@@ -233,7 +233,7 @@ export default function Ankauf() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     rows={4}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:outline-none transition-colors resize-none"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none transition-colors resize-none"
                     placeholder="Zusätzliche Informationen zu Ihrem Fahrzeug..."
                   />
                 </div>
@@ -244,7 +244,7 @@ export default function Ankauf() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={isSubmitting || isSuccess}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 disabled:opacity-70"
+                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 disabled:opacity-70"
                 >
                   {isSubmitting ? (
                     <>

@@ -104,7 +104,7 @@ export default function CTASection() {
     <>
       <section className="py-24 relative overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/20 via-black to-green-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/20 via-black to-emerald-900/20" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
 
         <div className="max-w-5xl mx-auto px-4 relative z-10">
@@ -121,7 +121,7 @@ export default function CTASection() {
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ type: "spring", delay: 0.2 }}
-                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-green-600"
+                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600"
               >
                 <Car className="w-8 h-8 text-white" />
               </motion.div>
@@ -148,7 +148,7 @@ export default function CTASection() {
                       setSelectedBrand(e.target.value);
                       setSelectedModel("");
                     }}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-green-500 focus:outline-none transition-colors"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-emerald-500 focus:outline-none transition-colors"
                   >
                     <option value="">Marke wählen...</option>
                     {sortedBrands.map((brand) => (
@@ -167,7 +167,7 @@ export default function CTASection() {
                     value={selectedModel}
                     onChange={(e) => setSelectedModel(e.target.value)}
                     disabled={!selectedBrand}
-                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-green-500 focus:outline-none transition-colors disabled:opacity-50"
+                    className="w-full bg-gray-900/50 border border-gray-800 rounded-xl px-4 py-3 text-white appearance-none cursor-pointer focus:border-emerald-500 focus:outline-none transition-colors disabled:opacity-50"
                   >
                     <option value="">Modell wählen...</option>
                     {availableModels.map((model) => (
@@ -184,7 +184,7 @@ export default function CTASection() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowModal(true)}
-                className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-green-500/25 transition-all"
+                className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
               >
                 Jetzt anfragen
                 <ArrowRight className="w-5 h-5" />
@@ -196,7 +196,7 @@ export default function CTASection() {
                 href="tel:+491728650128"
                 className="flex items-center gap-2 glass text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all"
               >
-                <Phone className="w-5 h-5 text-green-500" />
+                <Phone className="w-5 h-5 text-emerald-500" />
                 +49 172 8650128
               </motion.a>
             </div>
@@ -234,8 +234,8 @@ export default function CTASection() {
                   </div>
 
                   {selectedBrand && selectedModel && (
-                    <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 mb-6">
-                      <div className="text-green-400 text-xs font-semibold mb-2">IHR FAHRZEUG</div>
+                    <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 mb-6">
+                      <div className="text-emerald-400 text-xs font-semibold mb-2">IHR FAHRZEUG</div>
                       <div className="text-white font-semibold text-lg">{selectedBrand} {selectedModel}</div>
                     </div>
                   )}
@@ -250,7 +250,7 @@ export default function CTASection() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                         placeholder="Ihr vollständiger Name"
                       />
                     </div>
@@ -263,7 +263,7 @@ export default function CTASection() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                         placeholder="ihre@email.de"
                       />
                     </div>
@@ -276,7 +276,7 @@ export default function CTASection() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                         placeholder="+49 123 456789"
                       />
                     </div>
@@ -288,7 +288,7 @@ export default function CTASection() {
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         rows={3}
-                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all resize-none"
+                        className="w-full bg-gray-800/50 border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all resize-none"
                         placeholder="Zusätzliche Informationen..."
                       />
                     </div>
@@ -298,20 +298,20 @@ export default function CTASection() {
                       whileTap={{ scale: 0.98 }}
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-green-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                      className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
                     >
                       {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <><Send className="w-5 h-5" />Anfrage absenden</>}
                     </motion.button>
 
                     <p className="text-xs text-gray-500 text-center mt-4">
-                      Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="text-green-500 hover:underline">Datenschutzerklärung</a> zu.
+                      Mit dem Absenden stimmen Sie unserer <a href="/datenschutz" className="text-emerald-500 hover:underline">Datenschutzerklärung</a> zu.
                     </p>
                   </form>
                 </>
               ) : (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-8">
-                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", delay: 0.2 }} className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/20 mb-6">
-                    <CheckCircle className="w-10 h-10 text-green-500" />
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", delay: 0.2 }} className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/20 mb-6">
+                    <CheckCircle className="w-10 h-10 text-emerald-500" />
                   </motion.div>
                   <h3 className="text-2xl font-bold text-white mb-3">Anfrage erfolgreich gesendet!</h3>
                   <p className="text-gray-400 mb-6">Vielen Dank für Ihre Anfrage. Unser Team wird sich innerhalb von 24 Stunden bei Ihnen melden.</p>

@@ -534,7 +534,7 @@ export default function VehicleCalculator() {
                     <option value="">Marke wählen...</option>
                     {sortedBrands.map((brand) => (
                       <option key={brand.name} value={brand.name}>
-                        {brand.name} {brand.premium ? "★" : ""}
+                        {brand.name}
                       </option>
                     ))}
                   </select>

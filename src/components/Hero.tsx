@@ -191,7 +191,7 @@ export default function Hero() {
 
       {/* Dots - Positioned above bottom nav on mobile */}
       <div
-        className="absolute bottom-20 lg:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-10"
+        className="absolute bottom-20 lg:bottom-8 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2 z-10"
         role="tablist"
         aria-label="Slide Navigation"
       >
@@ -199,10 +199,10 @@ export default function Hero() {
           <button
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
-            className={`h-2 sm:h-3 rounded-full transition-all duration-300 touch-target ${
+            className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 touch-target ${
               selectedIndex === index
-                ? "bg-[#6cb036] w-6 sm:w-8"
-                : "bg-white/30 w-2 sm:w-3 hover:bg-white/50"
+                ? "bg-[#6cb036] w-4 sm:w-5"
+                : "bg-white/30 w-1.5 sm:w-2 hover:bg-white/50"
             }`}
             role="tab"
             aria-selected={selectedIndex === index}

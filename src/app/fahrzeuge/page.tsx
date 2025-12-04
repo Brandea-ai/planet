@@ -729,178 +729,187 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
   );
 }
 
+const ITEMS_PER_PAGE = 6;
+
 export default function FahrzeugePage() {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(vehicles.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentVehicles = vehicles.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <main className="min-h-screen bg-black">
+    <main id="main-content" className="min-h-screen bg-black pb-safe">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-900/20 via-black to-black" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
+      {/* Hero Section - Compact */}
+      <section className="relative pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-32 lg:pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#6cb036]/10 via-black to-black" />
 
-        <div className="max-w-7xl mx-auto px-4 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
+            className="text-center"
           >
-            <span className="text-[#6cb036] font-semibold tracking-wider uppercase text-sm">
-              Fahrzeugbestand
+            <span className="text-[#6cb036] font-semibold tracking-wider uppercase text-xs sm:text-sm">
+              {vehicles.length} Fahrzeuge
             </span>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mt-4 mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-2 sm:mt-3 mb-3 sm:mb-4">
               Unsere <span className="text-[#6cb036]">Fahrzeuge</span>
             </h1>
-            <p className="text-gray-400 text-xl max-w-2xl mx-auto">
-              Entdecken Sie unsere handverlesene Auswahl an Qualitätsfahrzeugen. Jedes Fahrzeug wird geprüft und ist sofort startklar.
+            <p className="text-gray-400 text-sm sm:text-base lg:text-lg max-w-xl mx-auto">
+              Handverlesene Qualitätsfahrzeuge, geprüft und sofort startklar.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Vehicles Grid */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {vehicles.map((vehicle, index) => (
-              <motion.div
+      {/* Vehicles Grid - Compact */}
+      <section className="py-6 sm:py-10 lg:py-16 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+            {currentVehicles.map((vehicle, index) => (
+              <motion.article
                 key={vehicle.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-[#6cb036]/30">
+                <div className="glass rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#6cb036]/30">
                   {/* Image - Clickable */}
-                  <div
-                    className="relative h-56 overflow-hidden cursor-pointer"
+                  <button
+                    className="relative w-full aspect-[4/3] overflow-hidden cursor-pointer"
                     onClick={() => setSelectedVehicle(vehicle)}
+                    aria-label={`${vehicle.name} Details anzeigen`}
                   >
                     <img
                       src={vehicle.images[0]}
                       alt={vehicle.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                    <div className="absolute top-4 right-4 bg-[#6cb036] text-white px-4 py-2 rounded-full font-bold text-lg">
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-[#6cb036] text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full font-bold text-xs sm:text-sm">
                       {vehicle.price}€
                     </div>
 
-                    <div className="absolute top-4 left-4 glass px-3 py-1 rounded-full text-sm text-white">
+                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 glass px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs text-white">
                       {vehicle.year}
                     </div>
-                  </div>
+                  </button>
 
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">{vehicle.name}</h3>
+                  {/* Content - Compact */}
+                  <div className="p-3 sm:p-4">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-bold text-white mb-1 sm:mb-2 line-clamp-1">{vehicle.name}</h3>
 
-                    <div className="flex flex-wrap items-center gap-2 text-gray-400 text-sm mb-4">
-                      <span className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {vehicle.km}
-                      </span>
+                    <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-gray-400 text-[10px] sm:text-xs mb-2 sm:mb-3">
+                      <span>{vehicle.km}</span>
                       <span className="w-1 h-1 rounded-full bg-gray-600" />
-                      <span className="flex items-center gap-1">
-                        <Fuel className="w-4 h-4" />
-                        {vehicle.fuel}
-                      </span>
+                      <span>{vehicle.fuel}</span>
                       <span className="w-1 h-1 rounded-full bg-gray-600" />
                       <span>{vehicle.power}</span>
                     </div>
 
-                    {/* Features */}
-                    <div className="grid grid-cols-4 gap-2 mb-4">
-                      <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Users className="w-4 h-4 text-[#6cb036] mb-1" />
-                        <span className="text-xs text-gray-400">{vehicle.seats}</span>
-                      </div>
-                      <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Gauge className="w-4 h-4 text-[#6cb036] mb-1" />
-                        <span className="text-xs text-gray-400">{vehicle.power}</span>
-                      </div>
-                      <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <DoorOpen className="w-4 h-4 text-[#6cb036] mb-1" />
-                        <span className="text-xs text-gray-400">{vehicle.doors}</span>
-                      </div>
-                      <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                        <Car className="w-4 h-4 text-[#6cb036] mb-1" />
-                        <span className="text-xs text-gray-400 truncate">{vehicle.transmission.split(" ")[0]}</span>
-                      </div>
-                    </div>
-
-                    {/* Quick Features */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {vehicle.features.slice(0, 3).map((feature) => (
-                        <span key={feature} className="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded-lg">
-                          {feature}
-                        </span>
-                      ))}
-                      {vehicle.features.length > 3 && (
-                        <span className="text-xs bg-[#6cb036]/20 text-[#6cb036] px-2 py-1 rounded-lg">
-                          +{vehicle.features.length - 3} mehr
-                        </span>
-                      )}
-                    </div>
-
                     {/* CTA */}
-                    <div className="flex gap-3">
+                    <div className="flex gap-2">
                       <a
                         href="tel:+491728650128"
-                        className="flex-1 py-3 rounded-xl bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-[#6cb036]/25 transition-all"
+                        className="flex-1 py-2 sm:py-2.5 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white font-semibold text-center text-xs sm:text-sm flex items-center justify-center gap-1 touch-target"
+                        aria-label={`${vehicle.name} - Anrufen`}
                       >
-                        <Phone className="w-4 h-4" />
-                        Anrufen
+                        <Phone className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
+                        <span className="hidden sm:inline">Anrufen</span>
                       </a>
                       <button
                         onClick={() => setSelectedVehicle(vehicle)}
-                        className="py-3 px-4 rounded-xl border border-gray-700 text-gray-300 hover:border-[#6cb036] hover:text-[#6cb036] transition-all"
+                        className="py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg sm:rounded-xl border border-gray-700 text-gray-300 hover:border-[#6cb036] hover:text-[#6cb036] transition-all text-xs sm:text-sm touch-target"
+                        aria-label={`${vehicle.name} Details`}
                       >
                         Details
                       </button>
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
 
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <nav className="flex items-center justify-center gap-2 mt-8 sm:mt-10" role="navigation" aria-label="Seitennavigation">
+              <button
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="p-2 sm:p-2.5 rounded-lg sm:rounded-xl glass text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors touch-target"
+                aria-label="Vorherige Seite"
+              >
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+
+              <div className="flex items-center gap-1 sm:gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => goToPage(page)}
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base transition-all touch-target ${
+                      currentPage === page
+                        ? "bg-[#6cb036] text-white"
+                        : "glass text-gray-400 hover:text-white hover:bg-white/10"
+                    }`}
+                    aria-label={`Seite ${page}`}
+                    aria-current={currentPage === page ? "page" : undefined}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="p-2 sm:p-2.5 rounded-lg sm:rounded-xl glass text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/10 transition-colors touch-target"
+                aria-label="Nächste Seite"
+              >
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            </nav>
+          )}
+
           {/* View All - Both Platforms */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <p className="text-gray-400 mb-6">
-              Mehr Fahrzeuge finden Sie auf unseren Partnerplattformen
+          <div className="mt-8 sm:mt-12 text-center">
+            <p className="text-gray-400 text-sm sm:text-base mb-4 sm:mb-6">
+              Mehr Fahrzeuge auf unseren Partnerplattformen
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a
                 href="https://home.mobile.de/CARCENTERLANDSHUT"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-orange-600 px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-orange-500/25 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-orange-500/25 transition-all touch-target"
               >
-                Alle Fahrzeuge auf Mobile.de
-                <ExternalLink className="w-5 h-5" />
+                Mobile.de
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
               <a
                 href="https://www.autoscout24.de/haendler/carcenter-landshut"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl text-white font-semibold text-sm sm:text-base hover:shadow-lg hover:shadow-blue-500/25 transition-all touch-target"
               >
-                Alle Fahrzeuge auf AutoScout24
-                <ExternalLink className="w-5 h-5" />
+                AutoScout24
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -3,16 +3,27 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Car, Calculator, Wrench, Phone, Menu, X } from "lucide-react";
+import { Home, Car, Calculator, Wrench, Menu, X, Banknote } from "lucide-react";
 import Link from "next/link";
 import ContactFormModal from "./ContactFormModal";
 
-const navItems = [
+// Desktop Navigation Items
+const desktopNavItems = [
+  { name: "Start", href: "/" },
+  { name: "Ankauf", href: "/ankauf" },
+  { name: "Kalkulator", href: "/kalkulator" },
+  { name: "Fahrzeuge", href: "/fahrzeuge" },
+  { name: "Service", href: "/service" },
+  { name: "Kontakt", href: "#", isContact: true },
+];
+
+// Mobile Navigation Items (Bottom Nav) - ohne Kontakt
+const mobileNavItems = [
   { name: "Start", href: "/", icon: Home },
-  { name: "Ankauf", href: "/ankauf", icon: Car },
+  { name: "Ankauf", href: "/ankauf", icon: Banknote },
   { name: "Kalkulator", href: "/kalkulator", icon: Calculator },
   { name: "Service", href: "/service", icon: Wrench },
-  { name: "Kontakt", href: "#", icon: Phone, isContact: true },
+  { name: "Fahrzeuge", href: "/fahrzeuge", icon: Car },
 ];
 
 export default function Header() {
@@ -60,7 +71,7 @@ export default function Header() {
     };
   }, [isMobileMenuOpen]);
 
-  const handleNavClick = (item: typeof navItems[0]) => {
+  const handleNavClick = (item: { isContact?: boolean }) => {
     if (item.isContact) {
       setShowContactModal(true);
       setIsMobileMenuOpen(false);
@@ -109,13 +120,13 @@ export default function Header() {
             {/* Desktop Navigation */}
             <nav className="flex items-center" role="navigation" aria-label="Hauptnavigation">
               <div className="flex items-center bg-white/5 backdrop-blur-md rounded-full p-1.5 border border-white/10">
-                {navItems.map((item) => {
+                {desktopNavItems.map((item) => {
                   const active = !item.isContact && isActive(item.href);
                   return item.isContact ? (
                     <button
                       key={item.name}
                       onClick={() => handleNavClick(item)}
-                      className="relative px-5 py-2.5 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 rounded-full touch-target"
+                      className="relative px-4 py-2.5 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200 rounded-full touch-target"
                       aria-label="Kontakt öffnen"
                     >
                       {item.name}
@@ -124,7 +135,7 @@ export default function Header() {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="relative px-5 py-2.5 text-sm font-medium transition-all duration-200 rounded-full touch-target"
+                      className="relative px-4 py-2.5 text-sm font-medium transition-all duration-200 rounded-full touch-target"
                       aria-current={active ? "page" : undefined}
                     >
                       {active && (
@@ -221,45 +232,29 @@ export default function Header() {
         role="navigation"
         aria-label="Mobile Navigation"
       >
-        <div className="flex items-center justify-around px-2 py-2">
-          {navItems.map((item) => {
-            const active = !item.isContact && isActive(item.href);
+        <div className="flex items-center justify-around px-1 py-1.5">
+          {mobileNavItems.map((item) => {
+            const active = isActive(item.href);
             const Icon = item.icon;
 
-            return item.isContact ? (
-              <button
-                key={item.name}
-                onClick={() => handleNavClick(item)}
-                className="flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all touch-target"
-                aria-label="Kontakt öffnen"
-              >
-                <Icon className="w-6 h-6 text-gray-400" aria-hidden="true" />
-                <span className="text-[10px] mt-1 text-gray-400 font-medium">{item.name}</span>
-              </button>
-            ) : (
+            return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all touch-target ${
+                className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-xl transition-all touch-target ${
                   active ? "text-[#6cb036]" : "text-gray-400"
                 }`}
                 aria-current={active ? "page" : undefined}
               >
                 <motion.div
-                  animate={active ? { scale: [1, 1.2, 1] } : {}}
+                  animate={active ? { scale: [1, 1.15, 1] } : {}}
                   transition={{ duration: 0.3 }}
                 >
-                  <Icon className={`w-6 h-6 ${active ? "text-[#6cb036]" : ""}`} aria-hidden="true" />
+                  <Icon className={`w-5 h-5 ${active ? "text-[#6cb036]" : ""}`} aria-hidden="true" />
                 </motion.div>
-                <span className={`text-[10px] mt-1 font-medium ${active ? "text-[#6cb036]" : ""}`}>
+                <span className={`text-[9px] mt-0.5 font-medium ${active ? "text-[#6cb036]" : ""}`}>
                   {item.name}
                 </span>
-                {active && (
-                  <motion.div
-                    layoutId="mobileActiveIndicator"
-                    className="absolute -bottom-0 w-12 h-1 bg-[#6cb036] rounded-full"
-                  />
-                )}
               </Link>
             );
           })}
@@ -290,12 +285,12 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ delay: 0.1 }}
-              className="relative h-full flex flex-col items-center justify-center px-8"
+              className="relative h-full flex flex-col items-center justify-center px-6"
               style={{ paddingTop: "calc(4rem + env(safe-area-inset-top))" }}
             >
-              <nav className="flex flex-col items-center gap-6 w-full max-w-sm">
-                {navItems.map((item, index) => {
-                  const active = !item.isContact && isActive(item.href);
+              <nav className="flex flex-col items-center gap-3 w-full max-w-sm">
+                {mobileNavItems.map((item, index) => {
+                  const active = isActive(item.href);
                   const Icon = item.icon;
 
                   return (
@@ -303,31 +298,21 @@ export default function Header() {
                       key={item.name}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + index * 0.05 }}
+                      transition={{ delay: 0.1 + index * 0.04 }}
                       className="w-full"
                     >
-                      {item.isContact ? (
-                        <button
-                          onClick={() => handleNavClick(item)}
-                          className="w-full flex items-center gap-4 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-medium text-lg transition-all active:scale-[0.98]"
-                        >
-                          <Icon className="w-6 h-6 text-[#6cb036]" />
-                          {item.name}
-                        </button>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl border transition-all active:scale-[0.98] ${
-                            active
-                              ? "bg-[#6cb036] border-[#6cb036] text-white"
-                              : "bg-white/5 border-white/10 text-white"
-                          }`}
-                        >
-                          <Icon className={`w-6 h-6 ${active ? "text-white" : "text-[#6cb036]"}`} />
-                          <span className="font-medium text-lg">{item.name}</span>
-                        </Link>
-                      )}
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`w-full flex items-center gap-4 px-5 py-3.5 rounded-2xl border transition-all active:scale-[0.98] ${
+                          active
+                            ? "bg-[#6cb036] border-[#6cb036] text-white"
+                            : "bg-white/5 border-white/10 text-white"
+                        }`}
+                      >
+                        <Icon className={`w-5 h-5 ${active ? "text-white" : "text-[#6cb036]"}`} />
+                        <span className="font-medium">{item.name}</span>
+                      </Link>
                     </motion.div>
                   );
                 })}
@@ -337,14 +322,14 @@ export default function Header() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="w-full mt-4"
+                  className="w-full mt-2"
                 >
                   <Link
                     href="/ankauf"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white font-semibold text-lg shadow-lg shadow-[#6cb036]/30"
+                    className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white font-semibold shadow-lg shadow-[#6cb036]/30"
                   >
-                    <Car className="w-6 h-6" />
+                    <Banknote className="w-5 h-5" />
                     Jetzt Auto Verkaufen
                   </Link>
                 </motion.div>

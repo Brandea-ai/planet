@@ -7,23 +7,23 @@ import Link from "next/link";
 const highlights = [
   {
     icon: BadgeDollarSign,
-    title: "Preis-Leistungs-Verhältnis",
-    description: "Bei uns finden Sie Fahrzeuge, die ein hervorragendes Preis-Leistungs-Verhältnis bieten. Wir stellen sicher, dass Sie für Ihr Geld die bestmögliche Qualität erhalten. Unsere Angebote sind fair kalkuliert, sodass Sie sicher sein können, einen guten Deal zu machen.",
+    title: "Preis-Leistung",
+    description: "Fahrzeuge mit hervorragendem Preis-Leistungs-Verhältnis. Fair kalkuliert für den besten Deal.",
   },
   {
     icon: Shield,
-    title: "Zuverlässigkeit und Sicherheit",
-    description: "Ihre Sicherheit und die Zuverlässigkeit unserer Fahrzeuge stehen bei uns an erster Stelle. Jedes Auto in unserem Sortiment ist gründlich geprüft und erfüllt die höchsten Sicherheitsstandards.",
+    title: "Zuverlässigkeit",
+    description: "Jedes Auto gründlich geprüft und erfüllt höchste Sicherheitsstandards.",
   },
   {
     icon: Sofa,
-    title: "Ausstattung und Komfort",
-    description: "Unsere Fahrzeuge bieten Ihnen hochwertige Innenausstattung und moderne Infotainment-Systeme für maximalen Komfort und Fahrgenuss.",
+    title: "Komfort",
+    description: "Hochwertige Ausstattung und moderne Infotainment-Systeme.",
   },
   {
     icon: Headphones,
-    title: "Kundendienst und Garantie",
-    description: "Seit über 4 Jahren bieten wir unseren Kunden durch langjährige Erfahrung und zahlreiche Zertifizierungen zuverlässige und hochwertige Dienstleistungen.",
+    title: "Service",
+    description: "Über 4 Jahre Erfahrung und zuverlässige Dienstleistungen.",
   },
 ];
 
@@ -31,7 +31,7 @@ const services = [
   {
     icon: Wrench,
     title: "Service",
-    description: "Reifenpflege und professionelle Aufbereitung",
+    description: "Reifenpflege & Aufbereitung",
     href: "/service",
     cta: "Termin buchen",
   },
@@ -45,122 +45,100 @@ const services = [
   {
     icon: ShoppingCart,
     title: "Ankauf",
-    description: "Verkaufen Sie Ihr Fahrzeug schnell und fair",
+    description: "Schnell und fair verkaufen",
     href: "/ankauf",
     cta: "Jetzt verkaufen",
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function Services() {
   return (
-    <section id="service" className="section-padding bg-gradient-to-b from-black to-gray-950 relative overflow-hidden">
+    <section id="service" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-b from-black to-gray-950 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-#6cb036/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6cb036]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative">
-        {/* Highlights Section */}
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12"
         >
-          <span className="text-#6cb036 font-semibold tracking-wider uppercase text-sm">
+          <span className="text-[#6cb036] font-semibold tracking-wider uppercase text-xs sm:text-sm">
             Warum wir?
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">
-            Unsere <span className="text-#6cb036">Leistungen</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mt-2 sm:mt-3">
+            Unsere <span className="text-[#6cb036]">Leistungen</span>
           </h2>
         </motion.div>
 
-        {/* Highlights Grid */}
+        {/* Highlights Grid - Compact */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-8 mb-20"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-16"
         >
-          {highlights.map((highlight) => (
+          {highlights.map((highlight, index) => (
             <motion.div
               key={highlight.title}
-              variants={itemVariants}
-              className="glass rounded-2xl p-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="glass rounded-xl sm:rounded-2xl p-4 sm:p-5"
             >
-              <div className="flex items-start gap-5">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-#6cb036/20 to-#5a9a2d/20 flex items-center justify-center flex-shrink-0">
-                  <highlight.icon className="w-7 h-7 text-#6cb036" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-3">{highlight.title}</h3>
-                  <p className="text-gray-400 leading-relaxed">{highlight.description}</p>
-                </div>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-[#6cb036]/20 to-[#5a9a2d]/20 flex items-center justify-center mb-3">
+                <highlight.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#6cb036]" aria-hidden="true" />
               </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mb-1 sm:mb-2">{highlight.title}</h3>
+              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed line-clamp-3">{highlight.description}</p>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Services Section */}
+        {/* Services Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-6 sm:mb-8"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Unsere <span className="text-#6cb036">Services</span>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
+            Unsere <span className="text-[#6cb036]">Services</span>
           </h2>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8"
-        >
-          {services.map((service) => (
+        {/* Services Grid - Compact */}
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+          {services.map((service, index) => (
             <motion.div
               key={service.title}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <div className="h-full glass rounded-3xl p-8 transition-all duration-300 hover:border-#6cb036/30 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-#6cb036 to-#5a9a2d flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-10 h-10 text-white" />
-                </div>
-
-                <h3 className="text-2xl font-bold text-white mb-3">{service.title}</h3>
-                <p className="text-gray-400 mb-6">{service.description}</p>
-
-                <Link href={service.href}>
-                  <span className="inline-flex items-center gap-2 text-#6cb036 font-semibold group-hover:text-[#7ec843] transition-colors cursor-pointer">
-                    {service.cta}
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Link href={service.href} className="block h-full">
+                <div className="h-full glass rounded-xl sm:rounded-2xl p-3 sm:p-5 lg:p-6 transition-all duration-300 hover:border-[#6cb036]/30 text-center">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-lg sm:rounded-xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] flex items-center justify-center mx-auto mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-5 h-5 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-sm sm:text-lg lg:text-xl font-bold text-white mb-1 sm:mb-2">{service.title}</h3>
+                  <p className="text-gray-400 text-[10px] sm:text-xs lg:text-sm mb-2 sm:mb-3 hidden sm:block">{service.description}</p>
+                  <span className="inline-flex items-center gap-1 text-[#6cb036] font-semibold text-xs sm:text-sm group-hover:text-[#7ec843] transition-colors">
+                    <span className="hidden sm:inline">{service.cta}</span>
+                    <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </span>
-                </Link>
-              </div>
+                </div>
+              </Link>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

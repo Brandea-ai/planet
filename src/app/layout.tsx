@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   description: "Bayern's Nr. 1 Auto Service - Ihr zuverlässiger Partner für Fahrzeugankauf, Verkauf, Reifenwechsel und Fahrzeugaufbereitung in Landshut.",
   keywords: "Auto Ankauf, Auto Verkauf, Reifenwechsel, Fahrzeugaufbereitung, Landshut, Bayern, Autohaus, Gebrauchtwagen",
   authors: [{ name: "CarCenter Landshut" }],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   robots: {
     index: true,
     follow: true,

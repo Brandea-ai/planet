@@ -580,7 +580,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         animate={{ opacity: 1, scale: 1, x: 0 }}
         exit={{ opacity: 0, scale: 0.9, x: 50 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-gray-900 rounded-2xl sm:rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row relative"
+        className="bg-gray-900 rounded-2xl sm:rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-y-auto overflow-x-hidden border border-gray-800 flex flex-col lg:flex-row relative"
       >
         {/* Close Button - Always Visible */}
         <button
@@ -641,11 +641,11 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         </div>
 
         {/* Right Side - Details */}
-        <div className="lg:w-1/3 p-4 sm:p-6 lg:p-8 pt-14 lg:pt-6 flex flex-col overflow-y-auto">
+        <div className="lg:w-1/3 p-4 sm:p-6 lg:p-8 pt-14 lg:pt-6 flex flex-col overflow-y-auto overflow-x-hidden">
           {/* Header */}
           <div className="mb-4 sm:mb-6">
-            <div className="text-[#6cb036] text-sm font-semibold mb-2">{vehicle.type}</div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">{vehicle.fullName}</h2>
+            <div className="text-[#6cb036] text-xs sm:text-sm font-semibold mb-1 sm:mb-2">{vehicle.type}</div>
+            <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-2 break-words">{vehicle.fullName}</h2>
             <div className="text-3xl lg:text-4xl font-bold text-[#6cb036]">{vehicle.price} €</div>
           </div>
 

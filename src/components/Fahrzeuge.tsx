@@ -8,7 +8,7 @@ import Link from "next/link";
 const vehicles = [
   {
     id: 1,
-    name: "Mercedes-Benz AMG GT GTS",
+    name: "Mercedes AMG GT GTS",
     fullName: "Mercedes-Benz AMG GTS NIGHT-PAKET,BURMESTER,PANO,KEYLESS",
     price: "69.990",
     year: "2016",
@@ -83,7 +83,7 @@ const vehicles = [
   },
   {
     id: 4,
-    name: "Mercedes-Benz A 35 AMG 4MATIC",
+    name: "Mercedes A 35 AMG",
     fullName: "Mercedes-Benz A 35 AMG 4MATIC 360°,LED,STDHZG,NIGHT,SPUR,ALCAN",
     price: "29.990",
     year: "2019",
@@ -108,7 +108,7 @@ const vehicles = [
   },
   {
     id: 5,
-    name: "Audi Q5 2.0 TDI Quattro S-Line",
+    name: "Audi Q5 Quattro S-Line",
     fullName: "Audi Q5 2.0 TDI QUATTRO 3xS-LINE VIRTUAL/KAMERA/MwSt.",
     price: "27.990",
     year: "2017",
@@ -133,7 +133,7 @@ const vehicles = [
   },
   {
     id: 6,
-    name: "Audi A6 3.0 TDI Quattro S-Line",
+    name: "Audi A6 Quattro S-Line",
     fullName: "Audi A6 3.0 TDI 3xS-LINE QUATTRO/ACC/R-KAM/AHK/LED",
     price: "23.990",
     year: "2017",
@@ -204,11 +204,11 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         animate={{ opacity: 1, scale: 1, x: 0 }}
         exit={{ opacity: 0, scale: 0.9, x: 50 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-gray-900 rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row"
+        className="bg-gray-900 rounded-2xl sm:rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row"
       >
         {/* Left Side - Image Gallery */}
         <div className="lg:w-2/3 relative bg-black flex items-center justify-center">
-          <div className="relative w-full h-72 lg:h-full lg:min-h-[550px] flex items-center justify-center">
+          <div className="relative w-full h-56 sm:h-72 lg:h-full lg:min-h-[550px] flex items-center justify-center">
             <img
               src={vehicle.images[currentImageIndex]}
               alt={vehicle.name}
@@ -246,7 +246,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    index === currentImageIndex ? "bg-#6cb036" : "bg-white/50"
+                    index === currentImageIndex ? "bg-[#6cb036]" : "bg-white/50"
                   }`}
                 />
               ))}
@@ -255,7 +255,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         </div>
 
         {/* Right Side - Details */}
-        <div className="lg:w-1/3 p-6 lg:p-8 flex flex-col overflow-y-auto">
+        <div className="lg:w-1/3 p-4 sm:p-6 lg:p-8 flex flex-col overflow-y-auto">
           {/* Close Button Desktop */}
           <button
             onClick={onClose}
@@ -265,54 +265,38 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
           </button>
 
           {/* Header */}
-          <div className="mb-6">
-            <div className="text-#6cb036 text-sm font-semibold mb-2">{vehicle.type}</div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-white mb-2">{vehicle.fullName}</h2>
-            <div className="text-3xl lg:text-4xl font-bold text-#6cb036">{vehicle.price} €</div>
+          <div className="mb-4 sm:mb-6">
+            <div className="text-[#6cb036] text-xs sm:text-sm font-semibold mb-1 sm:mb-2">{vehicle.type}</div>
+            <h2 className="text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-2">{vehicle.fullName}</h2>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#6cb036]">{vehicle.price} €</div>
           </div>
 
           {/* Quick Info Grid */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">Erstzulassung</div>
-              <div className="text-white font-semibold">{vehicle.year}</div>
+          <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-4 sm:mb-6">
+            <div className="bg-gray-800/50 rounded-lg sm:rounded-xl p-2 sm:p-3">
+              <div className="text-gray-400 text-[10px] sm:text-xs mb-0.5 sm:mb-1">Erstzulassung</div>
+              <div className="text-white font-semibold text-xs sm:text-sm">{vehicle.year}</div>
             </div>
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">Kilometerstand</div>
-              <div className="text-white font-semibold">{vehicle.km}</div>
+            <div className="bg-gray-800/50 rounded-lg sm:rounded-xl p-2 sm:p-3">
+              <div className="text-gray-400 text-[10px] sm:text-xs mb-0.5 sm:mb-1">Kilometerstand</div>
+              <div className="text-white font-semibold text-xs sm:text-sm">{vehicle.km}</div>
             </div>
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">Leistung</div>
-              <div className="text-white font-semibold">{vehicle.powerKW} ({vehicle.power})</div>
+            <div className="bg-gray-800/50 rounded-lg sm:rounded-xl p-2 sm:p-3">
+              <div className="text-gray-400 text-[10px] sm:text-xs mb-0.5 sm:mb-1">Leistung</div>
+              <div className="text-white font-semibold text-xs sm:text-sm">{vehicle.power}</div>
             </div>
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">Kraftstoff</div>
-              <div className="text-white font-semibold">{vehicle.fuel}</div>
-            </div>
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">Getriebe</div>
-              <div className="text-white font-semibold">{vehicle.transmission}</div>
-            </div>
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">HU</div>
-              <div className="text-white font-semibold">{vehicle.hu}</div>
-            </div>
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">Farbe</div>
-              <div className="text-white font-semibold">{vehicle.color}</div>
-            </div>
-            <div className="bg-gray-800/50 rounded-xl p-3">
-              <div className="text-gray-400 text-xs mb-1">Türen / Sitze</div>
-              <div className="text-white font-semibold">{vehicle.doors} / {vehicle.seats}</div>
+            <div className="bg-gray-800/50 rounded-lg sm:rounded-xl p-2 sm:p-3">
+              <div className="text-gray-400 text-[10px] sm:text-xs mb-0.5 sm:mb-1">Kraftstoff</div>
+              <div className="text-white font-semibold text-xs sm:text-sm">{vehicle.fuel}</div>
             </div>
           </div>
 
           {/* Features */}
-          <div className="mb-6">
-            <div className="text-gray-400 text-sm mb-2">Ausstattung</div>
-            <div className="flex flex-wrap gap-2">
+          <div className="mb-4 sm:mb-6">
+            <div className="text-gray-400 text-xs sm:text-sm mb-2">Ausstattung</div>
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               {vehicle.features.map((feature) => (
-                <span key={feature} className="text-sm bg-gray-800 text-gray-300 px-3 py-1 rounded-lg">
+                <span key={feature} className="text-[10px] sm:text-sm bg-gray-800 text-gray-300 px-2 sm:px-3 py-1 rounded-lg">
                   {feature}
                 </span>
               ))}
@@ -320,31 +304,31 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
           </div>
 
           {/* CTA Buttons */}
-          <div className="mt-auto space-y-3">
+          <div className="mt-auto space-y-2 sm:space-y-3">
             <a
               href={vehicle.mobileLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-orange-500/25 transition-all"
+              className="w-full py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold text-center flex items-center justify-center gap-2 text-sm sm:text-base"
             >
-              <ExternalLink className="w-5 h-5" />
-              Auf Mobile.de ansehen
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+              Mobile.de
             </a>
             <a
               href={vehicle.autoScoutLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/25 transition-all"
+              className="w-full py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold text-center flex items-center justify-center gap-2 text-sm sm:text-base"
             >
-              <ExternalLink className="w-5 h-5" />
-              Auf AutoScout24 ansehen
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+              AutoScout24
             </a>
             <a
               href="tel:+491728650128"
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-#6cb036 to-#5a9a2d text-white font-semibold text-center flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-#6cb036/25 transition-all"
+              className="w-full py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white font-semibold text-center flex items-center justify-center gap-2 text-sm sm:text-base"
             >
-              <Phone className="w-5 h-5" />
-              Jetzt anrufen: +49 172 8650128
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+              Anrufen
             </a>
           </div>
         </div>
@@ -358,13 +342,13 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
 };
 
@@ -372,112 +356,106 @@ export default function Fahrzeuge() {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
   return (
-    <section id="fahrzeuge" className="section-padding bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
+    <section id="fahrzeuge" className="py-10 sm:py-14 lg:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-950 to-black relative overflow-hidden">
       {/* Background */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-#6cb036/50 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#6cb036]/50 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative">
-        {/* Header */}
+        {/* Header - Compact */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-6 sm:mb-10 lg:mb-16"
         >
-          <span className="text-#6cb036 font-semibold tracking-wider uppercase text-sm">
+          <span className="text-[#6cb036] font-semibold tracking-wider uppercase text-xs sm:text-sm">
             Fahrzeugbestand
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-4 mb-6">
-            Unsere <span className="text-#6cb036">Fahrzeuge</span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mt-2 sm:mt-4 mb-2 sm:mb-4">
+            Unsere <span className="text-[#6cb036]">Fahrzeuge</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Entdecken Sie unsere handverlesene Auswahl an Qualitätsfahrzeugen. Jedes Fahrzeug geprüft und startklar.
+          <p className="text-gray-400 text-xs sm:text-sm lg:text-base max-w-xl mx-auto px-2">
+            Entdecken Sie unsere handverlesene Auswahl an Qualitätsfahrzeugen.
           </p>
         </motion.div>
 
-        {/* Vehicles Grid - Only first 6 */}
+        {/* Vehicles Grid - 2 cols mobile, 3 cols desktop */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6"
         >
           {vehicles.slice(0, 6).map((vehicle) => (
             <motion.div
               key={vehicle.id}
               variants={itemVariants}
-              whileHover={{ y: -10 }}
               className="group"
             >
-              <div className="glass rounded-3xl overflow-hidden transition-all duration-300 hover:border-#6cb036/30">
-                {/* Image - Clickable */}
-                <div
-                  className="relative h-56 overflow-hidden cursor-pointer"
-                  onClick={() => setSelectedVehicle(vehicle)}
-                >
+              <div
+                className="glass rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#6cb036]/30 cursor-pointer h-full flex flex-col"
+                onClick={() => setSelectedVehicle(vehicle)}
+              >
+                {/* Image */}
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={vehicle.images[0]}
                     alt={vehicle.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                   {/* Price Badge */}
-                  <div className="absolute top-4 right-4 bg-#6cb036 text-white px-4 py-2 rounded-full font-bold text-lg">
+                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-[#6cb036] text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full font-bold text-xs sm:text-sm">
                     {vehicle.price}€
                   </div>
 
                   {/* Year Badge */}
-                  <div className="absolute top-4 left-4 glass px-3 py-1 rounded-full text-sm text-white">
+                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 glass px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs text-white">
                     {vehicle.year}
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
+                {/* Content - Compact */}
+                <div className="p-2.5 sm:p-4 flex flex-col flex-grow">
                   {/* Name */}
-                  <h3 className="text-xl font-bold text-white mb-2">{vehicle.name}</h3>
+                  <h3 className="text-xs sm:text-sm lg:text-base font-bold text-white mb-1 sm:mb-2 line-clamp-1">{vehicle.name}</h3>
 
                   {/* Quick Info */}
-                  <div className="flex items-center gap-4 text-gray-400 text-sm mb-4">
+                  <div className="flex items-center gap-1 sm:gap-2 text-gray-400 text-[10px] sm:text-xs mb-2 sm:mb-3 flex-wrap">
                     <span>{vehicle.km}</span>
-                    <span className="w-1 h-1 rounded-full bg-gray-600" />
-                    <span>{vehicle.fuel}</span>
-                    <span className="w-1 h-1 rounded-full bg-gray-600" />
+                    <span className="w-0.5 h-0.5 sm:w-1 sm:h-1 rounded-full bg-gray-600" />
                     <span>{vehicle.power}</span>
                   </div>
 
-                  {/* Features */}
-                  <div className="grid grid-cols-4 gap-2 mb-6">
-                    <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <Users className="w-4 h-4 text-#6cb036 mb-1" />
-                      <span className="text-xs text-gray-400">{vehicle.seats}</span>
+                  {/* Features - Hidden on small mobile */}
+                  <div className="hidden sm:grid grid-cols-4 gap-1 mb-3">
+                    <div className="flex flex-col items-center p-1.5 bg-gray-900/50 rounded-lg">
+                      <Users className="w-3 h-3 text-[#6cb036] mb-0.5" aria-hidden="true" />
+                      <span className="text-[9px] text-gray-400">{vehicle.seats}</span>
                     </div>
-                    <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <Gauge className="w-4 h-4 text-#6cb036 mb-1" />
-                      <span className="text-xs text-gray-400">{vehicle.power}</span>
+                    <div className="flex flex-col items-center p-1.5 bg-gray-900/50 rounded-lg">
+                      <Gauge className="w-3 h-3 text-[#6cb036] mb-0.5" aria-hidden="true" />
+                      <span className="text-[9px] text-gray-400">{vehicle.doors}T</span>
                     </div>
-                    <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <DoorOpen className="w-4 h-4 text-#6cb036 mb-1" />
-                      <span className="text-xs text-gray-400">{vehicle.doors}</span>
+                    <div className="flex flex-col items-center p-1.5 bg-gray-900/50 rounded-lg">
+                      <DoorOpen className="w-3 h-3 text-[#6cb036] mb-0.5" aria-hidden="true" />
+                      <span className="text-[9px] text-gray-400">{vehicle.fuel.slice(0,3)}</span>
                     </div>
-                    <div className="flex flex-col items-center p-2 bg-gray-900/50 rounded-xl">
-                      <Car className="w-4 h-4 text-#6cb036 mb-1" />
-                      <span className="text-xs text-gray-400 truncate">{vehicle.type.split(' ')[0]}</span>
+                    <div className="flex flex-col items-center p-1.5 bg-gray-900/50 rounded-lg">
+                      <Car className="w-3 h-3 text-[#6cb036] mb-0.5" aria-hidden="true" />
+                      <span className="text-[9px] text-gray-400 truncate">{vehicle.type.slice(0,3)}</span>
                     </div>
                   </div>
 
                   {/* CTA */}
-                  <motion.button
-                    onClick={() => setSelectedVehicle(vehicle)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-#6cb036 to-#5a9a2d text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-#6cb036/25 transition-all"
-                  >
-                    Details ansehen
-                    <ChevronRight className="w-4 h-4" />
-                  </motion.button>
+                  <div className="mt-auto">
+                    <span className="w-full bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] text-white py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-semibold flex items-center justify-center gap-1 text-[10px] sm:text-xs lg:text-sm">
+                      Details
+                      <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
+                    </span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -486,19 +464,18 @@ export default function Fahrzeuge() {
 
         {/* View All Button */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 text-center"
+          className="mt-6 sm:mt-10 text-center"
         >
           <Link href="/fahrzeuge">
             <motion.span
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-#6cb036 to-#5a9a2d px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-#6cb036/25 transition-all cursor-pointer"
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#6cb036] to-[#5a9a2d] px-5 py-2.5 sm:px-8 sm:py-4 rounded-full text-white font-semibold text-sm sm:text-base cursor-pointer touch-target"
             >
-              Mehr Fahrzeuge anzeigen
-              <ChevronRight className="w-5 h-5" />
+              Alle Fahrzeuge
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
             </motion.span>
           </Link>
         </motion.div>

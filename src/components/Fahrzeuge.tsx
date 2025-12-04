@@ -204,8 +204,18 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         animate={{ opacity: 1, scale: 1, x: 0 }}
         exit={{ opacity: 0, scale: 0.9, x: 50 }}
         onClick={(e) => e.stopPropagation()}
-        className="bg-gray-900 rounded-2xl sm:rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row"
+        className="bg-gray-900 rounded-2xl sm:rounded-3xl overflow-hidden max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800 flex flex-col lg:flex-row relative"
       >
+        {/* Close Button - Always Visible */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-3 right-3 z-50 bg-black/80 hover:bg-black p-3 rounded-full text-white transition-colors"
+          aria-label="Schließen"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
         {/* Left Side - Image Gallery */}
         <div className="lg:w-2/3 relative bg-black flex items-center justify-center">
           <div className="relative w-full h-56 sm:h-72 lg:h-full lg:min-h-[550px] flex items-center justify-center">
@@ -214,18 +224,6 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
               alt={vehicle.name}
               className="max-w-full max-h-full object-contain"
             />
-
-            {/* Close Button - Mobile */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onClose();
-              }}
-              className="absolute top-3 right-3 z-20 lg:hidden bg-black/70 p-2.5 rounded-full text-white active:bg-black/90 transition-colors touch-target"
-              aria-label="Schließen"
-            >
-              <X className="w-5 h-5" />
-            </button>
 
             {/* Image Navigation */}
             <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex items-center justify-between z-10">
@@ -267,19 +265,7 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         </div>
 
         {/* Right Side - Details */}
-        <div className="lg:w-1/3 p-4 sm:p-6 lg:p-8 flex flex-col overflow-y-auto relative">
-          {/* Close Button Desktop */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-            className="hidden lg:flex absolute top-4 right-4 z-20 bg-gray-800 hover:bg-gray-700 p-2 rounded-full text-white transition-colors items-center justify-center"
-            aria-label="Schließen"
-          >
-            <X className="w-5 h-5" />
-          </button>
-
+        <div className="lg:w-1/3 p-4 sm:p-6 lg:p-8 pt-14 lg:pt-6 flex flex-col overflow-y-auto">
           {/* Header */}
           <div className="mb-4 sm:mb-6">
             <div className="text-[#6cb036] text-xs sm:text-sm font-semibold mb-1 sm:mb-2">{vehicle.type}</div>

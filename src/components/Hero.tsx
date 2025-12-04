@@ -26,7 +26,7 @@ const slides = [
     cta: "Wert berechnen",
     href: "/kalkulator",
     icon: Calculator,
-    image: "https://brandea.b-cdn.net/CarcenterLandshut/bild-startseite-carcenter-landshut.webp",
+    image: "",
   },
   {
     id: 3,
@@ -80,15 +80,19 @@ export default function Hero() {
         <div className="flex h-full">
           {slides.map((slide, index) => (
             <div key={slide.id} className="flex-[0_0_100%] min-w-0 relative">
-              {/* Background Image */}
+              {/* Background Image or Gradient */}
               <div className="absolute inset-0">
-                <img
-                  src={slide.image}
-                  alt=""
-                  className="w-full h-full object-cover"
-                  loading={index === 0 ? "eager" : "lazy"}
-                  aria-hidden="true"
-                />
+                {slide.image ? (
+                  <img
+                    src={slide.image}
+                    alt=""
+                    className="w-full h-full object-cover"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    aria-hidden="true"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+                )}
                 {/* Premium Dark Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />

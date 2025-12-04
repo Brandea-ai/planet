@@ -215,27 +215,39 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
               className="max-w-full max-h-full object-contain"
             />
 
-            {/* Close Button */}
+            {/* Close Button - Mobile */}
             <button
-              onClick={onClose}
-              className="absolute top-4 right-4 lg:hidden bg-black/50 p-2 rounded-full text-white hover:bg-black/70 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
+              className="absolute top-3 right-3 z-20 lg:hidden bg-black/70 p-2.5 rounded-full text-white active:bg-black/90 transition-colors touch-target"
+              aria-label="Schließen"
             >
               <X className="w-5 h-5" />
             </button>
 
             {/* Image Navigation */}
-            <div className="absolute inset-x-0 bottom-0 top-0 flex items-center justify-between px-4">
+            <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex items-center justify-between z-10">
               <button
-                onClick={prevImage}
-                className="bg-black/50 hover:bg-black/70 p-2 rounded-full text-white transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevImage();
+                }}
+                className="bg-black/60 active:bg-black/80 p-2.5 rounded-full text-white transition-colors touch-target"
+                aria-label="Vorheriges Bild"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
               <button
-                onClick={nextImage}
-                className="bg-black/50 hover:bg-black/70 p-2 rounded-full text-white transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextImage();
+                }}
+                className="bg-black/60 active:bg-black/80 p-2.5 rounded-full text-white transition-colors touch-target"
+                aria-label="Nächstes Bild"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
 
@@ -255,11 +267,15 @@ function VehicleDetailModal({ vehicle, onClose }: { vehicle: Vehicle; onClose: (
         </div>
 
         {/* Right Side - Details */}
-        <div className="lg:w-1/3 p-4 sm:p-6 lg:p-8 flex flex-col overflow-y-auto">
+        <div className="lg:w-1/3 p-4 sm:p-6 lg:p-8 flex flex-col overflow-y-auto relative">
           {/* Close Button Desktop */}
           <button
-            onClick={onClose}
-            className="hidden lg:block absolute top-4 right-4 bg-gray-800 hover:bg-gray-700 p-2 rounded-full text-white transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="hidden lg:flex absolute top-4 right-4 z-20 bg-gray-800 hover:bg-gray-700 p-2 rounded-full text-white transition-colors items-center justify-center"
+            aria-label="Schließen"
           >
             <X className="w-5 h-5" />
           </button>

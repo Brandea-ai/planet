@@ -137,8 +137,8 @@ export default function ServicePage() {
       {/* Services Grid - Mobile First with 9:16 Images */}
       <section className="py-8 sm:py-12 lg:py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Mobile: Horizontal Scroll / Desktop: Grid */}
-          <div className="flex lg:grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x snap-mandatory lg:snap-none -mx-4 px-4 lg:mx-0 lg:px-0">
+          {/* Mobile: Vertical Stack / Desktop: Grid - No horizontal scroll to avoid gesture conflicts */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {services.map((service, index) => (
               <motion.article
                 key={service.title}
@@ -146,7 +146,6 @@ export default function ServicePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="flex-shrink-0 w-[85vw] sm:w-[70vw] lg:w-auto snap-center lg:snap-align-none"
               >
                 <div className="h-full glass rounded-2xl sm:rounded-3xl overflow-hidden transition-all duration-300 hover:border-[#5a9a2d]/30 group">
                   {/* 9:16 Image Container */}
@@ -199,12 +198,6 @@ export default function ServicePage() {
             ))}
           </div>
 
-          {/* Scroll Indicator for Mobile */}
-          <div className="flex justify-center gap-2 mt-4 lg:hidden" aria-hidden="true">
-            {services.map((_, index) => (
-              <div key={index} className="w-2 h-2 rounded-full bg-white/20" />
-            ))}
-          </div>
         </div>
       </section>
 

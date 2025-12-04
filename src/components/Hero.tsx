@@ -91,7 +91,7 @@ export default function Hero() {
                     aria-hidden="true"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+                  <div className="w-full h-full bg-gradient-to-br from-[#6cb036]/20 via-gray-900 to-black" />
                 )}
                 {/* Premium Dark Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />

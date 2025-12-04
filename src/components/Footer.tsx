@@ -57,7 +57,7 @@ export default function Footer() {
                 <img
                   src="https://brandea.b-cdn.net/CarcenterLandshut/logo-transparent.webp"
                   alt="CarCenter Landshut Logo"
-                  className="h-16 sm:h-20 lg:h-24 w-auto"
+                  className="h-20 sm:h-28 lg:h-32 w-auto"
                   loading="lazy"
                 />
               </Link>

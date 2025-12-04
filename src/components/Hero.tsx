@@ -111,10 +111,10 @@ export default function Hero() {
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           transition={{ delay: 0.2, type: "spring" }}
-                          className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] mb-4 sm:mb-6 lg:mb-8 shadow-lg shadow-[#6cb036]/30"
+                          className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl bg-gradient-to-br from-[#6cb036] to-[#5a9a2d] mb-3 sm:mb-4 lg:mb-6 shadow-lg shadow-[#6cb036]/30"
                           aria-hidden="true"
                         >
-                          <slide.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" />
+                          <slide.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white" />
                         </motion.div>
 
                         {/* Subtitle */}

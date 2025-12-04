@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Car, Calculator, Wrench, Menu, X, Banknote } from "lucide-react";
+import { Home, Car, Calculator, Wrench, Menu, X, Banknote, Phone } from "lucide-react";
 import Link from "next/link";
 import ContactFormModal from "./ContactFormModal";
 
